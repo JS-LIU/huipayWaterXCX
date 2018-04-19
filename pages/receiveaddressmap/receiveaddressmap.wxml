@@ -1,0 +1,23 @@
+<!--pages/receiveaddressmap/receiveaddressmap.wxml-->
+<view class='wrap'>
+  <view class='search_btn'>
+    <view class='search_input'>
+      <view bindtap="bindRedirectTo" class='search_city'>
+        <text>{{locationInfo.city}}</text>
+        <!-- <image ></image> -->
+      </view>  
+      <navigator open-type="redirect" url="/pages/resetcreateaddress/resetcreateaddress" class='search_address'>
+        {{locationInfo.fullAddress}}
+      </navigator>
+    </view>
+    
+    <!-- <view></view> -->
+  </view>
+  <map class='map' id="customer_map" latitude="{{locationInfo.latitude}}" longitude="{{locationInfo.longitude}}" bindregionchange="bindMoveMap"></map>
+  <view class="near_address_list">
+    <view class='near_address' wx:for="{{nearAddressList}}"  wx:for-item="address" wx:key="index" bindtap='bindSelected' data-address="{{address}}">
+      <text>{{address.fullAddress}}</text>
+      <text class='near_address_title'>{{address.address}}</text>
+    </view>
+  </view>
+</view>

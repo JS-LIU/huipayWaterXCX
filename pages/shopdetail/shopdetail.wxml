@@ -1,0 +1,35 @@
+<view class="wrap"></view>
+<image src="{{shop.imageUrl}}" mode='scaleToFill' class='shop_img'></image>
+
+<view class='shop_name'>
+  <text>{{shop.name}}</text>
+  <view class='shop_score'>
+    <image wx:for="{{shop.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' class='shop_start_icon'></image>
+  </view>
+</view>
+
+<view class='shop_address shop_info_item'>
+  <view class='shop_address_info'>
+    <image src='../images/station-details_icon_location.png' mode='aspectFit' class='shop_icon'></image>
+    <text class='shop_info_text'>{{shop.address}}</text> 
+  </view>
+  <view class='shop_info_right'>{{shop.distance}}</view>
+</view>
+<view class='shop_info_item shop_time'>
+  <view class='shop_time_info'>
+    <image src='../images/station-details_icon_time.png' mode='aspectFit' class='shop_icon'></image>
+    <text class='shop_info_text'>配送时间：08：30-19：00</text> 
+  </view>
+</view>
+<view class='shop_info_item'>
+  <view class='shop_range_info'>
+    <image src='../images/station-details_icon_range.png' mode='aspectFit' class='shop_icon'></image>
+    <text class='shop_info_text'>配送范围：附近五公里</text> 
+  </view>
+</view>
+<view>商家简介：</view>
+<view>xxx</view>
+
+
+
+

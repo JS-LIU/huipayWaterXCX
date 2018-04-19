@@ -1,0 +1,77 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/shoplist/shoplist",
+    "pages/cart/cart",
+    "pages/my/my",
+    "pages/resetaddress/resetaddress",
+    "pages/resetcities/resetcities",
+    "pages/shop/shop",
+    "pages/shopshoppingcart/shopshoppingcart",
+    "pages/bindphonenum/bindphonenum",
+    "pages/customeraddresslist/customeraddresslist",
+    "pages/createaddress/createaddress",
+    "pages/receiveaddressmap/receiveaddressmap",
+    "pages/resetcreateaddress/resetcreateaddress",
+    "pages/createspecaddress/createspecaddress",
+    "pages/resethomeaddress/resethomeaddress",
+    "pages/waterticketproducts/waterticketproducts",
+    "pages/shopproductdetail/shopproductdetail",
+    "pages/shoppingcart/shoppingcart",
+    "pages/hotsaleproduct/hotsaleproduct",
+    "pages/settle/settle",
+    "pages/mywaterticketlist/mywaterticketlist",
+    "pages/usewaterticketlist/usewaterticketlist",
+    "pages/sysset/sysset",
+    "pages/login/login",
+    "pages/inputcheckcode/inputcheckcode",
+    "pages/bindpassword/bindpassword",
+    "pages/changepassword/changepassword",
+    "pages/resetpswcheckcode/resetpswcheckcode",
+    "pages/checkcodelogin/checkcodelogin",
+    "pages/settlereceiverlist/settlereceiverlist",
+    "pages/discoverproductlist/discoverproductlist",
+    "pages/orderlist/orderlist",
+    "pages/selfmsg/selfmsg",
+    "pages/resetname/resetname",
+    "pages/collection/collection",
+    "pages/shopdetail/shopdetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "汇贝订水",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4dc0ff",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "iconPath": "pages/images/tab_btn_order water_n.png",
+        "selectedIconPath": "pages/images/tab_btn_order water_s.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "pages/images/tab_btn_station_n.png",
+        "selectedIconPath": "pages/images/tab_btn_station_s.png",
+        "pagePath": "pages/shoplist/shoplist",
+        "text": "店铺"
+      },
+      {
+        "iconPath": "pages/images/tab_btn_shoppingcart_n.png",
+        "selectedIconPath": "pages/images/tab_btn_shoppingcart_s.png",
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "iconPath": "pages/images/tab_btn_me_n.png",
+        "selectedIconPath": "pages/images/tab_btn_me_s.png",
+        "pagePath": "pages/my/my",
+        "text": "我"
+      }
+    ]
+  }
+}

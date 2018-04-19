@@ -1,0 +1,69 @@
+<view class='wrap'></view>
+<view class='main'>
+  <view class='edit' bindtap='bindEdit'>
+    <view class='edit_btn' >编辑商品</view>
+  </view>
+  <view wx:for="{{shoppingCartList}}" wx:for-item="shoppingCart" wx:for-index="i" wx:key="i" class='shop'>
+    <view class='shop_name' bindtap='bindSelectedShopShoppingCart' data-shop-shopping-cart-id='{{shoppingCart.shopId}}'>
+      <view class='shop_selected'>
+        <image wx:if="{{shoppingCart.selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+        <image wx:if="{{!shoppingCart.selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      </view>     
+      <image src='../images/shoppingcart_icon_station.png' mode='aspectFit' class='shop_icon'></image>
+      <text>{{shoppingCart.shopName}}</text>
+    </view>
+    <view wx:for="{{shoppingCart.productList}}" wx:for-item="shoppingCartProduct" wx:for-index="j" wx:key="j" class='shopping_cart_product'>
+      <view class='product_selected' bindtap='bindSelectedProductItem' data-shop-shopping-cart-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>
+        <image wx:if="{{shoppingCartProduct.selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+        <image wx:if="{{!shoppingCartProduct.selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      </view>
+      <view class='shopping_cart_right'>
+        <view class='shop_info'>
+          <image src='{{shoppingCartProduct.imageUrl}}' mode='aspectFit' class='shopping_cart_product_img'></image>
+          <view class='shopping_cart_product_info'>
+            <view class='shopping_cart_product_name'>{{shoppingCartProduct.name}}</view>
+            <view class='shopping_cart_product_volume'>{{shoppingCartProduct.volume}}</view>
+            <view class="shopping_cart_product_price">
+              <text class='shopping_cart_product_price_unit'>￥</text>
+              <text>{{shoppingCartProduct.currentPrice / 100}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='shopping_cart_product_count_ctrl'>
+          <view class='shopping_cart_product_count_item' bindtap='bindRemoveProduct' data-shop-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>-</view>
+          <view class='shopping_cart_product_count_item shopping_cart_product_count'>{{shoppingCartProduct.selectCount}}</view>
+          <view class='shopping_cart_product_count_item' bindtap='bindAddProduct' data-shop-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>+</view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+</view>
+<view class="cart_bottom" wx:if="{{!isEdit}}">
+  <view class='cart_bottom_left'>
+    <view class='cart_bottom_selected' bindtap='bindSelectShoppingCart'>
+      <image wx:if="{{selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+      <image wx:if="{{!selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      <text class='all_selcted_text'>全选</text>  
+    </view>     
+    <text class='all_selcted_total_money'>合计：￥{{selectedPrice /100}}</text>    
+  </view>
+  <view class='cart_bottom_right' bindtap='bindNavigateToSettle'>
+    <text class="to_settle">去结算</text>
+    <text class="to_settle_count">({{selectedCount}})</text>
+  </view>
+</view>
+<view class="cart_bottom"  wx:if="{{isEdit}}">
+  <view class='cart_bottom_left'>
+    <view class='cart_bottom_selected' bindtap='bindSelectShoppingCart'>
+      <image wx:if="{{selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+      <image wx:if="{{!selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      <text class='all_selcted_text'>全选</text>  
+    </view>     
+    <text class='all_selcted_total_money'>合计：￥{{selectedPrice /100}}</text>    
+  </view>
+  <view class='cart_bottom_right' bindtap='bindNavigateToSettle'>
+    <text class="to_settle">删除</text>
+    <text class="to_settle_count">({{selectedCount}})</text>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+<view class='wrap'>
+  <view wx:for="{{addressList}}"  wx:for-item="address" wx:for-index="i" wx:key="i" class="address">
+    <view class='address_user_info'>
+      <text>{{address.name}}</text>
+      <text class='address_user_phone_num'>{{address.phoneNum}}</text>
+      <view class='address_tag' wx:if="{{address.addressTagName}}">
+        {{address.addressTagName}}
+      </view>
+    </view>
+    <view class='location_info'>
+      {{address.locationInfo.fullAddress}}
+    </view>
+    <view class='edit_btn_list'>
+      <view class='set_default' bindtap='bindSetDefault' data-address-id="{{address.id}}">
+        <image src='../images/shoppingcart_choose_s.png' mode='aspectFit' class='default_img' wx:if="{{address.defaultFlag}}"></image>
+        <image src='../images/shoppingcart_choose_n.png' mode='aspectFit' class='default_img' wx:if="{{!address.defaultFlag}}"></image>
+        <text>设为默认</text>
+      </view>
+      <view class='edit_btn_right'>
+        <view class='edit_btn_edit' bindtap='bindEditAddress' data-address-info="{{address}}">
+          <image src='../images/edit_btn.png' mode='aspectFit' class='edit_img'></image> 
+          <text>编辑</text>
+        </view>
+        <view class='edit_btn_delete' bindtap='bindDeleteAddress' data-address-id="{{address.id}}">
+          <image src='../images/delete_btn.png' mode='aspectFit' class='edit_img'></image> 
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view bindtap='bindcreateaddress' class='create_address_btn'>创建地址</view>
+</view>
+

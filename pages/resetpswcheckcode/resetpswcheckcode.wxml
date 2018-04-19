@@ -1,0 +1,15 @@
+<view class='bind_phone_num_title'>
+  <text>短信验证码已发送至你的手机</text>
+  <text>请填写验证码</text>
+</view>
+<view class='login_box'>
+  <text>手机号</text>
+  <text class='country_num'>+86</text>
+  <text>{{phoneNum}}</text>
+</view>
+<view class='login_box'>
+  <text class='login_box_title'>验证码</text>
+  <input class='login_input'  bindinput='bindInputCheckCode' type="number" confirm-type="done" placeholder='请输入验证码'></input>
+</view>
+<view class='un_login' wx:if="{{!isCanSendMsg}}" bindtap='bindTestSetPsw'>下一步</view>
+<view bindtap='bindPhoneNum' class='login' wx:if="{{isCanSendMsg}}">下一步</view>

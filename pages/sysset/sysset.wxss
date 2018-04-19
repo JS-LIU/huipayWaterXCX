@@ -1,0 +1,22 @@
+.wrap{
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  background:#F8F8F8;
+}
+.sys_item{
+  position:relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height:84rpx;
+  margin-top:30rpx;
+  background:#FFF;
+  font-size:32rpx;
+  color:#333;
+  
+  
+}

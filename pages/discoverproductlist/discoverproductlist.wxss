@@ -1,0 +1,63 @@
+.guess_product_list{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  background:#f3f5f7;
+
+}
+.guess_product{
+  height:530rpx;
+  width:calc(50% - 2rpx);
+  background:#FFF;
+  margin-top:4rpx;
+}
+.guess_product_img{
+  display:block;
+  height:373rpx;
+  width:100%; 
+}
+.guess_product_info{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height:157rpx;
+}
+.guess_product_name{
+  margin:10rpx 24rpx 0;
+  color:#333;
+  font-size:32rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.guess_product_volume{
+  padding-left:10rpx;
+  font-size:32rpx;
+  color:#333;
+}
+.guess_product_price{
+  margin-left:24rpx;
+  font-size:32rpx;
+  color:#ff2d2d; 
+}
+.guess_product_unit{
+  font-size:24rpx;
+}
+.guess_product_saleMount{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left:24rpx;
+  color:#999;
+  font-size:24rpx;
+}
+.add_to_shopping_cart_btn{
+  display:block;
+  width:62rpx;
+  height:38rpx;
+}
+.add_to_shopping_cart_img{
+  display:block;
+  width:38rpx;
+  height:38rpx;
+}

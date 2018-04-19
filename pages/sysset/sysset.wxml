@@ -1,0 +1,8 @@
+<view class="wrap"></view>
+<!-- <view class='sys_item'><text>关于汇贝</text></view> -->
+<view bindtap='bindClearLocalStore' class='sys_item'>
+  <text>清除缓存</text>  
+</view>
+<view bindtap='bindLogOut' class='sys_item'>
+  <text>退出登录</text>  
+</view>

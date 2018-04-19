@@ -1,0 +1,97 @@
+.header_icon{
+  height:224rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login_icon{
+  width: 168rpx;
+  height: 168rpx;
+}
+.login_box{
+  height:100rpx;
+  margin:0 30rpx;
+  border-bottom:1rpx solid #d7d7d7;
+  font-size:30rpx;
+  color:#333;
+  line-height: 100rpx;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.login_input{
+  padding-left:56rpx;
+  flex:1;
+}
+.login_change_btn{
+  margin:30rpx 0 0 30rpx;
+  font-size:30rpx;
+  color:#4dc0ff;
+}
+.login{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size:36rpx;
+  height:80rpx; 
+  margin:70rpx 30rpx 0;
+  background:#4dc0ff;
+  border-radius: 10rpx;
+  color:#fff;
+}
+.forget_psd{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin:24rpx 30rpx 0 0;
+  font-size:26rpx;
+  color:#777;
+}
+.wx_bottom{
+  height:335rpx;
+  position: absolute;
+  bottom:0;
+  width:100%;
+}
+.cut_off_line{
+  display:flex;
+  flex-direction: row;
+  height:46rpx;
+  align-items: center;
+  margin: 0 30rpx;
+}
+.cut_off_left_line{
+  height:1rpx;
+  flex:1;
+  background:#d7d7d7;
+}
+.cut_off_center_text{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  width:110rpx;
+  font-size: 28rpx;
+  color:#777;
+}
+.wx_login{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wx_login_icon{
+  width:110rpx;
+  height:110rpx;
+  margin-top:50rpx;
+}
+.wx_login_text{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size:28rpx;
+  color:#4dc0ff;
+  margin-top:30rpx;
+}

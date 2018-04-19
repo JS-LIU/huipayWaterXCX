@@ -1,0 +1,132 @@
+<view class="wrap"></view>
+<view class='product'>
+  <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" class='c_pic_list'>
+    <swiper-item wx:for="{{product.productImage}}" wx:for-item="pic"  wx:for-index="i" wx:key="i" class="c_pic_item">
+      <image src="{{product.productImage[i]}}"  class="slide-image" mode='aspectFit' class='c_pic_img'></image>
+    </swiper-item>
+  </swiper>
+  <view class='product_info'>
+    <view class='product_info_top'>
+      <text wx:if="{{product.shopId === 1}}" class='product_info_jd_type'>自营</text>
+      <text class='product_info_name'>{{product.name}}</text>
+      <text class='product_info_name'>{{product.volume}}</text>
+    </view>
+    <view class='product_info_volume'>{{product.volume}}</view>
+    <view class='product_info_bottom'>
+      <view>
+        <text class='product_info_current_price_unit'>￥</text>
+        <text class='product_info_current_price'>{{product.currentPrice /100}}</text>
+        <text>原价</text>
+        <i>￥</i>
+        <text>{{product.originalPrice /100}}</text>
+      </view>
+      <view>已售：{{product.saleMount}}</view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{waterTicketList.length !== 0}}" class='water_ticet_info'>
+  <view class='water_ticket_title'>水票更优惠</view>
+  <view class="water_ticket_list">
+    <view class='water_ticket_item' wx:for="{{waterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" bindtap='bindNavigateToWaterTicketDetail' data-water-ticket="{{waterTicket}}" >
+      <image src='../images/ticket_package_bg.png'  mode='aspectFit' class='water_ticket_img'></image>
+      <view class='water_ticket_small_name'>{{waterTicket.smallName}}</view>
+    </view>
+  </view>
+</view>
+<view class='product_comment'>
+  <view class='product_comment_title'>
+    <text>商品评价</text>
+    <text>（{{commentCount}}）</text>
+  </view>
+  <view class='product_comment_content' wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="i" wx:key="i">
+    <view class='product_comment_top'>
+      <view class='product_comment_top_left'>
+        <image src='{{comment.userIconUrl}}' mode='aspectFit' class='user_icon_url'></image>
+        <view class='product_comment_name_info'>
+          <view class='product_comment_name'>{{comment.userName}}</view>
+          <view class='product_comment_score'>
+            <image class='product_comment_score_start' wx:for="{{comment.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' ></image>
+          </view>
+        </view>
+      </view>        
+      <view class='product_comment_time'>{{comment.commentTime}}</view>
+    </view>
+    <view class='comment_comment'>
+      {{comment.comment}}
+    </view>
+    <view class='comment_img_list'>
+      <image src='{{imgUrl}}' mode='aspectFit' class='comment_img' wx:for="{{comment.imageUrlList}}" wx:for-item="imgUrl" wx:for-index="i" wx:key="i"></image>
+    </view>
+  </view>
+</view>
+<view wx:if="{{shop.shopId !== 1}}" class='shop' bindtap='bindNavigateToShop' data-shop-id='{{shop.shopId}}'>
+  <view class='shop_top'>
+    <view class='shop_top_left'>
+      <image src='{{shop.imageUrl}}' mode='aspectFit' class='shop_icon'></image>
+      <view class='shop_name'>
+        <view>{{shop.name}}</view>
+        <view class="shop_score">
+          <image wx:for="{{shop.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' class='shop_start_icon'></image>
+        </view>        
+      </view>
+    </view>
+    <view class='shop_enter_btn'>进入店铺</view>
+  </view>
+  <view class='shop_bottom'>
+    <view class='shop_bottom_item'>
+      <view>{{shop.totalProductCount}}</view>
+      <view class='shop_bottom_item_title'>全部商品</view>
+    </view>
+    <view class='shop_bottom_item'>
+      <view>{{shop.fansCount}}</view>
+      <view class='shop_bottom_item_title'>粉丝</view>
+    </view>
+    <view class='shop_bottom_item'>
+      <view>{{shop.distance}}</view>
+      <view class='shop_bottom_item_title'>距离</view>
+    </view>
+  </view>
+</view>
+<view class='recomment_list'>
+  <view class='recomment_title'>为你推荐</view>
+  <view class='shop_product_list'>
+    <view wx:for="{{recommentList}}" wx:for-item="shopProduct" wx:for-index="i" wx:key="i" class='shop_product' bindtap='bindNavigateToProductDetail' data-shop-id='{{shop.shopId}}' data-product-item-id='{{shopProduct.productItemId}}'>
+      <image mode='aspectFit' src="{{shopProduct.imageUrl}}" class="shop_product_img"></image>
+      <view class='shop_product_info'>
+        <view class='shop_product_name'> 
+          <text>{{shopProduct.name}}</text>
+          <text class='shop_product_volume'>{{shopProduct.volume}}</text>
+        </view>
+        <view class='shop_product_price'> 
+          <text class='shop_product_unit'>￥</text>
+          <text>{{shopProduct.currentPrice / 100}}</text>
+        </view>
+        <view class='shop_product_saleMount'>
+          <text>已售{{shopProduct.saleMount}}</text>          
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='bottom_tab_bar'>
+  <view class='bottom_item' bindtap='bindCollectProduct'>
+    <image src='../images/bottom_btn_collection_n.png' mode='aspectFit' class='bottom_tab_img' wx:if="{{!product.collectProductFlg}}"></image>
+    <image src='../images/bottom_btn_collection_s.png' mode='aspectFit' class='bottom_tab_img' wx:if="{{product.collectProductFlg}}"></image>
+    <text>收藏</text>  
+  </view>
+  <view class='bottom_item' bindtap='bindCall'>
+    <image src='../images/bottom_btn_service.png' mode='aspectFit' class='bottom_tab_img'></image>
+    <text>客服</text>  
+  </view>
+  <navigator url='/pages/shoppingcart/shoppingcart' data-shop-info="{{shop}}" class='bottom_item'>
+    <image src='../images/bottom_btn_cart_n.png' mode='aspectFit' class='bottom_tab_img'></image>
+    <text class='shop_shopping_cart_select_count'>{{shoppingCartProductCount}}</text> 
+    <text>购物车</text>  
+  </navigator>
+  <view class='add_to_shopping_cart' data-product-item-id="{{product.productItemId}}" data-shop-info="{{shop}}" bindtap="addToShoppingCart">
+    <text>加入购物车</text> 
+  </view>
+  <view class='bottom_to_settle' data-shop-product="{{product}}" data-shop-info="{{shop}}" bindtap='bindShopNow'>
+    <text>立即购买</text> 
+  </view>
+</view>

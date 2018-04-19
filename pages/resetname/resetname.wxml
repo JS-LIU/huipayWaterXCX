@@ -1,0 +1,3 @@
+<view class="wrap"></view>
+<input class='input_name' bindblur='bindGetName' maxlength="6" value='{{name}}'></input>
+<view bindtap='bindSaveName' class='btn_save'>保存</view>

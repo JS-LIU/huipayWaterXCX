@@ -1,0 +1,93 @@
+<view class='wrap'></view>
+
+<view class='my_header' bindtap='bindNavigateTo' data-url='/pages/selfmsg/selfmsg'>
+  <view class='my_top_left'>
+    <image src='{{user.userIconUrl}}' mode='aspectFit' class='header_img'></image>
+    <view class='my_info' wx:if="{{isLogin}}">
+      <text class='my_name'>{{user.userName}}</text>
+      <text class='my_code'>汇贝号：{{user.huibeiCode}}</text>
+    </view>
+    <view catchtap='bindToLogin' class='my_info' wx:if="{{!isLogin}}" >
+      <text class='my_name'>点击登录</text>
+      <text class='my_code'>点击登录</text>
+    </view>
+  </view>
+  <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+</view>
+
+<view class='my_order'>
+  <view class='order_title'>
+    <view class='order_title_left' >
+      <image src='../images/me_icon_order.png' mode='aspectFit' class='order_title_image' ></image>
+      <text>我的订单</text> 
+    </view>
+    <view class='order_title_right' bindtap='bindNavigateTo' data-url='/pages/orderlist/orderlist?orderType=total'>
+      <text>查看全部</text>
+      <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+    </view>
+  </view>
+  <view class='order_show_list'>
+    <view class='order_show_list_item' bindtap='bindNavigateTo'  data-url='/pages/orderlist/orderlist?orderType=waiting_pay' >
+      <image src='../images/me_order_pending-payment.png' mode='aspectFit' class='order_item_img'></image>
+      <text>待付款</text>
+    </view>
+    <view class='order_show_list_item' bindtap='bindNavigateTo' data-url='/pages/orderlist/orderlist?orderType=waiting_received' >
+      <image src='../images/me_order_pending_receive.png' mode='aspectFit' class='order_item_img'></image>
+      <text>待收货</text>
+    </view>
+    <view class='order_show_list_item' bindtap='bindNavigateTo' data-url='/pages/orderlist/orderlist?orderType=waiting_comment'>
+      <image src='../images/me_order_pending_evaluation.png' mode='aspectFit' class='order_item_img'></image>
+      <text>待评价</text>
+    </view>
+    <view class='order_show_list_item'>
+      <image src='../images/me_order_return-goods.png' mode='aspectFit' class='order_item_img'></image>
+      <text>退换</text>
+    </view>
+  </view>
+</view>
+
+<view class='my_list'>
+  <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/mywaterticketlist/mywaterticketlist'>
+    <view class='my_list_item_left'>
+      <image src='../images/me_icon_ticket@2x.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>我的水票</text>
+    </view>
+    <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+  </view>
+</view>
+
+<view class='my_list'>
+  
+  <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/collection/collection'>
+    <view class='my_list_item_left'>
+      <image src='../images/me_icon_collection@2x.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>我的收藏</text>
+    </view>
+    <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+  </view>
+
+  <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/customeraddresslist/customeraddresslist'>
+    <view bindtap='' class='my_list_item_left'>
+      <image src='../images/me_icon_address@2x.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>地址管理</text>
+    </view>
+    <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+  </view>
+</view>
+
+<view class='my_list'>
+  <view class='my_list_item'>
+    <view class='my_list_item_left'>
+      <image src='../images/me_icon_shop@2x.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>我要开店</text>
+    </view>
+    <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+  </view>
+  <view data-url='/pages/sysset/sysset' bindtap='bindNavigateTo'  class='my_list_item'>
+    <view class='my_list_item_left'>
+      <image src='../images/me_icon_setup@2x.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>设置</text>
+    </view>
+    <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+  </view>
+</view>

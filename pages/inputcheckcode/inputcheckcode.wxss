@@ -1,0 +1,47 @@
+.bind_phone_num_title{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size:42rpx;
+  color:#333;
+  height:190rpx;
+}
+.login_box{
+  height:100rpx;
+  margin:0 30rpx;
+  border-bottom:1rpx solid #d7d7d7;
+  font-size:30rpx;
+  color:#999;
+  line-height: 100rpx;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.country_num{
+  padding-left:56rpx;
+}
+
+.login_input{
+  padding-left:56rpx;
+  flex:1;
+}
+
+.login_box_title{
+  color:#333;
+}
+.login,.un_login{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size:36rpx;
+  height:80rpx; 
+  margin:70rpx 30rpx 0;
+  background:#4dc0ff;
+  border-radius: 10rpx;
+  color:#fff;
+}
+.un_login{
+  background:#bbb;
+}

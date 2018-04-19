@@ -1,0 +1,51 @@
+<view class='wrap'></view>
+<view class='main'>
+  <view class='shop'>  
+    <view class='shop_name'>      
+      <image src='../images/shoppingcart_icon_station.png' mode='aspectFit' class='shop_icon'></image>
+      <text>{{shopName}}</text>
+    </view>
+    <view wx:for="{{productList}}" wx:for-item="product" wx:for-index="j" wx:key="j" class='shopping_cart_product'>
+      <view class='product_selected' bindtap='bindSelectedProductItem' data-product-id='{{product.productItemId}}'>
+        <image wx:if="{{product.selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+        <image wx:if="{{!product.selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      </view>
+      <view class='shopping_cart_right'>
+        <view class='shop_info'>
+          <image src='{{product.imageUrl}}' mode='aspectFit' class='shopping_cart_product_img'></image>
+          <view class='shopping_cart_product_info'>
+            <view class='shopping_cart_product_name'>{{product.name}}</view>
+            <view class='shopping_cart_product_volume'>{{product.volume}}</view>
+            <view class="shopping_cart_product_price">
+              <text class='shopping_cart_product_price_unit'>￥</text>
+              <text>{{product.originalPrice /100}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='shopping_cart_product_count_ctrl'>
+          <view class='shopping_cart_product_count_item' bindtap='bindRemoveProduct' data-product-id='{{product.productItemId}}'>-</view>
+          <view class='shopping_cart_product_count_item shopping_cart_product_count'>{{product.selectCount}}</view>
+          <view class='shopping_cart_product_count_item' bindtap='bindAddProduct' data-product-id='{{product.productItemId}}'>+</view>
+        </view>
+      </view>      
+    </view>
+  </view>
+</view>
+<view class="cart_bottom">
+  <view class='cart_bottom_left'>
+    <view class='cart_bottom_selected' bindtap='bindSelectedShopShoppingCart'>
+      <image wx:if="{{selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+      <image wx:if="{{!selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      <text class='all_selcted_text'>全选</text>  
+    </view>     
+    <text class='all_selcted_total_money'>合计：￥{{selectedPrice /100}}</text>    
+  </view>
+  <view class='cart_bottom_right' bindtap='bindNavigateToSettle' wx:if="{{selectedCount > 0}}">
+    <text class="to_settle">去结算</text>
+    <text class="to_settle_count">({{selectedCount}})</text>
+  </view>
+  <view class='un_cart_bottom_right' wx:if="{{selectedCount == 0}}">
+    <text class="to_settle">去结算</text>
+    <text class="to_settle_count">({{selectedCount}})</text>
+  </view>
+</view>

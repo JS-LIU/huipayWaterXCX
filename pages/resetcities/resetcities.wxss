@@ -1,0 +1,16 @@
+/* pages/resetcities/resetcities.wxss */
+.search_key{
+  font-size:32rpx;
+  color:#333;
+  padding-left:24rpx;
+  background:#f8f8f8;
+}
+.city{
+  height:84rpx;
+  background:#fff;
+  border-bottom:1rpx solid #e3e3e3;
+  line-height: 84rpx;
+  padding-left:24rpx;
+  font-size:26rpx;
+  color:#666;
+}

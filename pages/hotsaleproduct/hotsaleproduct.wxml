@@ -1,0 +1,61 @@
+<view class='wrap'></view>
+<view class='sort_list'>
+  <view wx:for="{{sortType}}" wx:for-item="sort"  wx:for-index="i" wx:key="i" class='sort_list_item' bindtap='bindSortProductList' data-sort-strategy='{{sort.key}}' data-product-list='{{hotSaleProductList}}'>
+    <text wx:if="{{sort.selected}}" class='selected_color' >{{sort.name}}</text>
+    <text wx:if="{{!sort.selected}}" >{{sort.name}}</text>
+  </view>
+  <view class='sort_list_item' bindtap='bindShowBrandList'>
+    <text>筛选</text>
+  </view>
+</view>
+<view>
+  <view class='guess_product_list'>
+    <view wx:for="{{hotSaleProductList}}" wx:for-item="shopProduct" wx:for-index="i" wx:key="i" class='guess_product' bindtap='bindNavigatorToProductDetail' data-shop-product="{{shopProduct}}">
+      <image mode='aspectFit' src="{{shopProduct.imageUrl}}" class="guess_product_img"></image>
+      <view class='guess_product_info'>
+        <view class='guess_product_name'> 
+          <text>{{shopProduct.name}}</text>
+          <text class='guess_product_volume'>{{shopProduct.volume}}</text>
+        </view>
+        <view class='guess_product_price'> 
+          <text class='guess_product_unit'>￥</text>
+          <text>{{shopProduct.currentPrice / 100}}</text>
+        </view>
+        <view class='guess_product_saleMount'>
+          <text>已售{{shopProduct.saleMount}}</text>
+          <view class='add_to_shopping_cart_btn' data-product-item-id="{{shopProduct.productItemId}}" data-shop-id="{{shopProduct.shopId}}" catchtap="addToShoppingCart">
+            <image src='../images/list_commom_btn_shopping-cart-.png' mode='aspectFit'
+            class='add_to_shopping_cart_img'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='panel_wrap' wx:if="{{isShowPanel}}"></view>
+<view class='tag_panel' animation="{{animationData}}">
+  <view>
+    <view class='tag_panel_title'>
+      <text>品类</text>
+    </view>
+    <view class='tag_panel_list'>
+      <view wx:for="{{hotSaleTag}}" wx:for-item="categoryItem" wx:for-index="i" wx:key="i" class='tag_panel_tag_item' wx:if="{{categoryItem.tagInfo.categoryName}}" bindtap='bindSelectTag' data-tag-id='{{categoryItem.tagInfo.id}}' style='{{categoryItem.style}}'>{{categoryItem.tagInfo.categoryName}}</view>
+    </view>
+    <view class='tag_panel_title tag_panel_title_brand'>
+      <text>品牌</text>
+    </view>
+    <view class='tag_panel_list'>
+      <view wx:for="{{hotSaleTag}}" wx:for-item="brandItem" wx:for-index="i" wx:key="i" class='tag_panel_tag_item' wx:if="{{brandItem.tagInfo.brandName}}" bindtap='bindSelectTag' data-tag-id='{{brandItem.tagInfo.id}}' style="{{brandItem.style}}">{{brandItem.tagInfo.brandName}}</view>
+    </view>
+  </view>
+  <view>
+  </view>
+  <view class='tag_panel_bottom'>
+    <view class='tag_panel_item' bindtap='bindResetTag'>
+      <text>重置</text>
+    </view>
+    <view class='tag_panel_item tag_panel_confirm' bindtap='bindConfirm'>
+      <text>确定</text>
+    </view>
+  </view>
+</view>

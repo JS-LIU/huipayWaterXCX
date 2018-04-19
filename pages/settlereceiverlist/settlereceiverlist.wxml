@@ -1,0 +1,16 @@
+<view class='wrap'>
+  <view bindtap='bindSetSettleReceiverInfo' data-receiver-info='{{address}}' wx:for="{{addressList}}"  wx:for-item="address" wx:for-index="i" wx:key="i" class="address">
+    <view class='address_user_info'>
+      <text>{{address.name}}</text>
+      <text class='address_user_phone_num'>{{address.phoneNum}}</text>
+      <view class='address_tag' wx:if="{{address.addressTagName}}">
+        {{address.addressTagName}}
+      </view>
+    </view>
+    <view class='location_info'>
+      {{address.locationInfo.fullAddress}}
+    </view>
+  </view>
+  <navigator url='/pages/createaddress/createaddress' bindtap='bindcreateaddress' class='create_address_btn'>创建地址</navigator>
+</view>
+

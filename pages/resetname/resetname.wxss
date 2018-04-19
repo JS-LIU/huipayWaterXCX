@@ -1,0 +1,32 @@
+/* pages/resetname/resetname.wxss */
+.wrap{
+  position:fixed;
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+  background:#F8F8F8;
+}
+.input_name{
+  position:relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left:24rpx;
+  margin-top:30rpx;
+  width:100%;
+  height: 84rpx;
+  background:#FFF;
+  color:#777;
+  font-size:26rpx;
+}
+.btn_save{
+  position:relative;
+  height:80rpx;
+  margin:80rpx 30rpx 0;
+  background:#399cfe;
+  color:#FFF;
+  font-size:36rpx;
+  text-align: center;
+  line-height: 80rpx;
+}

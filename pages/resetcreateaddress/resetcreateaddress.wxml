@@ -1,0 +1,14 @@
+<view class='search_btn'>
+  <view class='search_input'>
+    <view bindtap="bindRedirectTo" class='search_city'>
+      <text>{{locationInfo.city}}</text>
+    </view>
+    <input bindinput="bindInput" placeholder="搜索" focus="true" class='search_address'/>
+  </view>
+</view>
+<view class='address_list' wx:for="{{tips}}" wx:for-item="address" wx:for-index="i" wx:key="i" bindtap="bindSelected" data-address="{{address}}" >
+  <view class='address'>
+    <text class='address_name'>{{address.fullAddress}}</text>
+    <text class='address_address'>{{address.address}}</text>
+  </view>
+</view>

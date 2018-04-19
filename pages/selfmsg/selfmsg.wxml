@@ -1,0 +1,23 @@
+<view class="wrap"></view>
+<view class='reset_list'>
+  <view class='reset_header' bindtap='bindChangeHeader'>
+    <text>头像</text>
+    <view class='header_img_info'>
+      <image class='header_img' src='{{user.userIconUrl}}'></image>
+      <image class='header_arrow' src='../images/me-arrow@2x.png'></image>
+    </view>
+  </view>
+
+  <view class='rest_item' bindtap='bindNavigatorToResetName' data-name='{{user.userName}}'>
+    <text>名字</text>
+    <view class='name_info'>
+      <text class='name_text'>{{user.userName}}</text>
+      <image class='header_arrow' src='../images/me-arrow@2x.png'></image>
+    </view>
+  </view>
+  <navigator class='rest_item'>
+    <text>汇贝号</text>
+    <text class='huibeicode'>{{user.huibeiCode}}</text>
+  </navigator>
+</view>
+

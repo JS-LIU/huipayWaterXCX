@@ -1,0 +1,19 @@
+<view class='wrap'></view>
+<view wx:for="{{waterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" class='water_ticket'>
+  <view class='water_ticket_top'>
+    <image src='../images/img_ticket@2x.png' mode='aspectFit' class="water_ticket_img"></image>    
+    <view class='water_ticket_name'>
+      <text>{{waterTicket.brandName}}</text>
+      <text class='water_ticket_volume'>{{waterTicket.volume}}</text>
+    </view>
+    <view class='water_ticket_use_btn' bindtap='bindUseTicketSettle' data-user-ticket-id='{{waterTicket.userTicketId}}'>
+      <text>使用</text>
+    </view> 
+    <view class='water_ticket_right'>
+      <text>{{waterTicket.count}}</text>
+      <text class='water_ticket_unit'>张</text>
+    </view>      
+  </view>
+</view>
+
+

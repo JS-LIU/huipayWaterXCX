@@ -1,0 +1,32 @@
+<view class='wrap'>
+  <view class='address_info'>
+    <view class='user_info'>
+      <view class='user_info_left'>
+        <view class='input_item'>
+          <text>收货人：</text>
+          <input class='user_input' bindblur="bindSetName" value="{{name}}"></input>
+        </view>
+        <view class='input_item'>
+          <text>联系方式：</text>
+          <input class='user_input' bindblur="bindSetPhoneNum" value="{{phoneNum}}"></input>
+        </view>
+      </view>
+    </view>
+    <view class='input_item'>
+      <text>所在区域：</text>
+      <navigator class='user_input' url='/pages/receiveaddressmap/receiveaddressmap'>{{locationInfo.fullAddress}}</navigator>
+      <image src='../images/me-arrow@2x.png' mode='aspectFit' class='enter_arrow_icon'></image>
+    </view>
+    <view class='input_item'>
+      <text>详细地址：</text>
+      <input class='user_input' bindblur="bindSetPaddingAddress"></input>
+    </view>
+    <view class='input_item'>
+      <text>标签：</text>
+      <view class='user_input tag_list'>
+        <view wx:for="{{tagList}}" wx:for-item="tag" wx:for-index="i" wx:key="i" class='tag' style='border:{{tag.border}};color:{{tag.color}}' data-id="{{tag.id}}" bindtap='bindSelected'>{{tag.name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='save_btn' bindtap='bindSaveAddress'>保存</view> 
+</view>

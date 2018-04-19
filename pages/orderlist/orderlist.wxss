@@ -1,0 +1,121 @@
+.wrap{
+  position:fixed;
+  left:0rpx;
+  top:0rpx;
+  height:100%;
+  width:100%;
+  background:#F8F8F8;
+}
+.shop_order{
+  position:relative;
+  margin-top:30rpx;
+  background: #fff;
+  display:flex;
+  flex-direction: column;
+}
+.shop_title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 24rpx;
+  height:84rpx;
+  font-size:30rpx;
+  color:#777; 
+}
+.shop_title_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.shop_icon{
+  width:30rpx;
+  height:30rpx;
+  margin-right:10rpx;
+}
+.shop_enter_icon{
+  width:18rpx;
+  height:30rpx;
+  margin-left:10rpx;
+}
+.order_status{
+  font-size:26rpx;
+  color:#4dc0ff;
+}
+.product_item{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  height: 170rpx;
+  border-top:1rpx solid #d7d7d7;
+  padding:0 24rpx;
+}
+.product_img{
+  width:130rpx;
+  height:130rpx;
+  border:1rpx solid #d7d7d7;
+}
+.product_detail{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height:132rpx;
+  margin-left:20rpx;
+  font-size: 30rpx;
+  color:#333;
+}
+.product_detail_name{
+  display:flex;
+  flex-direction: row;
+}
+.product_detail_productType{
+  margin-left:20rpx;
+}
+.product_detail_volume{
+  font-size: 24rpx;
+  color:#999;
+}
+.product_detail_price{
+  display:flex;
+  flex-direction: row;
+  align-items: baseline;
+  font-size:24rpx;
+}
+.product_detail_current_price{
+  font-size:30rpx;
+}
+.shop_order_info{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height:84rpx;
+  padding-right:24rpx;
+  font-size:24rpx;
+  color:#777;
+  border-top:1rpx solid #d7d7d7;
+}
+.shop_order_unit{
+  color:#ff4243;
+}
+.shop_order_totalPayRmb{
+  color:#ff4243;
+  font-size:30rpx;
+}
+.shop_order_action_list{
+  height:84rpx;
+  border-top:1rpx solid #d7d7d7;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right:24rpx;
+}
+.action_text{
+  font-size:28rpx;
+  color:#4dc0ff;
+  padding:5rpx 40rpx;
+  border:1rpx solid #4dc0ff;
+  border-radius: 5rpx;
+  margin-left:20rpx;
+}

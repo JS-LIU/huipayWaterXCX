@@ -1,0 +1,8 @@
+<view>
+  <view wx:for="{{cities}}" wx:for-index="idx" wx:key="idx">
+    <view class='search_key'>{{item.key}}</view>
+    <view wx:for="{{item.cities}}" wx:for-item="city" wx:key="index" bindtap='bindSelectedCity' data-city="{{city.fullName}}" class='city'>
+      <text>{{city.fullName}}</text>
+    </view>
+  </view>
+</view>

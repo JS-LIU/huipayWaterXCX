@@ -1,0 +1,100 @@
+/* pages/collection/collection.wxss */
+.change_btn{
+  width:100%;
+  height:100rpx;
+  display:flex;
+  align-items: center;
+  font-size: 32rpx;
+  color:#333;
+}
+.product_btn,.shop_btn{
+  flex:1;
+  text-align: center;
+}
+.product_btn{
+  border-right:1rpx solid #eee;
+}
+.shop{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left:14rpx;
+  height:240rpx;
+  border-bottom:1rpx solid #d7d7d7;
+}
+.shop_img{
+  margin-right:24rpx;
+  display:flex;
+  width:210rpx;
+  height:210rpx;
+}
+.shop_info{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex:1;
+  height:200rpx;
+  width:400rpx;
+  margin-right:40rpx;
+}
+.shop_name{
+  font-size:32rpx;
+  color:#333;
+}
+.shop_sale_mount{
+  font-size:24rpx;
+  color:#999;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.shop_score{
+  display:flex;
+  flex-direction: row;
+  margin-right:26rpx;
+}
+.shop_start_icon{
+  display:flex;
+  width:21rpx;
+  height:21rpx;
+  margin-right:8rpx;
+}
+.shop_address{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size:24rpx;
+  color:#999;
+}
+.shop_address_text{
+  display:flex;
+  align-items: center;
+}
+.shop_address_icon{
+  margin:2rpx 10rpx 0 0;
+  width:29rpx;
+  height:34rpx;
+}
+.shop_address_name{
+  width:330rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.product_price{
+  font-size:24rpx;
+  color:#ff4243;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.add_to_shopping_cart_img{
+  display:block;
+  width:38rpx;
+  height:38rpx;
+  padding-right:24rpx;
+}
+.selected_btn{
+  color:#399cfe;
+}

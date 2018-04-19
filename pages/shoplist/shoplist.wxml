@@ -1,0 +1,32 @@
+<view>
+  <view>
+    <navigator url="/pages/resetaddress/resetaddress" class="fulladdress">
+      <view class='address_show'>
+        <image mode='aspectFit' src='../images/location-2@3x.png' class='address_icon'></image>
+        <text class="fulladdress_text">收货地址：{{addressInfo.fullAddress}}</text>   
+      </view>  
+      <image mode='aspectFit' src='../images/me-arrow@2x.png' class='right_arrow'></image>
+    </navigator>
+    <image mode='left' src='../images/line.png' class='address_line'></image>
+  </view>
+  
+  <view wx:for="{{shopList}}" wx:for-item="shop" wx:for-index="i" wx:key="i" class='shop' bindtap='bindNavigateToShop' data-shop-id="{{shop.shopId}}">
+    <image src="{{shop.imageUrl}}" class='shop_img' mode='aspectFit'></image>
+    <view class='shop_info'>
+      <text class='shop_name'>{{shop.name}}</text>
+      <view class='shop_sale_mount'>
+        <view class='shop_score'>
+          <image wx:for="{{shop.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' class='shop_start_icon'></image>
+        </view> 
+        <text>月售{{shop.saleMount}}</text>
+      </view>
+      <view class='shop_address'>
+        <view class='shop_address_text'>
+          <image mode='aspectFit' src='../images/location-2@3x.png' class='shop_address_icon'></image>
+          <text class='shop_address_name'>{{shop.address}}</text>
+        </view>
+        <text>{{shop.distance}}</text>
+      </view>
+    </view>
+  </view>
+</view>

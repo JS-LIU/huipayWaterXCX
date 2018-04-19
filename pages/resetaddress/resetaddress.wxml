@@ -1,0 +1,64 @@
+<view class='wrap'></view>
+
+<view class='content'>
+  <view>
+    <view class='search_btn'>
+      <view class='search_input'>
+        <view bindtap="bindRedirectTo" class='search_city'>
+          <text>{{locationInfo.city}}</text>
+          <image src='../images/down@2x.png' class='down_icon' mode='aspectFit'></image> 
+        </view>  
+        <navigator open-type="redirect" url="/pages/resethomeaddress/resethomeaddress" class='search_address'>
+          {{locationInfo.fullAddress}}
+        </navigator>
+      </view>
+    </view>
+
+    <view class='my_address_list'>
+      <view class='address_family' bindtap='bindSetHomeAddress'>
+        <view class='address_family_title'>
+          <image src='../images/gray_check.png' mode='aspectFit' class='check_img'></image>
+          <text>家庭</text>  
+        </view>
+        <view class='my_address_info'>
+          <text wx:if="{{!familyAddress.fullAddress}}">设置家庭地址</text>
+          <text wx:if="{{familyAddress.fullAddress}}">{{familyAddress.fullAddress}}</text>  
+        </view>
+      </view>
+      <view class='address_company' bindtap='bindSetCompanyAddress'>
+        <view class='address_company_title'>
+          <image src='../images/gray_check.png' mode='aspectFit' class='check_img'></image>
+          <text>单位</text>  
+        </view>
+        <view class='my_address_info'>
+          <text wx:if="{{!companyAddress.fullAddress}}">设置单位地址</text>
+          <text wx:if="{{companyAddress.fullAddress}}">{{companyAddress.fullAddress}}</text>  
+        </view>
+      </view>
+    </view>
+
+    <view class='current_address_title'>当前位置</view>
+
+  
+
+    <view class='current_address'>
+      <text>{{currentAddress.fullAddress}}</text>
+      <view class='get_current_address'>
+        <!-- <image></image> -->
+        <text>重新定位</text>
+      </view>
+    </view>
+    <view class='current_address_title'>附近地址</view>
+  </view>
+  <view class='current_address_near_list'>
+    <navigator class='address_list' open-type='redirect' open-type='navigateBack' delta='2' wx:for="{{tips}}" wx:for-item="address" wx:for-index="i" wx:key="i" bindtap="bindSelected" data-address="{{address}}" >
+      
+      <view class='address'>
+        <text class='address_name'>{{address.fullAddress}}</text>
+        <text class='address_address'>{{address.address}}</text>
+      </view>
+    </navigator>
+  </view>
+  
+</view>
+

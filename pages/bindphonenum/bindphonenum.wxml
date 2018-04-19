@@ -1,0 +1,12 @@
+<view class='header_icon'>
+  <image src="{{user.userIconUrl}}" mode='aspectFit' class='login_icon'></image>
+</view>
+<view class='user_name'>
+  <text>{{user.userName}}</text>
+</view>
+<view class='login_box'>
+  <text class='country_num'>+86</text>
+  <input class='login_input'  bindinput='bindInputPhoneNum' type="number" confirm-type="done" placeholder='请填写手机号'></input>
+</view>
+<view class='un_login' wx:if="{{!isCanSendMsg}}">注册</view>
+<view bindtap='bindRegister' class='login' wx:if="{{isCanSendMsg}}">注册</view>

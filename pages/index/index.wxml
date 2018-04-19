@@ -1,0 +1,68 @@
+<!--index.wxml-->
+<view class='wrap'>
+  <view>
+    <navigator url="/pages/resetaddress/resetaddress" class="fulladdress">
+      <view class='address_show'>
+        <image mode='aspectFit' src='../images/location-2@3x.png' class='address_icon'></image>
+        <text class="fulladdress_text">收货地址：{{addressInfo.fullAddress}}</text>   
+      </view>  
+      <image mode='aspectFit' src='../images/me-arrow@2x.png' class='right_arrow'></image>
+    </navigator>
+    <image mode='left' src='../images/line.png' class='address_line'></image>
+  </view>
+  <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}">
+    <swiper-item wx:for="{{cPic}}" wx:for-item="pic"  wx:for-index="i" wx:key="i">
+      <image src="{{pic.imageUrl}}" mode='scaleToFill' class='c_Pic_img'></image>
+    </swiper-item>
+  </swiper>
+  <view class='hot_sale'>
+    <view class='hot_sale_title'>
+      <text>桶装水热卖</text>  
+    </view>
+    <navigator url='/pages/hotsaleproduct/hotsaleproduct'>
+      <image src='{{hotSale.imageUrl}}' class='hot_sale_img' mode='aspectFit'></image>
+    </navigator>     
+  </view>
+  <view class='to_buy'>
+    <navigator url='/pages/waterticketproducts/waterticketproducts' class='water_tickets'>
+      <view class='water_tickets_title'>
+        <text>水票更优惠</text>
+        <text class='water_tickets_title_small'>电子水票，全城通用</text>
+      </view>
+      <image src='../images/home_water_ticket.png' class='water_tickets_img' mode='aspectFit'></image>
+    </navigator>
+    <navigator url='/pages/discoverproductlist/discoverproductlist' class='find_good_products'>
+      <view class='find_good_products_title'>
+        <text>发现好货</text>
+        <text class='find_good_products_small'>柴米油盐酱醋茶</text>
+      </view>
+      <image src='../images/find_good_product.png' class='find_good_products_img' mode='aspectFit'></image>
+    </navigator>
+  </view>
+
+  <view class='guess_u_like'>
+    <view class='guess_title'>猜你喜欢</view>
+    <view class='guess_product_list'>
+      <view wx:for="{{productList}}" wx:for-item="shopProduct" wx:for-index="i" wx:key="i" class='guess_product' bindtap='bindNavigatorToProductDetail' data-shop-product="{{shopProduct}}">
+        <image mode='aspectFit' src="{{shopProduct.imageUrl}}" class="guess_product_img"></image>
+        <view class='guess_product_info'>
+          <view class='guess_product_name'> 
+            <text>{{shopProduct.name}}</text>
+            <text class='guess_product_volume'>{{shopProduct.volume}}</text>
+          </view>
+          <view class='guess_product_price'> 
+            <text class='guess_product_unit'>￥</text>
+            <text>{{shopProduct.currentPrice / 100}}</text>
+          </view>
+          <view class='guess_product_saleMount'>
+            <text>已售{{shopProduct.saleMount}}</text>
+            <view class='add_to_shopping_cart_btn' data-product-item-id='{{shopProduct.productItemId}}' catchtap="addToShoppingCart">
+              <image src='../images/list_commom_btn_shopping-cart-.png' mode='aspectFit'
+              class='add_to_shopping_cart_img'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

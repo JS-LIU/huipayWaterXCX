@@ -1,0 +1,129 @@
+.wrap{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:#F8F8F8; 
+}
+.my_header{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height:160rpx;
+  margin-top:30rpx;
+  background:#fff;
+}
+.my_top_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.my_info{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left:24rpx;
+  height:95rpx;
+}
+.header_img{
+  display:flex;
+  margin-left:30rpx;
+  width:120rpx;
+  height:120rpx;
+}
+.my_name{
+  font-size:32rpx;
+  color:#333;
+}
+.my_code{
+  font-size:26rpx;
+  color:#999;
+}
+.arrow_right{
+  width:18rpx;
+  height:30rpx;
+  margin:0 30rpx 0 15rpx;
+}
+.my_order{
+  position:relative;
+  display:flex;
+  flex-direction: column;
+  margin-top:30rpx;
+  background:#FFF;
+}
+.order_title{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height:70rpx;
+  border-bottom:1rpx solid #d7d7d7;
+}
+.order_title_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left:30rpx;
+  font-size:32rpx;
+  color:#333;
+}
+.order_title_image{
+  width:32rpx;
+  height:35rpx;
+  margin-right:18rpx;
+}
+.order_title_right{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size:24rpx;
+  color:#999;
+}
+.order_show_list{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height:130rpx;
+}
+.order_show_list_item{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex:1;
+  align-items: center;
+  height:75rpx;
+  font-size:24rpx;
+  color:#333;
+}
+.order_item_img{
+  width:42rpx;
+  height:35rpx;
+}
+.my_list{
+  position:relative;
+  background:#FFF;
+  margin-top:30rpx;
+  border-top:1rpx solid #f8f8f8;
+}
+.my_list_item{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height:100rpx;
+}
+.my_list_item_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size:32rpx;
+  color:#333;
+}
+.my_list_item_img{
+  width:44rpx;
+  height:44rpx;
+  margin:0 24rpx 0 30rpx;
+}

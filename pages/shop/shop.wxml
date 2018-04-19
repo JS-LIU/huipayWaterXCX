@@ -1,0 +1,80 @@
+<!--pages/shop/shop.wxml-->
+<view class='wrap'></view>
+
+<view class='shop' bindtap='bindNavigateToShopDetail'>
+  <image src="{{shop.imageUrl}}" class='shop_img' mode='aspectFit'></image>
+  <view class='shop_info'>
+    <text class='shop_name'>{{shop.name}}</text>
+    <view class='shop_sale_mount'>
+      <view class='shop_score'>
+        <image wx:for="{{shop.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' class='shop_start_icon'></image>
+      </view> 
+      <text>月售{{shop.saleMount}}</text>
+    </view>
+    <view class='shop_address'>
+      <view class='shop_address_text'>
+        <image mode='aspectFit' src='../images/location-2@3x.png' class='shop_address_icon'></image>
+        <text class='shop_address_name'>{{shop.address}}</text>
+      </view>
+      <text>{{shop.distance}}</text>
+    </view>
+  </view>
+</view>
+<view class='shop_other_info'>
+  <view class='shop_product_count'>
+    <text>{{shop.totalProductCount}}</text>
+    <text class='shop_product_count_title'>全部商品</text>
+  </view>
+  <view class='shop_product_fans'>
+    <text>{{shop.fansCount}}</text>
+    <text class='shop_product_count_title'>粉丝</text>
+  </view>
+  <view class='shop_product_collect'>
+    <text>{{shop.fansCount}}</text>
+    <text class='shop_product_count_title'>收藏</text>
+  </view>
+</view>
+<view class='shop_product_list'>
+  <view wx:for="{{productList}}" wx:for-item="shopProduct" wx:for-index="i" wx:key="i" class='shop_product' bindtap='bindNavigatorToProductDetail' data-shop-product="{{shopProduct}}">
+    <image mode='aspectFit' src="{{shopProduct.imageUrl}}" class="shop_product_img"></image>
+    <view class='shop_product_info'>
+      <view class='shop_product_name'> 
+        <text>{{shopProduct.name}}</text>
+        <text class='shop_product_volume'>{{shopProduct.volume}}</text>
+      </view>
+      <view class='shop_product_price'> 
+        <text class='shop_product_unit'>￥</text>
+        <text>{{shopProduct.currentPrice / 100}}</text>
+      </view>
+      <view class='shop_product_saleMount'>
+        <text>已售{{shopProduct.saleMount}}</text>
+        <view class='add_to_shopping_cart_btn' data-product-item-id="{{shopProduct.productItemId}}" data-shop-info="{{shop}}" catchtap="addToShoppingCart">
+          <image src='../images/list_commom_btn_shopping-cart-.png' mode='aspectFit'
+          class='add_to_shopping_cart_img'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='bottom_tab_bar'>
+  <view class='bottom_item' bindtap='bindCollect'>
+    <image src='../images/bottom_btn_collection_n.png' mode='aspectFit' class='bottom_tab_img' wx:if="{{!shop.collectFlg}}"></image>
+    <image src='../images/bottom_btn_collection_s.png' mode='aspectFit' class='bottom_tab_img' wx:if="{{shop.collectFlg}}"></image>
+    <text>收藏</text>  
+  </view>
+  <view class='bottom_item' bindtap='bindCall'>
+    <image src='../images/bottom_btn_service.png' mode='aspectFit' class='bottom_tab_img'></image>
+    <text>客服</text>  
+  </view>
+  <view bindtap="bindNavigatorTo" data-shop-info="{{shop}}" class='bottom_item'>
+    <image src='../images/bottom_btn_cart_n.png' mode='aspectFit' class='bottom_tab_img'></image>
+    <text class='shop_shopping_cart_select_count'>{{shopShoppingCart.totalCount}}</text> 
+    <text>购物车</text>  
+  </view>
+  <view class='bottom_to_settle' bindtap='bindNavigateToSettle' wx:if="{{shopShoppingCart.totalCount > 0}}">
+    <text>去结算</text> 
+  </view>
+  <view class='un_bottom_to_settle' wx:if="{{shopShoppingCart.totalCount === 0}}">
+    <text>去结算</text> 
+  </view>
+</view>

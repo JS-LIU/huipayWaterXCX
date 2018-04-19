@@ -1,0 +1,143 @@
+.wrap{
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:#f8f8f8;
+}
+.content{
+  position:relative;
+  
+}
+.search_btn{
+  display:flex;
+  flex-direction: row;
+  height:112rpx;
+  background:#FFF;
+  border-bottom:1rpx solid #e3e3e3;
+}
+.search_input{
+  display:flex;
+  flex-direction: row;
+  flex:1;
+  align-items: center;
+  margin:18rpx 33rpx;
+  background:#f3f5f7;
+  color:#999;
+  font-size:30rpx;
+  border-radius: 3rpx;
+}
+.search_city{ 
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width:180rpx;
+  color:#333;
+}
+.down_icon{
+  width:16rpx;
+  height:9rpx;
+  margin-left:10rpx;
+}
+.search_address{
+  padding-left:22rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  max-width: 495rpx;
+}
+.my_address_list{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  background:#FFF;
+  align-items: center;
+  height:119rpx;
+}
+.address_family,
+.address_company{
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  width:0;
+  padding-left:30rpx;
+  font-size:32rpx;
+  color:#333;
+}
+.address_family{
+  border-right:1rpx solid #e3e3e3;
+}
+.address_family_title,
+.address_company_title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.check_img{
+  margin-right:12rpx;
+  width:28rpx;
+  height:28rpx;
+}
+.my_address_info{
+  font-size:26rpx;
+  color:#999;
+  padding-left:40rpx;
+  width:80%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.current_address_title{
+  margin:36rpx 0 15rpx 30rpx;
+  font-size:28rpx;
+  color:#777;
+}
+.current_address{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 30rpx;
+  font-size:28rpx;
+  color:#333;
+  height:90rpx;
+  background:#fff;
+}
+.current_address_near_list{
+  position:fixed;
+  top:502rpx;
+  bottom:0rpx;
+  width:100%;
+  background:#FFF;
+  overflow-y: auto;
+}
+.get_current_address{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  color:#399cfe;
+}
+.address_list{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  height:116rpx;
+  border-bottom:1rpx solid #e3e3e3;
+}
+.address{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height:80rpx;
+  padding-left:30rpx;
+}
+.address_name{
+  font-size:30rpx;
+  color:#333;
+}
+.address_address{
+  font-size:24rpx;
+  color:#777;
+}
