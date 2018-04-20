@@ -150,10 +150,12 @@ Page({
       let productItemId = e.currentTarget.dataset.productItemId;
       let shopInfo = {
         shopId:1
-      }
+      };
       let shopProduct = guessLikeList.findProductById(productItemId);      
       let shoppingCartProduct = shopProduct.convertToShoppingCartProduct(shopInfo);      
-      shoppingCartContainer.addProduct(shoppingCartProduct);
+      shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart)=>{
+          shopShoppingCart.increaseRequest(shoppingCartProduct);
+      });
     },
     bindNavigatorToProductDetail:function(e){
       let productItemId = e.currentTarget.dataset.shopProduct.productItemId;
@@ -162,4 +164,4 @@ Page({
         url: '/pages/shopproductdetail/shopproductdetail?productItemId=' + productItemId+"&shopId="+shopId,
       })
     }
-})
+});

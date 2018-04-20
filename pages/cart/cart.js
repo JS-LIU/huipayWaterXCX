@@ -1,5 +1,5 @@
-var { shoppingCartContainer } = require('../../store/shoppingCart/ShoppingCartContainer.js');
-var { order } = require('../../store/order/Order.js');
+var {shoppingCartContainer} = require('../../store/shoppingCart/ShoppingCartContainer.js');
+var {order} = require('../../store/order/Order.js');
 Page({
 
     /**
@@ -73,11 +73,11 @@ Page({
     onShareAppMessage: function () {
 
     },
-    bindRemoveProduct:function(e){
+    bindRemoveProduct: function (e) {
         let shopId = e.currentTarget.dataset.shopId;
         let productItemId = e.currentTarget.dataset.productId;
         let shoppingCartProduct = shoppingCartContainer.findShopShoppingCartProduct(shopId, productItemId);
-        shoppingCartContainer.removeProduct(shoppingCartProduct,()=>{
+        shoppingCartContainer.removeProduct(shoppingCartProduct, () => {
             this.setData({
                 shoppingCartList: shoppingCartContainer.getList(),
                 selectedCount: shoppingCartContainer.getSelectedCount(),
@@ -86,7 +86,7 @@ Page({
             })
         });
     },
-    bindAddProduct:function(e){
+    bindAddProduct: function (e) {
         let shopId = e.currentTarget.dataset.shopId;
         let productItemId = e.currentTarget.dataset.productId;
         let shoppingCartProduct = shoppingCartContainer.findShopShoppingCartProduct(shopId, productItemId);
@@ -96,23 +96,25 @@ Page({
                 selectedCount: shoppingCartContainer.getSelectedCount(),
                 selectedPrice: shoppingCartContainer.getSelectedPrice()
             })
+        }).then((shopShoppingCart)=>{
+            shopShoppingCart.increaseRequest(shoppingCartProduct);
         });
 
     },
     bindNavigateToSettle: function (e) {
-        order.getSettleInfo('default', "cartSettle",{}).then(()=>{
+        order.getSettleInfo('default', "cartSettle", {}).then(() => {
             wx.navigateTo({
                 url: '/pages/settle/settle'
             })
-        }).catch((info)=>{
-            if (info.data.message === "需要用户正式登录"){
+        }).catch((info) => {
+            if (info.data.message === "需要用户正式登录") {
                 wx.navigateTo({
                     url: '/pages/login/login',
                 })
             }
         });
     },
-    bindSelectShoppingCart:function(){
+    bindSelectShoppingCart: function () {
         let shoppingCartList = shoppingCartContainer.toggleSelected();
         let selected = shoppingCartContainer.hasSelected();
         this.setData({
@@ -122,7 +124,7 @@ Page({
             selectedPrice: shoppingCartContainer.getSelectedPrice()
         })
     },
-    bindSelectedShopShoppingCart:function(e){
+    bindSelectedShopShoppingCart: function (e) {
         let shopId = e.currentTarget.dataset.shopShoppingCartId;
         let shopShoppingCart = shoppingCartContainer.findShoppingCart(shopId);
         shopShoppingCart.toggleSelected();
@@ -135,19 +137,13 @@ Page({
             selectedPrice: shoppingCartContainer.getSelectedPrice()
         })
     },
-    bindSelectedProductItem:function(e){
+    bindSelectedProductItem: function (e) {
         let productId = e.currentTarget.dataset.productId;
         let shopId = e.currentTarget.dataset.shopShoppingCartId;
         let shopShoppingCart = shoppingCartContainer.findShoppingCart(shopId);
         let shoppingCartProduct = shoppingCartContainer.findShopShoppingCartProduct(shopId, productId);
-        
-        if (this.data.isEdit){
-          
-        }else{
-          shoppingCartProduct.toggleSelected();
-          shopShoppingCart.hasSelected();
-        }
-        
+        shoppingCartProduct.toggleSelected().selectedRequest();
+        shopShoppingCart.hasSelected();
 
         let selected = shoppingCartContainer.hasSelected();
         let shoppingCartList = shoppingCartContainer.getList();
@@ -158,7 +154,7 @@ Page({
             selectedPrice: shoppingCartContainer.getSelectedPrice()
         });
     },
-    bindEdit:function(){
-      
+    bindEdit: function () {
+
     }
-})
+});

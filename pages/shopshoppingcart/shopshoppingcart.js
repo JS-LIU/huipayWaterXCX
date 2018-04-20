@@ -78,19 +78,6 @@ Page({
   onShareAppMessage: function () {
   
   },
-  bindNavigateToSettle: function (e) {
-
-    let isShowAddress = false;
-    for (let i = 0; i < this.shopShoppingCart.productList.length; i++) {
-      if (this.shopShoppingCart.productList[i].productType === "实体商品") {
-        isShowAddress = true;
-        break;
-      }
-    }
-    wx.navigateTo({
-      url: '/pages/settle/settle?isShowAddress=' + isShowAddress + "&isCanCtrlProduct=" + false,
-    })
-  },
   bindSelectedShopShoppingCart: function (e) {
     this.shopShoppingCart.toggleSelected();
     this.setData({
@@ -128,7 +115,7 @@ Page({
   bindAddProduct: function (e) {
     let productItemId = e.currentTarget.dataset.productId;
     let shoppingCartProduct = this.shopShoppingCart.findProduct(productItemId);
-    this.shopShoppingCart.addProduct(shoppingCartProduct);
+    this.shopShoppingCart.addProduct(shoppingCartProduct).increaseRequest(shoppingCartProduct);
     this.setData({
       productList: this.shopShoppingCart.getProductList(),
       selectedCount: this.shopShoppingCart.getSelectedCount(),
@@ -149,4 +136,4 @@ Page({
       }
     });
   }
-})
+});

@@ -101,6 +101,8 @@ Page({
       this.setData({
         shopShoppingCart: shopShoppingCart
       })
+    }).then((shopShoppingCart)=>{
+        shopShoppingCart.increaseRequest(shoppingCartProduct);
     });
   },
   bindNavigatorTo:function(e){

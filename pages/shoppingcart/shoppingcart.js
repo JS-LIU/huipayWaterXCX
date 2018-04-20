@@ -98,6 +98,8 @@ Page({
         selectedCount: shoppingCartContainer.getSelectedCount(),
         selectedPrice: shoppingCartContainer.getSelectedPrice()
       })
+    }).then((shopShoppingCart)=>{
+        shopShoppingCart.increaseRequest(shoppingCartProduct);
     });
 
   },

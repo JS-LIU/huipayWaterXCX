@@ -125,7 +125,9 @@ Page({
     
     let shopProduct = this.hotSaleShopContainer.findProductById(productItemId);
     let shoppingCartProduct = shopProduct.convertToShoppingCartProduct({shopId:shopId});
-    shoppingCartContainer.addProduct(shoppingCartProduct);
+    shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart)=>{
+        shopShoppingCart.increaseRequest(shoppingCartProduct);
+    });
   },
   bindSortProductList: function (e){
     let sortStrategy = e.currentTarget.dataset.sortStrategy;

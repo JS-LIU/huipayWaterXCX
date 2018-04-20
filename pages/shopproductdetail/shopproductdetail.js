@@ -126,17 +126,6 @@ Page({
       url: '/pages/shopproductdetail/shopproductdetail?productItemId=' + productItemId + "&shopId=" + shopId,
     })
   },
-  addToShoppingCart: function (e) {
-    let productInfo = e.currentTarget.dataset.shopProduct;
-    let shopInfo = e.currentTarget.dataset.shopInfo;
-    let shoppingCartProduct = new ShoppingCartProduct(productInfo, shopInfo);
-    let self = this;
-    shoppingCartContainer.addProduct(shoppingCartProduct,()=>{
-      this.setData({
-        shoppingCartProductCount: shoppingCartContainer.getTotalCount()
-      });
-    });  
-  }, 
   bindShopNow: function (e){
     let productInfo = Object.assign({}, e.currentTarget.dataset.shopProduct, { hasSelected:true});
     let shopInfo = e.currentTarget.dataset.shopInfo;
@@ -170,6 +159,8 @@ Page({
       this.setData({
         shoppingCartProductCount: shoppingCartContainer.getTotalCount()
       });
+    }).then((shopShoppingCart)=>{
+        shopShoppingCart.increaseRequest(shoppingCartProduct);
     });
   },
   bindNavigateToShop: function (e){

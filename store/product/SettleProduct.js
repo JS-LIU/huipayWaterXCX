@@ -27,7 +27,9 @@ class SettleProduct{
     
     //  修改购物车数量
     let shoppingCartProduct = this.findShopShoppingCartProduct();
-    shoppingCartContainer.addProduct(shoppingCartProduct);
+    shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart)=>{
+        shopShoppingCart.increaseRequest(shoppingCartProduct);
+    });
   }
   reduce(){
     if (this.selectCount > 1){
