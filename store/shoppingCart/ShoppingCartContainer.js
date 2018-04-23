@@ -56,7 +56,11 @@ class ShoppingCartContainer {
 
     removeAllSelectedProduct(){
         for(let i = 0;i < this.list.length;i++){
-            this.list[i].removeSelectedProduct();
+            let shopShoppingCart = this.list[i];
+            shopShoppingCart.removeSelectedProduct(()=>{
+                let selectedProductList = shopShoppingCart.getSelectedProduct();
+                shopShoppingCart.removeProductsRequest(selectedProductList)
+            });
         }
         return this.getList();
     }

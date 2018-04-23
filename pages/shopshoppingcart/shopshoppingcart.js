@@ -149,7 +149,10 @@ Page({
         })
     },
     bindDeleteProductList: function (){
-        this.shopShoppingCart.removeSelectedProduct();
+        this.shopShoppingCart.removeSelectedProduct(()=>{
+            let selectedProductList = this.shopShoppingCart.getSelectedProduct();
+            this.shopShoppingCart.removeProductsRequest(selectedProductList);
+        });
         this.setData({
             productList: this.shopShoppingCart.getProductList(),
             selected: this.shopShoppingCart.hasSelected(),

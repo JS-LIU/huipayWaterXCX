@@ -140,9 +140,9 @@ class ShopShoppingCart {
      * 批量删除商品
      * @returns {Array|*}
      */
-    removeSelectedProduct(){
-
-        this.removeProductsRequest(this.getSelectedProduct());
+    removeSelectedProduct(requestCallBack = function(){}){
+        requestCallBack();
+        // this.removeProductsRequest(this.getSelectedProduct());
         this.productList = this.getUnSelectedProduct();
         this.getSelectedCount();
         this.getSelectedPrice();
