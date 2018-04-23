@@ -44,7 +44,7 @@ class Order {
                 self._setSettleParam({productItemId: productItemId});
                 return new Promise((resolve, reject) => {
                     //  如果购物车中没有该商品加入购物车结算否则结算购物车中的该商品
-                    if (!shoppingCartContainer.findProudctByProductItemId(productItemId)) {
+                    if (!shoppingCartContainer.findProductByProductItemId(productItemId)) {
                         shoppingCartContainer.addProduct(shoppingCartProduct);
                     }
                     self._getSettleInfo(actionType).then((settle) => {
@@ -81,7 +81,7 @@ class Order {
                         let productInfo = settle.data.orderProductInfo.productItemModels[0];
 
                         let productItemId = productInfo.productItemId;
-                        if (!shoppingCartContainer.findProudctByProductItemId(productItemId)) {
+                        if (!shoppingCartContainer.findProductByProductItemId(productItemId)) {
                             let shoppingCartProduct = new ShoppingCartProduct(productInfo, {
                                 shopName: settle.data.shopName,
                                 shopId: settle.data.shopId
@@ -163,7 +163,6 @@ class Order {
     }
 
     createOrder(deliveryAddressId, deliveryTime) {
-        ;
         let self = this;
         let createOrderInfo = {
             "cartSettle": function () {
@@ -180,7 +179,7 @@ class Order {
             "shopNowSettle": function () {
                 return self.settleParam;
             }
-        }
+        };
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
         let postInfo = Object.assign({
             accessInfo: accessInfo,

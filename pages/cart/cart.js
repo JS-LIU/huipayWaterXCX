@@ -10,7 +10,8 @@ Page({
         shoppingCartList: [],
         selectedCount: 0,
         selectedPrice: 0,
-        isEdit: false
+        isEdit: false,
+        editText:"编辑商品"
     },
 
     /**
@@ -35,7 +36,9 @@ Page({
             shoppingCartList: shoppingCartList,
             selected: selected,
             selectedCount: shoppingCartContainer.getSelectedCount(),
-            selectedPrice: shoppingCartContainer.getSelectedPrice()
+            selectedPrice: shoppingCartContainer.getSelectedPrice(),
+            isEdit: false,
+            editText: "编辑商品"
         })
     },
 
@@ -155,6 +158,23 @@ Page({
         });
     },
     bindEdit: function () {
-
+        let isEdit = !this.data.isEdit;
+        let editText = isEdit ? "完成" :"编辑商品";
+        this.setData({
+            isEdit:isEdit,
+            editText:editText
+        })
+    },
+    bindDeleteProductList: function (){
+        shoppingCartContainer.removeAllSelectedProduct();
+        let shoppingCartList = shoppingCartContainer.getList();
+        let selected = shoppingCartContainer.hasSelected();
+        this.setData({
+            shoppingCartList: shoppingCartList,
+            selected: selected,
+            selectedCount: shoppingCartContainer.getSelectedCount(),
+            selectedPrice: shoppingCartContainer.getSelectedPrice()
+        })
     }
+
 });

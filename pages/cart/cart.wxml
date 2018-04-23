@@ -1,7 +1,7 @@
 <view class='wrap'></view>
 <view class='main'>
   <view class='edit' bindtap='bindEdit'>
-    <view class='edit_btn' >编辑商品</view>
+    <view class='edit_btn' >{{editText}}</view>
   </view>
   <view wx:for="{{shoppingCartList}}" wx:for-item="shoppingCart" wx:for-index="i" wx:key="i" class='shop'>
     <view class='shop_name' bindtap='bindSelectedShopShoppingCart' data-shop-shopping-cart-id='{{shoppingCart.shopId}}'>
@@ -59,11 +59,9 @@
       <image wx:if="{{selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
       <image wx:if="{{!selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
       <text class='all_selcted_text'>全选</text>  
-    </view>     
-    <text class='all_selcted_total_money'>合计：￥{{selectedPrice /100}}</text>    
+    </view>
   </view>
-  <view class='cart_bottom_right' bindtap='bindNavigateToSettle'>
+  <view class='cart_bottom_right' bindtap='bindDeleteProductList'>
     <text class="to_settle">删除</text>
-    <text class="to_settle_count">({{selectedCount}})</text>
   </view>
 </view>

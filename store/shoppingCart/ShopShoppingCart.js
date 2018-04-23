@@ -63,6 +63,23 @@ class ShopShoppingCart {
         return this.productList;
     }
 
+    decreaseRequest(shoppingCartProduct,delta = 1){
+        let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
+        this.ajax.save({action: "decrease"}, {
+            accessInfo: accessInfo,
+            productItemId: shoppingCartProduct.productItemId,
+            productType: shoppingCartProduct.productType,
+            shopId: shoppingCartProduct.shopInfo.shopId,
+            delta:delta
+        }).then((info) => {
+            console.log("removeProduct:", info);
+        });
+    }
+    removeProductsRequest(removeProductList){
+        for(let i = 0;i < removeProductList.length; i++){
+            this.decreaseRequest(removeProductList[i],removeProductList[i].selectCount);
+        }
+    }
     /**
      * 获得购物车商品列表
      * @returns {Array}
@@ -92,12 +109,13 @@ class ShopShoppingCart {
             this.getTotalCount();
         }
         return this;
-        // if (bool) {
-        //     this.increaseToServer(shoppingCartProduct);
-        // }
-
     }
 
+    /**
+     * 单个商品的数量-1
+     * @param shoppingCartProduct
+     * @returns {Array|*}
+     */
     removeProduct(shoppingCartProduct) {
 
         for (let i = 0; i < this.productList.length; i++) {
@@ -114,18 +132,42 @@ class ShopShoppingCart {
                 this.getTotalCount();
             }
         }
-        let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-        this.ajax.save({action: "decrease"}, {
-            accessInfo: accessInfo,
-            productItemId: shoppingCartProduct.productItemId,
-            productType: shoppingCartProduct.productType,
-            shopId: shoppingCartProduct.shopInfo.shopId
-        }).then((info) => {
-            console.log("removeProduct:", info);
-        });
+        this.decreaseRequest(shoppingCartProduct);
         return this.productList;
     }
 
+    /**
+     * 批量删除商品
+     * @returns {Array|*}
+     */
+    removeSelectedProduct(){
+
+        this.removeProductsRequest(this.getSelectedProduct());
+        this.productList = this.getUnSelectedProduct();
+        this.getSelectedCount();
+        this.getSelectedPrice();
+        this.hasSelected();
+        this.getTotalCount();
+        return this.productList;
+    }
+    getSelectedProduct(){
+        let list = [];
+        for(let i = 0; i < this.productList.length;i++){
+            if(this.productList[i].selected){
+                list.push(this.productList[i]);
+            }
+        }
+        return list;
+    }
+    getUnSelectedProduct(){
+        let list = [];
+        for(let i = 0; i < this.productList.length;i++){
+            if(!this.productList[i].selected){
+                list.push(this.productList[i]);
+            }
+        }
+        return list;
+    }
     getTotalCount() {
         this.totalCount = 0;
         for (let i = 0; i < this.productList.length; i++) {

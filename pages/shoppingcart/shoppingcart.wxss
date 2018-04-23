@@ -10,6 +10,21 @@
   position: relative;
   margin-bottom:105rpx;
 }
+.edit{
+  position:relative;
+  height:80rpx;
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  background:#FFF;
+  color:#333;
+  font-size:30rpx;
+  border-top:1rpx solid #e3e3e3;
+}
+.edit_btn{
+  padding-right:24rpx;
+}
 .shop{
   margin-top:30rpx;
   background:#fff;
@@ -132,10 +147,12 @@
   color:#333;
 }
 .all_selcted_text{
+  padding-left:24rpx;
   font-size: 24rpx;
   color:#333;
 }
 .all_selcted_total_money{
+  padding-left:24rpx;
   font-size: 26rpx;
   color:#333;
 }

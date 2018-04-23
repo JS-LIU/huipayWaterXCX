@@ -54,6 +54,13 @@ class ShoppingCartContainer {
         })
     }
 
+    removeAllSelectedProduct(){
+        for(let i = 0;i < this.list.length;i++){
+            this.list[i].removeSelectedProduct();
+        }
+        return this.getList();
+    }
+
 
     getOrCreateShopShoppingCart(shopInfo) {
         for (let i = 0; i < this.list.length; i++) {
@@ -80,13 +87,12 @@ class ShoppingCartContainer {
             selectedCount += this.list[i].getSelectedCount()
         }
         this.selectedCount = selectedCount;
-        return selectedCount;
+        return this.selectedCount;
     }
 
     getTotalCount() {
         let totalCount = 0;
         let list = this.getList();
-        console.log("===========", list);
         for (let i = 0; i < list.length; i++) {
             totalCount += list[i].getTotalCount()
         }
@@ -123,11 +129,10 @@ class ShoppingCartContainer {
 
     findShopShoppingCartProduct(shopId, productId) {
         let shopShoppingCart = this.findShoppingCart(shopId);
-        let shopShoppingCartProduct = shopShoppingCart.findProduct(productId);
-        return shopShoppingCartProduct;
+        return shopShoppingCart.findProduct(productId);
     }
 
-    findProudctByProductItemId(productItemId) {
+    findProductByProductItemId(productItemId) {
         for (let i = 0; i < this.list.length; i++) {
             let shopShoppingCart = this.list[i];
             for (let j = 0; j < shopShoppingCart.productList.length; j++) {
