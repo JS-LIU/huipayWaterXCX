@@ -35,7 +35,7 @@ Page({
       let productModel = info.data.productModel;
       let commonModels = info.data.commonModels;
       this.product = shopProductDetail.getProduct(productModel);
-      let commentList = shopProductDetail.getCommentList(commonModels);
+      let commentList = shopProductDetail.getIncompleteList(commonModels);
       this.setData({
         product: this.product,
         commentList: commentList,

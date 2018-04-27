@@ -182,9 +182,7 @@
   align-items: center;
 }
 .settle_product_total_price_unit{
-  display:flex;
-  flex-direction: row;
-  align-items: baseline;
+  min-width: 50rpx;
   font-size:24rpx;
   color:#ff4243;
 }

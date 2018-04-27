@@ -10,7 +10,7 @@
   <input class='login_input' bindblur='bindGetPsw'></input>
 </view>
 <navigator class='login_change_btn' url='/pages/checkcodelogin/checkcodelogin'>用手机验证码登录</navigator>
-<view class='login' bindtap='bindLogin'>登陆</view>
+<view class='login' bindtap='bindLogin'>登录</view>
 <view class='forget_psd' bindtap='bindForgetPsd'>
   <text>忘记密码？</text> 
 </view>

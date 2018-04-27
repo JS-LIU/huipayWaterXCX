@@ -68,13 +68,14 @@ Page({
   bindWxLogin: function(){
     login.wxLogin().then((info)=>{
       if (info.data.nextStep === "mainPage") {
-        console.log(info.data.accessToken);
+        
         loginInfo.setInfo(info.data.accessToken);
         login.trigger("login");
         wx.switchTab({
           url: '/pages/index/index',
         })
       } else {
+        console.log('==================',info);
         loginInfo.setInfo(info.data.accessToken);
         //  绑定手机号
         wx.navigateTo({

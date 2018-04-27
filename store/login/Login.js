@@ -14,6 +14,7 @@ class Login{
     //  微信授权
     wxLogin(){
       return wxLogin.getCode().then((code)=>{
+        console.log('==========',code)
         return wxLogin.getWxUserInfo()
       }).then((res)=>{
         let postData = wxLogin.getWxLoginPostData();

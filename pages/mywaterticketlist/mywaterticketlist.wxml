@@ -1,6 +1,6 @@
 <view class='wrap'></view>
 <view wx:for="{{waterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" class='water_ticket'>
-  <view class='water_ticket_top'>
+  <view class='water_ticket_top' wx:if="{{waterTicket.status==='未使用'}}">
     <image src='../images/img_ticket@2x.png' mode='aspectFit' class="water_ticket_img"></image>    
     <view class='water_ticket_name'>
       <text>{{waterTicket.brandName}}</text>

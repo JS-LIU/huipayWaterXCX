@@ -9,28 +9,21 @@ class HPMap {
   }
 
   getLngLat(){
-    wx.showLoading({
-      title: '加载中',
-    })
+
     return new Promise((resolve, reject) => {
       wx.getLocation({
         altitude: true,
         success: function (res) {
-          wx.hideLoading()
           resolve({ latitude: res.latitude, longitude: res.longitude});
         }
       })
     })
   }
   getLocation(location){
-    wx.showLoading({
-      title: '加载中',
-    })   
     return new Promise((resolve,reject)=>{
       this.qqMapSdk.reverseGeocoder({
         location: location,
         success: function (res) {
-          wx.hideLoading()
           let data = Object.assign(res.result, { location });
           resolve(new LocationInfo(data).getInfo('locate'));
         },
@@ -56,16 +49,12 @@ class HPMap {
     
   }
   autoComplete(keyword, region) {
-    wx.showLoading({
-      title: '获取附近地址',
-    })
     return new Promise((resolve, reject) => {
       this.qqMapSdk.getSuggestion({
         keyword: keyword,
         region: region,
         region_fix:1,
         success: function (res) {
-          wx.hideLoading()
           let locationList = [];
           if (res && res.data) {
             for (let i = 0; i < res.data.length; i++) {

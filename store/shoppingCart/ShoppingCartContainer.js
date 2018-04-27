@@ -8,7 +8,7 @@ class ShoppingCartContainer {
         this.allSelectCount = 0;
         this.allPrice = 0;
         this.selected = false;
-    }
+    }acces
 
     getShoppingCartContainer() {
         this.list = [];

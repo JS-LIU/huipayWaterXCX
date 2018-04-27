@@ -126,7 +126,7 @@ Page({
       shoppingCartContainer.getShoppingCartContainer();
       if (orderInfo.totalPrice === 0){ 
         wx.redirectTo({
-          url: '/pages/orderlist/orderlist',
+          url: '/pages/orderlist/orderlist?orderType=total',
         })
       }else{
         let wxP = new WxPay(orderInfo);

@@ -15,7 +15,6 @@ HB.ajax = (function() {
             data: requestInfo.data,
             method: requestInfo.method,
             success: (data)=>{
-              wx.hideLoading();
               if (data.statusCode === 500){
                 requestInfo.reject(data);
               }else{
@@ -26,14 +25,14 @@ HB.ajax = (function() {
         })
     }.before((requestInfo, context) => {
         context.config(requestInfo);
-    })
+    });
     let config = function(configObj = {}) {
         this.config = function(requestInfo) {
             requestInfo.url = configObj.baseUrl + requestInfo.url;
-        }
+        };
         return this.config;
 
-    }
+    };
     class UrlCreator {
         constructor(templateUrl) {
             this.templateUrl = templateUrl + "/";
@@ -54,9 +53,6 @@ HB.ajax = (function() {
         }
         query() {}
         save(replaceUrlObj, data) {
-            wx.showLoading({
-              title: '加载中',
-            })
             let url = this.urlCreator.getUrl(replaceUrlObj);
             let method = "POST";
             return new Promise((resolve, reject) => {

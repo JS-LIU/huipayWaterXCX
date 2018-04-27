@@ -13,10 +13,15 @@ class WxPay{
   pay(){
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
     this.wxLogin.getCode().then((code)=>{
-      return huipayRequest.resource('/user/weixinInfo').save({}, {accessInfo: accessInfo,code: code})
+      return wxLogin.getWxUserInfo()
+    }).then((res)=>{
+      let postData = wxLogin.getWxLoginPostData();
+      let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
+      postData = Object.assign(postData, { accessInfo: accessInfo });
+      return huipayRequest.resource('/user/weixinInfo').save({}, postData)
     }).then((info)=>{
       return huipayRequest.resource('/client/pay/confirm').save({}, {
-        payChannel: "WeixinJSPay",
+        payChannel: "WeixinMiniProgramPay",
         orderId: this.orderId,
         openId: info.data.openId,
         accessInfo: accessInfo

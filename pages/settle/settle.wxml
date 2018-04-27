@@ -55,8 +55,7 @@
 </view>
 <view class='settle_product_total_price'>
   <text>商品金额：</text>
-  <text class='settle_product_total_price_unit'>￥</text>
-  <text class='settle_product_total_money'>{{totalProductPrice /100}}</text>
+  <view class='settle_product_total_price_unit'>￥{{totalProductPrice /100}}</view>
 </view>
 <view class='product_list_info'>
   <navigator class='use_ticket_counts' url='/pages/usewaterticketlist/usewaterticketlist'>

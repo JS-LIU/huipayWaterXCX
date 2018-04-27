@@ -37,20 +37,19 @@ Page({
           var localLoginInfo = res.data;
           loginInfo.setInfo(localLoginInfo);
           login.trigger("login");
-          console.log('sssstrigger')
         },
         fail: function () {
           //  登录游客
           login.touristLogin().then((info) => {
             loginInfo.setInfo(info.data);
             login.trigger("login");
-            console.log('ffftrigger')
           })
         }
       });
       
       //  获取首页轮播图
       login.listen('login',function(){
+        console.log('=========',loginInfo.getInfo());
         let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
         console.log(accessInfo);
         let postInfo = {

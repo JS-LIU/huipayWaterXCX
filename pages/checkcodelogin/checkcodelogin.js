@@ -95,6 +95,8 @@ Page({
     }
     huipayRequest.resource('/login/user').save({}, postData).then((info) => {
       loginInfo.setInfo(info.data);
+
+      login.trigger("login");
       wx.switchTab({
         url: '/pages/index/index',
       })

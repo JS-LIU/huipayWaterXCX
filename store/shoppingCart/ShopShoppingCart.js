@@ -227,7 +227,7 @@ class ShopShoppingCart {
         }
 
         for (let i = 0; i < this.productList.length; i++) {
-            this.productList[i].toggleSelected(this.selected);
+            this.productList[i].toggleSelected(this.selected).selectedRequest();
         }
         let actionType = this.selected ? "selected" : "unSelected";
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
