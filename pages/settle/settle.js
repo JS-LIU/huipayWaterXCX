@@ -92,6 +92,7 @@ Page({
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.increase();
+    console.log('settleProduct:先getsettleproduct:',settleProduct);
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),

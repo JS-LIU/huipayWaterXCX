@@ -39,8 +39,8 @@ class UseWaterTicketContainer{
   matchingTicket(settleProduct,calc = function(){}){
     for (let i = 0; i < this.useTicketList.length; i++){
       let useTicket = this.useTicketList[i];
-      if (useTicket.productItemId === settleProduct.productItemId && useTicket.status === "未使用"){
-        this.calcCanUseCount(useTicket, settleProduct)
+      if (useTicket.productItemId === settleProduct.productItemId){
+        this.calcCanUseCount(useTicket, settleProduct);
         this.calcSelectUseCount(useTicket);
       }
     }

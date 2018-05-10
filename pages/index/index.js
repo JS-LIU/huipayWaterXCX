@@ -31,6 +31,7 @@ Page({
      */
     onLoad: function(options) {
       let self = this; 
+
       wx.getStorage({
         key: "loginInfo",
         success: function (res) {
