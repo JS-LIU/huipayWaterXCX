@@ -13,7 +13,7 @@
   </view>
 </view>
 <navigator class='login_change_btn' url='/pages/login/login'>用账号密码登录</navigator>
-<view class='login' bindtap='bindLogin'>登陆</view>
+<view class='login' bindtap='bindLogin'>登录</view>
 <view class='wx_bottom'>
   <view class='cut_off_line'>
     <view class='cut_off_left_line'></view>

@@ -30,27 +30,28 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      console.log('options:======',options);
       let self = this; 
+
       wx.getStorage({
         key: "loginInfo",
         success: function (res) {
           var localLoginInfo = res.data;
           loginInfo.setInfo(localLoginInfo);
           login.trigger("login");
-          console.log('sssstrigger')
         },
         fail: function () {
           //  登录游客
           login.touristLogin().then((info) => {
             loginInfo.setInfo(info.data);
             login.trigger("login");
-            console.log('ffftrigger')
           })
         }
       });
       
       //  获取首页轮播图
       login.listen('login',function(){
+        console.log('=========',loginInfo.getInfo());
         let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
         console.log(accessInfo);
         let postInfo = {
@@ -88,7 +89,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-      console.log('onshow')
+      // console.log('onshow')
       let self = this;
       
       homeMap.getLocation().then((data) => {
@@ -164,4 +165,4 @@ Page({
         url: '/pages/shopproductdetail/shopproductdetail?productItemId=' + productItemId+"&shopId="+shopId,
       })
     }
-});
+});  

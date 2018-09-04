@@ -5,7 +5,8 @@ var { shoppingCartContainer } = require('../../store/shoppingCart/ShoppingCartCo
 var { order } = require('../../store/order/Order.js');
 var ShopProductDetail = require('../../store/product/ShopProductDetail.js');
 var Shop = require('../../store/shop/Shop.js');
-var ShoppingCartProduct = require('../../store/product/ShoppingCartProduct.js');
+var ShoppingCartProduct = require('../../store/product/ShoppingCartProduct.js')
+// var { shopWaterTicketList } = require('../../store/shop/ShopWaterTicketList.js');
 
 Page({
 
@@ -19,34 +20,43 @@ Page({
     commentCount: 0,
     shop:{},
     recommentList:[],
-    shoppingCartProductCount:0
+    shoppingCartProductCount:0,
+    // showTicket: false,
+    waterTicketList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+
     this.productItemId = parseInt(options.productItemId);
     this.shopId = parseInt(options.shopId);
-    
+
+    console.log(this.data.showTicket)
     ShopProductDetail.getDetail(this.productItemId, this.shopId).then((info)=>{
       
       let shopProductDetail = new ShopProductDetail(this.productItemId, this.shopId);
       let productModel = info.data.productModel;
       let commonModels = info.data.commonModels;
       this.product = shopProductDetail.getProduct(productModel);
-      let commentList = shopProductDetail.getCommentList(commonModels);
+      let commentList = shopProductDetail.getIncompleteList(commonModels);
+
       this.setData({
         product: this.product,
         commentList: commentList,
-        commentCount: commentList.length
+        commentCount: commentList.length,
+        // showTicket: options.type ? true : false
       });
       
       if (productModel.ticketProductItemId) {
         
         return this.product.getSelfWaterTicketList();
       }
+
     }).then((waterTicketList)=>{
+      
       console.log(waterTicketList);
       this.setData({
         waterTicketList: waterTicketList
@@ -67,6 +77,14 @@ Page({
         recommentList: recommentList
       })
     });
+
+    // shopWaterTicketList.getWaterTicketlList(1, "desc", "saleMount").then((waterTicketList) => {
+    //   console.log("waterTicketList：", waterTicketList);
+    //   this.setData({
+    //     waterTicketList: waterTicketList
+    //   })
+    // })
+
   },
 
   /**
@@ -119,11 +137,19 @@ Page({
   onShareAppMessage: function () {
   
   },
+  even_more: function () {
+    var app = getApp();
+    app.commentList = this.data.commentList;
+    wx.navigateTo({
+      url: '/pages/commentlist/commentlist',
+    })
+  },
   bindNavigateToWaterTicketDetail:function(e){
     let productItemId = e.currentTarget.dataset.waterTicket.productItemId;
+    
     let shopId = e.currentTarget.dataset.waterTicket.shopId;
     wx.navigateTo({
-      url: '/pages/shopproductdetail/shopproductdetail?productItemId=' + productItemId + "&shopId=" + shopId,
+      url: '/pages/shopproductdetail/shopproductdetail?productItemId=' + productItemId + "&shopId=" + shopId + "&type='ticket'",
     })
   },
   bindShopNow: function (e){

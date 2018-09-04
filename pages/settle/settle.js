@@ -92,6 +92,7 @@ Page({
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.increase();
+    console.log('settleProduct:先getsettleproduct:',settleProduct);
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),
@@ -126,12 +127,12 @@ Page({
       shoppingCartContainer.getShoppingCartContainer();
       if (orderInfo.totalPrice === 0){ 
         wx.redirectTo({
-          url: '/pages/orderlist/orderlist',
+          url: '/pages/orderlist/orderlist?orderType=total',
         })
       }else{
         let wxP = new WxPay(orderInfo);
         wxP.pay(orderInfo);
       }
-    });  
+    });
   }
 })

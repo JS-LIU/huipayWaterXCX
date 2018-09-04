@@ -34,8 +34,14 @@ class ShopProductDetail{
   getCommentList(commonModels){
     return new CommentList().getList(commonModels);
   }
+  getIncompleteList(commonModels) {
+    return new CommentList().getIncompleteList(commonModels);
+  }
+
   
 }
+
+
 module.exports = ShopProductDetail;
 
 

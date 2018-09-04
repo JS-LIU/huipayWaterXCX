@@ -1,10 +1,29 @@
 <view class="wrap"></view>
 <view class='product'>
-  <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" class='c_pic_list'>
-    <swiper-item wx:for="{{product.productImage}}" wx:for-item="pic"  wx:for-index="i" wx:key="i" class="c_pic_item">
-      <image src="{{product.productImage[i]}}"  class="slide-image" mode='aspectFit' class='c_pic_img'></image>
-    </swiper-item>
-  </swiper>
+  <view wx:if="{{showTicket}}">
+    <view wx:for="{{waterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" class='water_ticket'>
+      <view class='water_ticket_top'>
+        <image src='../images/img_ticket@2x.png' mode='aspectFit' class="water_ticket_details"></image>
+        <view class='water_ticket_name'>
+          <text>{{waterTicket.name}}</text>
+          <text class='water_ticket_volume'>{{waterTicket.volume}}</text>
+        </view>
+        <text class='water_ticket_smallName'>{{waterTicket.smallName}}</text>
+        <view class='water_ticket_right'>
+          <text>{{waterTicket.baseCount}}</text>
+          <text class='water_ticket_unit'>张</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" class='c_pic_list'>
+      <swiper-item wx:for="{{product.productImage}}" wx:for-item="pic" wx:for-index="i" wx:key="i" class="c_pic_item">
+        <image src="{{product.productImage[i]}}" class="slide-image" mode='aspectFit' class='c_pic_img'></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
   <view class='product_info'>
     <view class='product_info_top'>
       <text wx:if="{{product.shopId === 1}}" class='product_info_jd_type'>自营</text>
@@ -27,16 +46,22 @@
 <view wx:if="{{waterTicketList.length !== 0}}" class='water_ticet_info'>
   <view class='water_ticket_title'>水票更优惠</view>
   <view class="water_ticket_list">
-    <view class='water_ticket_item' wx:for="{{waterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" bindtap='bindNavigateToWaterTicketDetail' data-water-ticket="{{waterTicket}}" >
-      <image src='../images/ticket_package_bg.png'  mode='aspectFit' class='water_ticket_img'></image>
+    <view class='water_ticket_item' wx:for="{{waterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" bindtap='bindNavigateToWaterTicketDetail' data-water-ticket="{{waterTicket}}">
+      <image src='../images/ticket_package_bg.png' mode='aspectFit' class='water_ticket_img'></image>
       <view class='water_ticket_small_name'>{{waterTicket.smallName}}</view>
     </view>
   </view>
 </view>
 <view class='product_comment'>
   <view class='product_comment_title'>
-    <text>商品评价</text>
-    <text>（{{commentCount}}）</text>
+    <view class='product_comment_shopevaluate'>
+      <text>商品评价</text>
+      <text>（{{commentCount}}）</text>
+    </view>
+    <view class='product_comment_viewmore' bindtap='even_more'>
+      <text>查看更多</text>
+      <image src='../images/me-arrow@2x.png' class='right_arrow'></image>
+    </view>
   </view>
   <view class='product_comment_content' wx:for="{{commentList}}" wx:for-item="comment" wx:for-index="i" wx:key="i">
     <view class='product_comment_top'>
@@ -45,10 +70,10 @@
         <view class='product_comment_name_info'>
           <view class='product_comment_name'>{{comment.userName}}</view>
           <view class='product_comment_score'>
-            <image class='product_comment_score_start' wx:for="{{comment.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' ></image>
+            <image class='product_comment_score_start' wx:for="{{comment.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit'></image>
           </view>
         </view>
-      </view>        
+      </view>
       <view class='product_comment_time'>{{comment.commentTime}}</view>
     </view>
     <view class='comment_comment'>
@@ -67,7 +92,7 @@
         <view>{{shop.name}}</view>
         <view class="shop_score">
           <image wx:for="{{shop.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' class='shop_start_icon'></image>
-        </view>        
+        </view>
       </view>
     </view>
     <view class='shop_enter_btn'>进入店铺</view>
@@ -93,16 +118,16 @@
     <view wx:for="{{recommentList}}" wx:for-item="shopProduct" wx:for-index="i" wx:key="i" class='shop_product' bindtap='bindNavigateToProductDetail' data-shop-id='{{shop.shopId}}' data-product-item-id='{{shopProduct.productItemId}}'>
       <image mode='aspectFit' src="{{shopProduct.imageUrl}}" class="shop_product_img"></image>
       <view class='shop_product_info'>
-        <view class='shop_product_name'> 
+        <view class='shop_product_name'>
           <text>{{shopProduct.name}}</text>
           <text class='shop_product_volume'>{{shopProduct.volume}}</text>
         </view>
-        <view class='shop_product_price'> 
+        <view class='shop_product_price'>
           <text class='shop_product_unit'>￥</text>
           <text>{{shopProduct.currentPrice / 100}}</text>
         </view>
         <view class='shop_product_saleMount'>
-          <text>已售{{shopProduct.saleMount}}</text>          
+          <text>已售{{shopProduct.saleMount}}</text>
         </view>
       </view>
     </view>
@@ -112,21 +137,21 @@
   <view class='bottom_item' bindtap='bindCollectProduct'>
     <image src='../images/bottom_btn_collection_n.png' mode='aspectFit' class='bottom_tab_img' wx:if="{{!product.collectProductFlg}}"></image>
     <image src='../images/bottom_btn_collection_s.png' mode='aspectFit' class='bottom_tab_img' wx:if="{{product.collectProductFlg}}"></image>
-    <text>收藏</text>  
+    <text>收藏</text>
   </view>
   <view class='bottom_item' bindtap='bindCall'>
     <image src='../images/bottom_btn_service.png' mode='aspectFit' class='bottom_tab_img'></image>
-    <text>客服</text>  
+    <text>客服</text>
   </view>
   <navigator url='/pages/shoppingcart/shoppingcart' data-shop-info="{{shop}}" class='bottom_item'>
     <image src='../images/bottom_btn_cart_n.png' mode='aspectFit' class='bottom_tab_img'></image>
-    <text class='shop_shopping_cart_select_count'>{{shoppingCartProductCount}}</text> 
-    <text>购物车</text>  
+    <text class='shop_shopping_cart_select_count'>{{shoppingCartProductCount}}</text>
+    <text>购物车</text>
   </navigator>
   <view class='add_to_shopping_cart' data-product-item-id="{{product.productItemId}}" data-shop-info="{{shop}}" bindtap="addToShoppingCart">
-    <text>加入购物车</text> 
+    <text>加入购物车</text>
   </view>
   <view class='bottom_to_settle' data-shop-product="{{product}}" data-shop-info="{{shop}}" bindtap='bindShopNow'>
-    <text>立即购买</text> 
+    <text>立即购买</text>
   </view>
 </view>

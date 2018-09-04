@@ -40,7 +40,7 @@ class UseWaterTicketContainer{
     for (let i = 0; i < this.useTicketList.length; i++){
       let useTicket = this.useTicketList[i];
       if (useTicket.productItemId === settleProduct.productItemId){
-        this.calcCanUseCount(useTicket, settleProduct)
+        this.calcCanUseCount(useTicket, settleProduct);
         this.calcSelectUseCount(useTicket);
       }
     }

@@ -64,9 +64,13 @@ Page({
   onShareAppMessage: function () {
   
   },
-  bindpassword: function (e) {
+  bindInputPassWord:function(e){
+    this.password = e.detail.value;
+  },
+  bindPassWord: function (e) {
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
-    let password = e.detail.value;
+    let password = this.password;
+    console.log(password)
     let postInfo = {
       accessInfo: accessInfo,
       password: password

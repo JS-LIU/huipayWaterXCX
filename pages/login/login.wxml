@@ -7,10 +7,10 @@
 </view>
 <view class='login_box'>
   <text>密码</text>
-  <input class='login_input' bindblur='bindGetPsw'></input>
+  <input class='login_input' bindblur='bindGetPsw' password='true'></input>
 </view>
 <navigator class='login_change_btn' url='/pages/checkcodelogin/checkcodelogin'>用手机验证码登录</navigator>
-<view class='login' bindtap='bindLogin'>登陆</view>
+<view class='login' bindtap='bindLogin'>登录</view>
 <view class='forget_psd' bindtap='bindForgetPsd'>
   <text>忘记密码？</text> 
 </view>
@@ -20,9 +20,13 @@
     <text class='cut_off_center_text'>或</text>
     <view class='cut_off_left_line'></view>
   </view>
-  <view class='wx_login' bindtap='bindWxLogin'>
-    <image src='../images/wx_login_icon.png' mode='aspectFit' class='wx_login_icon'></image>
-  </view>
-  <text class='wx_login_text'>微信安全登录/注册</text>
+  <button open-type="getUserInfo" bindtap='bindWxLogin' plain="true">
+    <view class='wx_login'>
+      <image src='../images/wx_login_icon.png' mode='aspectFit' class='wx_login_icon'></image>
+    </view>
+    
+    <text >微信安全登录/注册</text>
+  </button>
+  
 </view>
 

@@ -73,6 +73,6 @@ Page({
     let orderAction = e.currentTarget.dataset.orderAction;
     let orderId = e.currentTarget.dataset.orderId;
     let order = orderContainer.findOrderItemByOrderId(orderId);
-    order.orderOperation(orderAction)
+    order.orderOperation(orderAction);
   }
 })

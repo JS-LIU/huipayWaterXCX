@@ -108,12 +108,11 @@ Page({
 
     },
     bindNavigateToSettle: function (e) {
-
-        order.getSettleInfo('default', "cartSettle", {}).then(() => {
-            wx.navigateTo({
-                url: '/pages/settle/settle'
-            })
-        });
+      order.getSettleInfo('default', "cartSettle", {}).then(() => {
+        wx.navigateTo({
+          url: '/pages/settle/settle'
+        })
+      });
     },
     bindSelectShoppingCart: function () {
         let shoppingCartList = shoppingCartContainer.toggleSelected();

@@ -23,6 +23,60 @@
 .c_pic_img{
   width:100%;
 }
+.water_ticket{
+  position: relative;
+  background:#fff;
+  margin-top:30rpx;
+}
+.water_ticket_top{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height:340rpx;
+  border-bottom:1rpx solid #d7d7d7;
+}
+.water_ticket_name{
+  position:relative;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height:120rpx;
+  font-size:62rpx;
+  font-weight: bold;
+  color:#FFF;
+}
+.water_ticket_volume{
+  font-size:28rpx;
+  font-weight: normal;
+  text-align: center;
+}
+.water_ticket_smallName{
+  position: absolute;
+  bottom:65rpx;
+  right:85rpx;
+  width:120rpx;
+  height:35rpx;
+  font-size:24rpx;
+  color:#FFF;
+  background:#FF8752;
+  text-align: center;
+  border-radius: 3rpx;
+}
+.water_ticket_right{
+  position:absolute;
+  top:110rpx;
+  font-size:54rpx;
+  right:105rpx;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color:#FFF;
+}
+.water_ticket_unit{
+  font-size:40rpx;
+}
 .product_info{
   height: 200rpx;
   display:flex;
@@ -54,6 +108,7 @@
   font-size:32rpx;
   color:#777;
 }
+
 .product_info_bottom{
   display:flex;
   flex-direction: row;
@@ -79,11 +134,25 @@
   display:flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   height:90rpx;
   padding-left: 30rpx;
   border-bottom:1rpx solid #d7d7d7;
   font-size:30rpx;
   color:#333;
+}
+.product_comment_viewmore{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+}
+.right_arrow{
+  width:15rpx;
+  height:25rpx;
+  margin:0 30rpx 0 10rpx;
+
 }
 .product_comment_content{
   display:flex;
@@ -246,6 +315,11 @@
   justify-content: space-between;
   align-items: center;
 }
+.water_ticket_details{
+  position: absolute;
+  width:663rpx;
+  height:287rpx;
+}
 .water_ticket_item{
   position:relative;
   margin-right:10rpx;  
@@ -387,7 +461,7 @@
 .bottom_to_settle,
 .add_to_shopping_cart{
   display:flex;
-  flex:2;
+  flex:2; 
   flex-direction: row;
   justify-content: center;
   align-items: center;

@@ -45,6 +45,7 @@ class OrderItem{
       orderNo: this.orderNo
     });
     wxPay.pay();
+    
   }
   sign() {
     console.log(this.orderId)

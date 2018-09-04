@@ -40,6 +40,7 @@ class WxLogin{
   }
   getWxLoginPostData(){
     let self = this;
+    console.log('code:getPOstData:',self.code)
     return {
       miniProgramsEncode: {
         iv: self.iv,

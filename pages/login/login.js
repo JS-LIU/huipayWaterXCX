@@ -14,7 +14,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
   },
 
   /**
@@ -42,7 +41,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    
   },
 
   /**
@@ -67,14 +66,16 @@ Page({
   }, 
   bindWxLogin: function(){
     login.wxLogin().then((info)=>{
+      console.log('info',info);
       if (info.data.nextStep === "mainPage") {
-        console.log(info.data.accessToken);
+        
         loginInfo.setInfo(info.data.accessToken);
         login.trigger("login");
         wx.switchTab({
           url: '/pages/index/index',
         })
       } else {
+        console.log('==================',info);
         loginInfo.setInfo(info.data.accessToken);
         //  绑定手机号
         wx.navigateTo({
@@ -127,6 +128,14 @@ Page({
       login.trigger("login");
       wx.switchTab({
         url: '/pages/index/index',
+      })
+    }).catch((errMsg) =>{
+      // console.log(errMsg.data.message)
+      // console.log(errMsg)
+      wx.showToast({
+        title: errMsg.data.message,
+        icon: 'none',
+        duration: 2000
       })
     })
   }

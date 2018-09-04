@@ -76,13 +76,13 @@
 </view>
 
 <view class='my_list'>
-  <view class='my_list_item'>
+  <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/myshop/myshop'>
     <view class='my_list_item_left'>
       <image src='../images/me_icon_shop@2x.png' mode='aspectFit' class='my_list_item_img'></image>
       <text>我要开店</text>
     </view>
     <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
-  </view>
+  </view> 
   <view data-url='/pages/sysset/sysset' bindtap='bindNavigateTo'  class='my_list_item'>
     <view class='my_list_item_left'>
       <image src='../images/me_icon_setup@2x.png' mode='aspectFit' class='my_list_item_img'></image>

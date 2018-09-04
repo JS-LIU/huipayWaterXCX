@@ -156,7 +156,9 @@
   font-size: 26rpx;
   color:#333;
 }
-.cart_bottom_right{
+.cart_bottom_right,
+.un_bottom_to_settle
+{
   display:flex;
   flex-direction: row;
   justify-content: center;
@@ -165,6 +167,9 @@
   align-items: baseline;
   width:250rpx;
   height:100%;
+}
+.un_bottom_to_settle{
+  background:#c1c1c1;
 }
 .total_price{
   padding-left:10rpx;
