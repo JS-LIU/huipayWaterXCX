@@ -1,0 +1,23 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class='wrap'>
+  <view class='product_comment_content' wx:for="{{commentListAll}}" wx:for-item="comment" wx:for-index="i" wx:key="i">
+    <view class='product_comment_top'>
+      <view class='product_comment_top_left'>
+        <image src='{{comment.userIconUrl}}' mode='aspectFit' class='user_icon_url'></image>
+        <view class='product_comment_name_info'>
+          <view class='product_comment_name'>{{comment.userName}}</view>
+          <view class='product_comment_score'>
+            <image class='product_comment_score_start' wx:for="{{comment.score}}" wx:for-item="start" wx:for-index="i" wx:key="i" src="{{start.imageUrl}}" mode='aspectFit' ></image>
+          </view>
+        </view>
+      </view>        
+      <view class='product_comment_time'>{{comment.commentTime}}</view>
+    </view>
+    <view class='comment_comment'>
+      {{comment.comment}}
+    </view>
+    <view class='comment_img_list'>
+      <image src='{{imgUrl}}' mode='aspectFit' class='comment_img' wx:for="{{comment.imageUrlList}}" wx:for-item="imgUrl" wx:for-index="i" wx:key="i"></image>
+    </view>
+  </view>
+</view>

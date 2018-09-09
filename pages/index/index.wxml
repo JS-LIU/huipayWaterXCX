@@ -1,4 +1,3 @@
-<!--index.wxml-->
 <view class='wrap'>
   <view>
     <navigator url="/pages/resetaddress/resetaddress" class="fulladdress">
@@ -65,4 +64,16 @@
       </view>
     </view>
   </view>
+</view>
+<view class='new_customer_get_water_ticket' wx:if="{{newCustomerWaterTicketActive && newCustomerWaterTicketActive.active}}">
+  <view class='activity_wrap'></view>
+  <view class='active_water_ticket'>
+    <image src='../images/tanchuang_photo_xinren@2x.png'
+                class='active_water_ticket_img'></image>
+    <image src='../images/tanchuang_button_receive@2x.png'
+                class='active_water_ticket_receive_button' bindtap="bindReceiveWaterTicket"></image>
+    <image src='../images/shuipiao_icon_cha@2x.png'
+                class='active_water_ticket_close' bindtap="bindCloseReceiveTicket"></image>
+  </view>
+  
 </view>

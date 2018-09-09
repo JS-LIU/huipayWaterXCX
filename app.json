@@ -35,7 +35,8 @@
     "pages/selfmsg/selfmsg",
     "pages/resetname/resetname",
     "pages/collection/collection",
-    "pages/shopdetail/shopdetail"
+    "pages/shopdetail/shopdetail",
+    "pages/givewaterticket/givewaterticket"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,4 +1,3 @@
-/**index.wxss**/
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -205,5 +204,47 @@
   width:242rpx;
   height:145rpx;
   margin-top:55rpx;
-
+}
+.new_customer_get_water_ticket{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.activity_wrap{
+  position:fixed;
+  height:100%;
+  width:100%;
+  background:#000;
+  opacity: 0.6;
+}
+.active_water_ticket{
+  position:relative;
+  z-index:1;
+  width:613rpx;
+  height:820rpx;
+  top:70rpx;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.active_water_ticket_img{
+  width:613rpx;
+  height:820rpx;
+}
+.active_water_ticket_receive_button{
+  position:absolute;
+  bottom:71rpx;
+  width:268rpx;
+  height:98rpx;
+}
+.active_water_ticket_close{
+  position:absolute;
+  bottom:-93rpx;
+  width:54rpx;
+  height: 54rpx;
 }

@@ -12,10 +12,10 @@ class Login{
       return huipayRequest.resource('/login/:level').save({ level: "tourist" }, {})
     }
     //  微信授权
-    wxLogin(){
+    wxLogin(userInfo){
       return wxLogin.getCode().then((code)=>{
-        return wxLogin.getWxUserInfo()
-      }).then((res)=>{
+        return wxLogin.getWxUserInfo(userInfo)
+      }).then(()=>{
         let postData = wxLogin.getWxLoginPostData();
         let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
         postData = Object.assign(postData, { accessInfo: accessInfo});

@@ -1,0 +1,64 @@
+/* pages/commentlist/commentlist.wxss */
+.product_comment_content{
+  display:flex;
+  flex-direction: column;
+  padding:0rpx 30rpx 22rpx 30rpx;
+  border-bottom:1rpx solid #d7d7d7;
+}
+.product_comment_top{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top:20rpx;
+  height:60rpx;
+}
+.product_comment_top_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user_icon_url{
+  width:50rpx;
+  height:50rpx;
+  border-radius: 50rpx;
+}
+.product_comment_name_info{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left:20rpx;
+}
+.product_comment_name{
+  font-size:28rpx;
+  color:#333;
+}
+.product_comment_time{
+  font-size:26rpx;
+  color:#999;
+}
+.comment_img_list{
+  display:flex;
+  flex-direction: row;
+  
+}
+.comment_img{
+  width:160rpx; 
+  height:160rpx;
+  border:1rpx solid #d7d7d7;
+  margin-top:22rpx;
+}
+.product_comment_score{
+  display:flex;
+  flex-direction: row;
+}
+.product_comment_score_start{
+  width:21rpx;
+  height:21rpx;
+  margin-right:8rpx;
+}
+.comment_comment{
+  font-size:26rpx;
+  color:#777;
+  padding-top:30rpx;
+}

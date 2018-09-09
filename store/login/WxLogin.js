@@ -21,18 +21,12 @@ class WxLogin{
       })
     })  
   }
-  getWxUserInfo(){
-    let self = this;
+  getWxUserInfo(info){
+    console.log("getUserInfo:",info);
+    this.iv = info.iv;
+    this.encryptedData = info.encryptedData;
     return new Promise((resolve,reject)=>{
-      wx.getUserInfo({
-        withCredentials: true,
-        success: function (res) {
-          console.log("getUserInfo==============",res)
-          self.iv = res.iv;
-          self.encryptedData = res.encryptedData;
-          resolve(res);
-        }
-      })
+      resolve(info);
     })
   }
   wxLogin(postData){

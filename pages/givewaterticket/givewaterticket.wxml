@@ -1,0 +1,2 @@
+<!--pages/givewaterticket.wxml-->
+<button open-type='share'>立即赠送</button>

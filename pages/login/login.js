@@ -64,14 +64,14 @@ Page({
   onShareAppMessage: function () {
   
   }, 
-  bindWxLogin: function(){
-    login.wxLogin().then((info)=>{
+  bindWxLogin: function(e){
+    login.wxLogin(e.detail).then((info)=>{
       console.log('info',info);
       if (info.data.nextStep === "mainPage") {
         
         loginInfo.setInfo(info.data.accessToken);
         login.trigger("login");
-        wx.switchTab({
+        wx.reLaunch({
           url: '/pages/index/index',
         })
       } else {

@@ -97,7 +97,7 @@ Page({
       loginInfo.setInfo(info.data);
 
       login.trigger("login");
-      wx.switchTab({
+      wx.reLaunch({
         url: '/pages/index/index',
       })
     })

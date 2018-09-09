@@ -122,6 +122,13 @@
   font-size:32rpx;
   color:#333;
 }
+.my_list_item_right{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size:24rpx;
+  color:#999;
+}
 .my_list_item_img{
   width:44rpx;
   height:44rpx;

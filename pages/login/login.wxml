@@ -20,7 +20,7 @@
     <text class='cut_off_center_text'>或</text>
     <view class='cut_off_left_line'></view>
   </view>
-  <button open-type="getUserInfo" bindtap='bindWxLogin' plain="true">
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo='bindWxLogin' plain="true">
     <view class='wx_login'>
       <image src='../images/wx_login_icon.png' mode='aspectFit' class='wx_login_icon'></image>
     </view>

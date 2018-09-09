@@ -76,6 +76,22 @@
 </view>
 
 <view class='my_list'>
+  <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/givewaterticket/givewaterticket'>
+    <view class='my_list_item_left'>
+      <image src='../images/icon_me_hongbao@2x.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>赠送好友</text>
+    </view>
+    <view class='my_list_item_right'>
+      <text>免费领红包</text>
+      <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+    </view>
+    
+  </view>
+</view>
+
+
+
+<view class='my_list'>
   <!-- <view class='my_list_item'>
     <view class='my_list_item_left'>
       <image src='../images/me_icon_shop@2x.png' mode='aspectFit' class='my_list_item_img'></image>
