@@ -1,4 +1,14 @@
 var HB = {};
+Function.prototype.after = function (fn) {
+  let self = this;
+  return function () {
+    let ret = self.apply(this, arguments);
+    if (ret === "nextSuccessor") {
+      return fn.apply(this, arguments);
+    }
+    return ret;
+  }
+};
 Function.prototype.before = function(beforefn) {
     let __self = this;
     return function() {

@@ -1,0 +1,3 @@
+<!--pages/receivewaterticketactive/receivewaterticketactive.wxml-->
+<text>pages/receivewaterticketactive/receivewaterticketactive.wxml</text>
+<view bindtap='bindAcceptWaterTicket'>立即领取</view>

@@ -1,6 +1,7 @@
 var {homeMap} = require('../../store/map/HomeMap.js');
 var {loginInfo} = require('../../store/login/LoginInfo.js');
 var {login} = require('../../store/login/Login.js');
+var Logger = require('../../store/login/Logger.js');
 var {huipayRequest} = require('../../store/init.js');
 var {shoppingCartContainer} = require('../../store/shoppingCart/ShoppingCartContainer.js');
 var {customerAddressContainer} = require('../../store/map/CustomerAddressContainer.js');
@@ -8,7 +9,7 @@ var {editCustomerAddress} = require('../../store/map/EditCustomerAddress.js');
 var {autoComplete} = require('../../store/map/AutoComplete.js');
 var {homeResetAddress} = require('../../store/map/HomeResetAddress.js');
 var {guessLikeList} = require('../../store/shop/GuessLikeList.js');
-var {activityList} = require('../../store/activity/ActivityList.js')
+var {activityList} = require('../../store/activity/ActivityList.js');
 var NewCustomerWaterTicketActive = require('../../store/activity/NewCustomerWaterTicketActive.js');
 // var ShopProduct = require('../../store/product/ShopProduct.js');
 // var ShoppingCartProduct = require('../../store/product/ShoppingCartProduct.js');
@@ -33,25 +34,32 @@ Page({
      */
     onLoad: function (options) {
         let self = this;
+        self.logger = new Logger();
+        console.log(options.activityId);
+      console.log(options.inviteId);
+      console.log(options.type);
+      self.activityId = options.activityId;
+      self.inviteId = options.inviteId;
+      self.type = options.type;
 
         wx.getStorage({
             key: "loginInfo",
             success: function (res) {
                 var localLoginInfo = res.data;
                 loginInfo.setInfo(localLoginInfo);
-                login.trigger("login");
+              self.logger.trigger("login");
             },
             fail: function () {
                 //  登录游客
                 login.touristLogin().then((info) => {
                     loginInfo.setInfo(info.data);
-                    login.trigger("login");
+                  self.logger.trigger("login");
                 })
             }
         });
         
         //  获取首页轮播图
-        login.listen('login', function () {
+      self.logger.listen('login', function () {
             console.log('=========', loginInfo.getInfo());
             let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
             console.log(accessInfo);
@@ -66,7 +74,7 @@ Page({
             });
         });
         //  获取首页热卖图
-        login.listen('login', function () {
+      self.logger.listen('login', function () {
             let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
             let postInfo = {
                 type: "hotSale",
@@ -79,13 +87,19 @@ Page({
             });
         })
       //  获取活动
-      login.listen('login', function () {
-        console.log("getActivities")
-        activityList.getActivities().then((activities) => {
-          console.log("activities==========",activities);
-          self.setData(activities)
+      self.logger.listen('login', function () {
+        activityList.getActivities(self.activityId).then((activities) => {
+          if (activities.inviteCustomerWaterTicketActive && activities.inviteCustomerWaterTicketActive.active){
+            activities.inviteCustomerWaterTicketActive.setInviteId(self.activityId);
+            activities.inviteCustomerWaterTicketActive.setType(self.type);
+            wx.navigateTo({
+              url: '/pages/receivewaterticketactive/receivewaterticketactive'
+            })
+          }
+          self.setData(activities);
         })
-      })
+      });
+
     },
 
     /**
@@ -99,7 +113,6 @@ Page({
      */
     onShow: function () {
 
-        // console.log('onshow')
         let self = this;
 
         homeMap.getLocation().then((data) => {
@@ -111,7 +124,7 @@ Page({
             homeResetAddress.setLocationInfo(data);
         });
         
-        login.listen('login', function () {
+      self.logger.listen('login', function () {
             guessLikeList.getProductList().then((productList) => {
                 self.setData({
                     productList: productList

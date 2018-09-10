@@ -1,1 +1,87 @@
 /* pages/givewaterticket.wxss */
+.wrap{
+  position:fixed;
+  left:0rpx;
+  top:0rpx;
+  height:100%;
+  width:100%;
+  background:#F8F8F8;
+}
+
+.give_body{
+  position:relative;
+  background:#FFF;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.red_pocket{
+  width:690rpx;
+  height:190rpx;
+  margin:36rpx auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:#FFF;
+  box-shadow:0 0 10px rgba(0, 0, 0, 0.3)
+}
+.money{
+  color:#FF4E4E;
+  font-size:60rpx;
+}
+.money_text{
+  color:#333;
+  font-size:28rpx;
+  margin-top:28rpx;
+}
+.invite_slogon{
+  margin-top:90rpx;
+  width:490rpx;
+  height:64rpx;
+}
+.share_red_pocket_img{
+  width:564rpx;
+  height:404rpx;
+}
+.red_pocket_explan_text{
+  margin-top:90rpx;
+  width:690rpx;
+  font-size:26rpx;
+  color:#777;
+}
+.share_button{
+  margin-top:34rpx;
+  width:690rpx;
+  height:80rpx;
+  color:#FFF;
+  background:#4dc0ff;
+  font-size:34rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 6rpx;
+}
+.share_img_introduce{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  background:#FFF;
+  width:100%;
+  height:210rpx;
+  margin-top:70rpx;
+}
+.share_img_introduce_img{
+  position:absolute;
+  top:0;
+  margin:0 auto;
+  width:648rpx;
+  height:210rpx;
+}
+.share_img_introduce_text{
+  position:absolute;
+  top:0;
+  font-size:28rpx;
+  color:#777;
+}

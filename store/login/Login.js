@@ -2,11 +2,7 @@ var { huipayRequest } = require('../init.js');
 var { wxLogin } = require('./WxLogin.js')
 var { loginInfo } = require('./LoginInfo.js');
 class Login{
-    constructor(){
-        this.listenerEvents = {};
-        this.unListenerEvents = {};
-        // this.loginState = false;
-    }
+    
     //  游客登录
     touristLogin(){
       return huipayRequest.resource('/login/:level').save({ level: "tourist" }, {})
@@ -41,26 +37,6 @@ class Login{
       })
       
     }
-    trigger(event){
-        if(this.listenerEvents[event]){
-            for(let i = 0;i < this.listenerEvents[event].length;i++){
-                this.listenerEvents[event][i]();
-            }
-        }else{
-            this.unListenerEvents[event] = [];
-        }
-        
-    }
-    listen(event,func){
-        if(this.unListenerEvents[event]){
-            func();
-        }else{
-            if(!this.listenerEvents[event]){
-                this.listenerEvents[event] = []; 
-            }
-            this.listenerEvents[event].push(func);
-        }
-        
-    }
+    
 }
 module.exports.login = new Login();

@@ -36,7 +36,10 @@
     "pages/resetname/resetname",
     "pages/collection/collection",
     "pages/shopdetail/shopdetail",
-    "pages/givewaterticket/givewaterticket"
+    "pages/givewaterticket/givewaterticket",
+    "pages/receivewaterticketactive/receivewaterticketactive",
+    "pages/receivewaterticketsuccess/receivewaterticketsuccess",
+    "pages/receivewaterticketfail/receivewaterticketfail"
   ],
   "window": {
     "backgroundTextStyle": "light",
