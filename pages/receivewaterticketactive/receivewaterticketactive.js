@@ -1,19 +1,30 @@
 // pages/receivewaterticketactive/receivewaterticketactive.js
-var { activityList } = require('../../store/activity/ActivityList.js')
+var { activityList } = require('../../store/activity/ActivityList.js');
+var { userInfo } = require('../../store/user/UserInfo.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    inviter:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    let inviteCustomerWaterTicketActive = activityList.activities.inviteCustomerWaterTicketActive;
+    userInfo.getInviteUserInfo(inviteCustomerWaterTicketActive.inviteId).then((inviteInfo)=>{
+      console.log(inviteInfo.data);
+      this.setData({
+        inviter: inviteInfo.data
+      })
+    }).catch((err)=>{
+      this.setData({
+        inviter: null
+      })
+    })
   },
 
   /**

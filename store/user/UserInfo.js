@@ -25,5 +25,11 @@ class UserInfo{
     this.userIconUrl = info.userIconUrl;
     this.userWaterTicketCount = info.userWaterTicketCount;
   }
+  getInviteUserInfo(inviteId){
+    let postInfo = {
+      inviterUserId: inviterUserId
+    }
+    return huipayRequest.resource('/activity/getInviteInfo').save({}, postInfo)
+  }
 }
 module.exports.userInfo = new UserInfo();

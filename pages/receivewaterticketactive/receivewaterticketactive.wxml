@@ -1,3 +1,11 @@
 <!--pages/receivewaterticketactive/receivewaterticketactive.wxml-->
-<text>pages/receivewaterticketactive/receivewaterticketactive.wxml</text>
-<view bindtap='bindAcceptWaterTicket'>立即领取</view>
+<view wx:if='{{inviter}}' class='invite_info'>
+  <image src='{{invite.userIcon}}' mode='aspectFit' class='invite_header_img'></image>
+  <text class='invite_nick_name'>{{invite.nickName}}</text>
+</view>
+<view class='receive_water_ticket'>
+  <text class='receive_water_ticket_title'>送你一张水票</text>
+  <text class='receive_water_ticket_info'>凭水票可免费领取1桶喜腾山泉天然矿泉水，赶快领取吧！</text>
+  <image src='../images/fenxiang_photo_zhuanxiang@2x.png' class='receive_water_ticket_img'></image>
+</view>
+<view class='accept_water_ticket_button' bindtap='bindAcceptWaterTicket'>立即领取</view>

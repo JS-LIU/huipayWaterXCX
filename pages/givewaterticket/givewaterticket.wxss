@@ -61,6 +61,7 @@
   line-height: 80rpx;
   text-align: center;
   border-radius: 6rpx;
+  border:none;
 }
 .share_img_introduce{
   position:relative;
@@ -72,6 +73,7 @@
   height:210rpx;
   margin-top:70rpx;
 }
+button::after{ border: none; }
 .share_img_introduce_img{
   position:absolute;
   top:0;
@@ -81,7 +83,7 @@
 }
 .share_img_introduce_text{
   position:absolute;
-  top:0;
+  top:-15rpx;
   font-size:28rpx;
   color:#777;
 }

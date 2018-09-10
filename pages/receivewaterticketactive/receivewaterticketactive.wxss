@@ -1,1 +1,49 @@
 /* pages/receivewaterticketactive/receivewaterticketactive.wxss */
+.invite_info{
+  display:flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin:36rpx 0 0 37rpx;
+}
+.invite_header_img{
+  width:70rpx;
+  height:70rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+.invite_nick_name{
+  margin-left:17rpx;
+  font-size:30rpx;
+  color:#333;
+}
+.receive_water_ticket{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.receive_water_ticket_title{
+  color:#ff632b;
+  font-size:36rpx;
+  margin-top:38rpx;
+}
+.receive_water_ticket_info{
+  font-size:24rpx;
+  color:#999;
+  margin-top:24rpx;
+}
+.receive_water_ticket_img{
+  width:564rpx;
+  height:404rpx;
+}
+.accept_water_ticket_button{
+  width:690rpx;
+  margin:190rpx auto 0;
+  height:80rpx;
+  color:#fff;
+  background:#4dc0ff;
+  border-radius: 6rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size:36rpx;
+}
