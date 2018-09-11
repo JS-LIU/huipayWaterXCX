@@ -91,11 +91,11 @@ Page({
           url: '/pages/receivewaterticketfail/receivewaterticketfail'
         })
       }
-      // if(err.data.message === ""){
-      //   wx.redirectTo({
-      //     url: 'pages/login/login?receivewaterticketactive=true'
-      //   })
-      // }
+      if(err.data.message === "需要用户正式登录"){
+        wx.redirectTo({
+          url: 'pages/login/login'
+        })
+      }
     })
   }
 })

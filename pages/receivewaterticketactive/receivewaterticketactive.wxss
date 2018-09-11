@@ -11,6 +11,7 @@
   height:70rpx;
   border-radius: 40rpx;
   overflow: hidden;
+  border:1rpx solid #999;
 }
 .invite_nick_name{
   margin-left:17rpx;

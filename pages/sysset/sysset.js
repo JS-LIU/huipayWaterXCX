@@ -1,5 +1,6 @@
 var { loginInfo } = require('../../store/login/LoginInfo.js');
 var { login } = require('../../store/login/Login.js');
+var { activityList } = require('../../store/activity/ActivityList.js');
 Page({
 
   /**
@@ -67,9 +68,9 @@ Page({
   bindLogOut: function(){
     login.touristLogin().then((info) => {
       loginInfo.setInfo(info.data);
-      login.trigger("login");
-      wx.redirectTo({
-        url: '/pages/login/login'
+      activityList.resetActivities();
+      wx.reLaunch({
+        url: '/pages/index/index'
       })
     })
   },

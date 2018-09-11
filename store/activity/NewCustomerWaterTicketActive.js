@@ -9,6 +9,9 @@ class NewCustomerWaterTicketActive{
   closeActive(){
     this.active = false;
   }
+  setInviteId(inviteId) {
+    this.inviteId = inviteId;
+  }
   acceptActivityWaterTicket(){
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
     let postInfo = {

@@ -59,5 +59,8 @@ class ActivityList{
       });
     })
   }
+  resetActivities(){
+    this.activities = {};
+  }
 }
 module.exports.activityList = new ActivityList();

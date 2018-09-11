@@ -95,3 +95,8 @@
   color:#4dc0ff;
   margin-top:30rpx;
 }
+.wx_login_button{
+  width:400rpx;
+  background:#FFF;
+}
+button::after{ border: none }

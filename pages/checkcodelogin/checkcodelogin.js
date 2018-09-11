@@ -1,6 +1,7 @@
 var { login } = require('../../store/login/Login.js');
 var { loginInfo } = require('../../store/login/LoginInfo.js');
 var { huipayRequest } = require('../../store/init.js');
+var { activityList } = require('../../store/activity/ActivityList.js');
 Page({
 
   /**
@@ -28,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.active = activityList.activities.inviteCustomerWaterTicketActive || activityList.activities.newCustomerWaterTicketActive;
   },
 
   /**
@@ -68,9 +69,26 @@ Page({
   bindWxLogin: function () {
     login.wxLogin().then((info) => {
       if (info.data.nextStep === "mainPage") {
-        console.log(info.data.accessToken);
+
         loginInfo.setInfo(info.data.accessToken);
+        if (this.active) {
+          this.active.acceptActivityWaterTicket().then(() => {
+            wx.reLaunch({
+              url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
+            })
+          }).catch((err) => {
+            console.log(err);
+            wx.reLaunch({
+              url: '/pages/receivewaterticketfail/receivewaterticketfail',
+            })
+          })
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        }
       } else {
+        console.log('==================', info);
         loginInfo.setInfo(info.data.accessToken);
         //  绑定手机号
         wx.navigateTo({
@@ -96,10 +114,24 @@ Page({
     huipayRequest.resource('/login/user').save({}, postData).then((info) => {
       loginInfo.setInfo(info.data);
 
-      login.trigger("login");
-      wx.reLaunch({
-        url: '/pages/index/index',
-      })
+      // login.trigger("login");
+    
+      if (this.active) {
+        this.active.acceptActivityWaterTicket().then(() => {
+          wx.reLaunch({
+            url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
+          })
+        }).catch((err) => {
+          console.log(err);
+          wx.reLaunch({
+            url: '/pages/receivewaterticketfail/receivewaterticketfail',
+          })
+        })
+      } else {
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+      }
     })
   },
   bindStartGetCheckCode: function (e){

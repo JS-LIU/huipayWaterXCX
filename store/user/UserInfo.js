@@ -27,7 +27,7 @@ class UserInfo{
   }
   getInviteUserInfo(inviteId){
     let postInfo = {
-      inviterUserId: inviterUserId
+      inviterUserId: inviteId
     }
     return huipayRequest.resource('/activity/getInviteInfo').save({}, postInfo)
   }

@@ -1,7 +1,7 @@
 <!--pages/receivewaterticketactive/receivewaterticketactive.wxml-->
 <view wx:if='{{inviter}}' class='invite_info'>
-  <image src='{{invite.userIcon}}' mode='aspectFit' class='invite_header_img'></image>
-  <text class='invite_nick_name'>{{invite.nickName}}</text>
+  <image src='{{inviter.userIcon}}' mode='aspectFit' class='invite_header_img'></image>
+  <text class='invite_nick_name'>{{inviter.nickName}}</text>
 </view>
 <view class='receive_water_ticket'>
   <text class='receive_water_ticket_title'>送你一张水票</text>

@@ -107,3 +107,8 @@
   color:#4dc0ff;
   border-radius: 5rpx;
 }
+.wx_login_button{
+  width:400rpx;
+  background:#FFF;
+}
+button::after{ border: none; }

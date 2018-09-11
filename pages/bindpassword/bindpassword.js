@@ -1,5 +1,6 @@
 var { loginInfo } = require('../../store/login/LoginInfo.js');
 var { huipayRequest } = require('../../store/init.js');
+var { activityList } = require('../../store/activity/ActivityList.js');
 Page({
 
   /**
@@ -27,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.active = activityList.activities.inviteCustomerWaterTicketActive || activityList.activities.newCustomerWaterTicketActive;
   },
 
   /**
@@ -76,9 +77,23 @@ Page({
       password: password
     }
     huipayRequest.resource('/login/setPassword').save({}, postInfo).then((info) => {
-      wx.switchTab({
-        url: '/pages/index/index',
-      })
+      if (this.active){
+        this.active.acceptActivityWaterTicket().then(() => {
+          wx.reLaunch({
+            url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
+          })
+        }).catch((err) => {
+          console.log(err);
+          wx.reLaunch({
+            url: '/pages/receivewaterticketfail/receivewaterticketfail',
+          })
+        })
+      }else{
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+      }
+      
     })
   }
 })

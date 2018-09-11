@@ -6,9 +6,7 @@ class InviteCustomerWaterTicketActive{
     //  是否进行中
     this.active = true;
   }
-  setInviteId(inviteId){
-    this.inviteId = inviteId;
-  }
+  
   setType(type){
     this.type = type;
   }

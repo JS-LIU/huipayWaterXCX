@@ -1,2 +1,22 @@
 <!--pages/receivewaterticketfail/receivewaterticketfail.wxml-->
-<text>pages/receivewaterticketfail/receivewaterticketfail.wxml</text>
+<view class='wrap'>
+  <view>
+    <view class='receive_fail'>
+      <text class='receive_fail_title'>亲，你已经是喜腾订水用户！</text>
+      <text class='receive_fail_text'>点击“立即订水”即可进入喜腾订水小程序订购桶装水</text>
+    </view>
+    <view class='back_to_index_button' bindtap='bindNavigateToIndex'>立即订水</view>
+  </view>
+  <view class='explain'>
+    <text class='explain_title'>活动说明</text>
+    <view class='explain_text'>
+      <text>1、此活动仅限新用户参与，每人仅限参与一次。</text>
+      <text>2、此水票仅可换购1桶喜腾山泉饮用天然矿泉水。</text>
+      <text>3、可下载喜腾山泉APP，查看更多商品。</text>
+    </view>
+    
+  </view>
+</view>
+
+
+

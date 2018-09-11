@@ -1,6 +1,7 @@
 var { login } = require('../../store/login/Login.js');
 var { loginInfo } = require('../../store/login/LoginInfo.js');
 var { huipayRequest } = require('../../store/init.js');
+var { activityList } = require('../../store/activity/ActivityList.js');
 Page({
 
   /**
@@ -27,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.active = activityList.activities.inviteCustomerWaterTicketActive || activityList.activities.newCustomerWaterTicketActive;
   },
 
   /**
@@ -70,10 +71,22 @@ Page({
       if (info.data.nextStep === "mainPage") {
         
         loginInfo.setInfo(info.data.accessToken);
-        login.trigger("login");
-        wx.reLaunch({
-          url: '/pages/index/index',
-        })
+        if (this.active) {
+          this.active.acceptActivityWaterTicket().then(() => {
+            wx.reLaunch({
+              url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
+            })
+          }).catch((err)=>{
+            console.log(err);
+            wx.reLaunch({
+              url: '/pages/receivewaterticketfail/receivewaterticketfail',
+            })
+          })
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        }
       } else {
         console.log('==================',info);
         loginInfo.setInfo(info.data.accessToken);
@@ -125,10 +138,23 @@ Page({
   bindLogin: function (e){
     huipayRequest.resource('/login/byPassword').save({}, { phoneNum: this.phoneNum, password: this.psw }).then((info)=>{
       loginInfo.setInfo(info.data);
-      login.trigger("login");
-      wx.switchTab({
-        url: '/pages/index/index',
-      })
+      // login.trigger("login");
+      if (this.active) {
+        this.active.acceptActivityWaterTicket().then(() => {
+          wx.reLaunch({
+            url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
+          })
+        }).catch((err) => {
+          console.log(err);
+          wx.reLaunch({
+            url: '/pages/receivewaterticketfail/receivewaterticketfail',
+          })
+        })
+      } else {
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+      }
     }).catch((errMsg) =>{
       // console.log(errMsg.data.message)
       // console.log(errMsg)

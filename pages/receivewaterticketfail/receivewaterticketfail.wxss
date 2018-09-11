@@ -1,1 +1,53 @@
 /* pages/receivewaterticketfail/receivewaterticketfail.wxss */
+.wrap{
+  position:fixed;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.receive_fail{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.receive_fail_title{
+  color:#fe3800;
+  font-size:32rpx;
+  margin-top:82rpx;
+}
+.receive_fail_text{
+  font-size:24rpx;
+  color:#999;
+  margin-top:62rpx;
+}
+.back_to_index_button{
+  margin:182rpx auto 0;
+  width:690rpx; 
+  height:80rpx;
+  color:#fff;
+  background:#4dc0ff;
+  border-radius: 6rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size:36rpx;
+}
+.explain{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size:24rpx;
+  color:#999;
+  height:220rpx;
+}
+.explain_title{
+  font-size:28rpx;
+  color:#333;
+}
+.explain_text{
+  display:flex;
+  flex-direction: column;
+  width:540rpx;
+}
