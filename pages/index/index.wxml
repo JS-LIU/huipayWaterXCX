@@ -65,7 +65,7 @@
     </view>
   </view>
 </view>
-<view class='new_customer_get_water_ticket' wx:if="{{newCustomerWaterTicketActive && newCustomerWaterTicketActive.active}}">
+<view class='new_customer_get_water_ticket' wx:if="{{inviteCustomerWaterTicketActive && !inviteCustomerWaterTicketActive.inviteId&&inviteCustomerWaterTicketActive.active}}">
   <view class='activity_wrap'></view>
   <view class='active_water_ticket'>
     <image src='../images/tanchuang_photo_xinren@2x.png'

@@ -1,13 +1,14 @@
 var { huipayRequest } = require('../init.js');
 var { loginInfo } = require('../login/LoginInfo.js');
-var NewCustomerWaterTicketActive = require('./NewCustomerWaterTicketActive.js');
 var InviteCustomerWaterTicketActive = require('./InviteCustomerWaterTicketActive.js');
+var ScanWaterTicketActive = require('./ScanWaterTicketActive.js');
 class Active{
-  constructor(activityId){
+  constructor(activityId,inviteId){
     this.activityId = activityId;
+    this.inviteId = inviteId;
     this.activeStrategies = {
-      1: new InviteCustomerWaterTicketActive(this.activityId),
-      2: new NewCustomerWaterTicketActive(this.activityId)
+      1: new ScanWaterTicketActive(this.activityId),
+      2: new InviteCustomerWaterTicketActive(this.activityId, this.inviteId)
     }
   }
   createActive(){

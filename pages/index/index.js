@@ -10,7 +10,7 @@ var {autoComplete} = require('../../store/map/AutoComplete.js');
 var {homeResetAddress} = require('../../store/map/HomeResetAddress.js');
 var {guessLikeList} = require('../../store/shop/GuessLikeList.js');
 var {activityList} = require('../../store/activity/ActivityList.js');
-var NewCustomerWaterTicketActive = require('../../store/activity/NewCustomerWaterTicketActive.js');
+var InviteCustomerWaterTicketActive = require('../../store/activity/InviteCustomerWaterTicketActive.js');
 // var ShopProduct = require('../../store/product/ShopProduct.js');
 // var ShoppingCartProduct = require('../../store/product/ShoppingCartProduct.js');
 Page({
@@ -88,10 +88,9 @@ Page({
         })
       //  获取活动
       self.logger.listen('login', function () {
-        activityList.getActivities(self.activityId).then((activities) => {
-          if (activities.inviteCustomerWaterTicketActive && activities.inviteCustomerWaterTicketActive.active){
-            activities.inviteCustomerWaterTicketActive.setInviteId(self.activityId);
-            activities.inviteCustomerWaterTicketActive.setType(self.type);
+        activityList.getActivities(self.activityId,self.inviteId).then((activities) => {
+          if (activities.scanWaterTicketActive || (activities.inviteCustomerWaterTicketActive && activities.inviteCustomerWaterTicketActive.inviteId)){
+            
             wx.navigateTo({
               url: '/pages/receivewaterticketactive/receivewaterticketactive'
             })
@@ -191,21 +190,21 @@ Page({
     },
   bindCloseReceiveTicket:function(e){
 
-    let newCustomerWaterTicketActive = activityList.activities.newCustomerWaterTicketActive;
+    let inviteCustomerWaterTicketActive = activityList.activities.inviteCustomerWaterTicketActive;
     
-    newCustomerWaterTicketActive.closeActive();
+    inviteCustomerWaterTicketActive.closeActive();
     this.setData({
-      newCustomerWaterTicketActive: newCustomerWaterTicketActive
+      inviteCustomerWaterTicketActive: inviteCustomerWaterTicketActive
     })
   },
   bindReceiveWaterTicket:function(){
-    let newCustomerWaterTicketActive = activityList.activities.newCustomerWaterTicketActive;
+    let inviteCustomerWaterTicketActive = activityList.activities.inviteCustomerWaterTicketActive;
 
-    newCustomerWaterTicketActive.acceptActivityWaterTicket().then((accecptInfo)=>{
+    inviteCustomerWaterTicketActive.acceptActivityWaterTicket().then((accecptInfo)=>{
       wx.navigateTo({
         url: '/pages/mywaterticketlist/mywaterticketlist',
       })
-      newCustomerWaterTicketActive.closeActive();
+      inviteCustomerWaterTicketActive.closeActive();
     }).catch((err)=>{
       if (err.data.message === "需要用户正式登录"){
         wx.navigateTo({

@@ -1,21 +1,21 @@
 var { huipayRequest } = require('../init.js');
 var { loginInfo } = require('../login/LoginInfo.js');
 var Active = require('./Active.js');
-var NewCustomerWaterTicketActive = require('./NewCustomerWaterTicketActive.js');
 var InviteCustomerWaterTicketActive = require('./InviteCustomerWaterTicketActive.js');
+var ScanWaterTicketActive = require('./ScanWaterTicketActive.js');
 class ActivityList{
     constructor(){
         this.activities = {};
     }
-    createNewCustomerWaterTicketActive(active) {
-      if (active instanceof NewCustomerWaterTicketActive ) {
+  createScanWaterTicketActive(active) {
+      if (active instanceof ScanWaterTicketActive ) {
         this.activities = {
-          newCustomerWaterTicketActive: active
+          scanWaterTicketActive: active
         }
       }
       return "nextSuccessor";
     }
-    createInvitedCustomerWaterTicketActive(active) {
+    createInviteCustomerWaterTicketActive(active) {
       if (active instanceof InviteCustomerWaterTicketActive) {
         this.activities = {
           inviteCustomerWaterTicketActive: active
@@ -42,19 +42,18 @@ class ActivityList{
     })
     
   }
-  createActivity(activityId) {
+  createActivity(activityId,inviteId) {
     this.activities = {};
-    let active = new Active(activityId).createActive();
-    let activities = this.createInvitedCustomerWaterTicketActive.after(this.createNewCustomerWaterTicketActive).bind(this);
+    let active = new Active(activityId,inviteId).createActive();
+    let activities = this.createScanWaterTicketActive.after(this.createInviteCustomerWaterTicketActive).bind(this);
     activities(active);
     
   }
-  getActivities(activityId){
+  getActivities(activityId,inviteId){
     
     return new Promise((resolve, reject) => {
       this.getActivityId(activityId).then((activityId) => {
-        this.createActivity(activityId);
-        console.log(this.activities);
+        this.createActivity(activityId,inviteId);
         resolve(this.activities)
       });
     })
