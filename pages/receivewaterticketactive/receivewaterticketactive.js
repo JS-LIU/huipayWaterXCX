@@ -14,8 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let inviteCustomerWaterTicketActive = activityList.activities.inviteCustomerWaterTicketActive;
-    userInfo.getInviteUserInfo(inviteCustomerWaterTicketActive.inviteId).then((inviteInfo)=>{
+    this.active = activityList.activities.scanWaterTicketActive || activityList.activities.inviteCustomerWaterTicketActive;
+    console.log("active========", activityList.activities);
+    userInfo.getInviteUserInfo(this.active.inviteId).then((inviteInfo)=>{
       console.log(inviteInfo.data);
       this.setData({
         inviter: inviteInfo.data
@@ -76,7 +77,7 @@ Page({
 
   },
   bindAcceptWaterTicket: function () {
-    activityList.activities.inviteCustomerWaterTicketActive.acceptActivityWaterTicket().then((info)=>{
+    this.active.acceptActivityWaterTicket().then((info)=>{
       console.log('success======',info);
       //  领取成功
       wx.redirectTo({
@@ -93,7 +94,7 @@ Page({
       }
       if(err.data.message === "需要用户正式登录"){
         wx.redirectTo({
-          url: 'pages/login/login'
+          url: '/pages/login/login'
         })
       }
     })

@@ -5,7 +5,7 @@
   top:0rpx;
   height:100%;
   width:100%;
-  background:#F8F8F8;
+  background:#F5F5F5;
 }
 
 .give_body{
@@ -72,6 +72,7 @@
   width:100%;
   height:210rpx;
   margin-top:70rpx;
+  padding-bottom:70rpx;
 }
 button::after{ border: none; }
 .share_img_introduce_img{
@@ -86,4 +87,37 @@ button::after{ border: none; }
   top:-15rpx;
   font-size:28rpx;
   color:#777;
+}
+.to_give_friend_list{
+
+  position:relative;
+  margin-top:30rpx;
+  height:100rpx;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size:30rpx;
+  color:#333;
+  background:#FFF;
+}
+.to_give_friend_list_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.give_friend_list_icon{
+  width:44rpx;
+  height:44rpx;
+  margin:0 24rpx 0 30rpx;
+}
+.arrow_right{
+  width:18rpx;
+  height:30rpx;
+  margin:0 30rpx 0 15rpx;
+}
+.money_unit{
+  width:23rpx;
+  height:23rpx;
+  margin-right:5rpx;
 }

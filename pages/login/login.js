@@ -71,7 +71,7 @@ Page({
       if (info.data.nextStep === "mainPage") {
         
         loginInfo.setInfo(info.data.accessToken);
-        if (this.active) {
+        if (this.active && this.active.accept) {
           this.active.acceptActivityWaterTicket().then(() => {
             wx.reLaunch({
               url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
@@ -139,7 +139,7 @@ Page({
     huipayRequest.resource('/login/byPassword').save({}, { phoneNum: this.phoneNum, password: this.psw }).then((info)=>{
       loginInfo.setInfo(info.data);
       // login.trigger("login");
-      if (this.active) {
+      if (this.active && this.active.accept) {
         this.active.acceptActivityWaterTicket().then(() => {
           wx.reLaunch({
             url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',

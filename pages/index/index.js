@@ -11,6 +11,7 @@ var {homeResetAddress} = require('../../store/map/HomeResetAddress.js');
 var {guessLikeList} = require('../../store/shop/GuessLikeList.js');
 var {activityList} = require('../../store/activity/ActivityList.js');
 var InviteCustomerWaterTicketActive = require('../../store/activity/InviteCustomerWaterTicketActive.js');
+var HB = require("../../libs/HB.js");
 // var ShopProduct = require('../../store/product/ShopProduct.js');
 // var ShoppingCartProduct = require('../../store/product/ShoppingCartProduct.js');
 Page({
@@ -33,15 +34,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let self = this;
-        self.logger = new Logger();
-        console.log(options.activityId);
-      console.log(options.inviteId);
-      console.log(options.type);
-      self.activityId = options.activityId;
-      self.inviteId = options.inviteId;
-      self.type = options.type;
-
+      let self = this;
+      self.logger = new Logger();
+      let baseUrl = "https://huipay.com/huibeiwater/index/index";
+      let url = HB.scanUrl.getUrl(options.q, baseUrl);
+      self.activityId = HB.scanUrl.getQueryString(url, baseUrl, "activityId") || options.activityId;
+      self.inviteId = HB.scanUrl.getQueryString(url, baseUrl, "inviteId") || options.inviteId;
+      self.type = HB.scanUrl.getQueryString(url, baseUrl, "type") || options.type;
         wx.getStorage({
             key: "loginInfo",
             success: function (res) {
@@ -60,9 +59,7 @@ Page({
         
         //  获取首页轮播图
       self.logger.listen('login', function () {
-            console.log('=========', loginInfo.getInfo());
             let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-            console.log(accessInfo);
             let postInfo = {
                 type: "banner",
                 accessInfo: accessInfo
@@ -89,6 +86,7 @@ Page({
       //  获取活动
       self.logger.listen('login', function () {
         activityList.getActivities(self.activityId,self.inviteId).then((activities) => {
+          console.log(activities)
           if (activities.scanWaterTicketActive || (activities.inviteCustomerWaterTicketActive && activities.inviteCustomerWaterTicketActive.inviteId)){
             
             wx.navigateTo({

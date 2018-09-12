@@ -6,12 +6,14 @@ class InviteCustomerWaterTicketActive{
     this.activityId = activityId;
     this.active = true;
     this.inviteId = inviteId;
+    this.accept = false;
   }
   closeActive(){
     this.active = false;
   }
   
   acceptActivityWaterTicket(){
+    this.accept = true;
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
     let postInfo = {
       accessInfo: accessInfo,
@@ -20,5 +22,6 @@ class InviteCustomerWaterTicketActive{
     }
     return huipayRequest.resource('/activity/acceptActivityInvite').save({}, postInfo)
   }
+  
 }
 module.exports = InviteCustomerWaterTicketActive;

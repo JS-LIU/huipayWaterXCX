@@ -9,14 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    friendAcceptActivityListLength:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
   /**
@@ -30,7 +30,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+   
+    let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
+    let postInfo = {
+      accessInfo: accessInfo
+    }
+    huipayRequest.resource('/activity/friendAcceptActivityList').save({}, postInfo).then((info)=>{
+      let totalXb = 0;
+      for (let i = 0; i < info.data.length; i++) {
+        totalXb += info.data[i].presentXtbMount;
+      }
+      this.setData({
+        friendAcceptActivityListCount: info.data.length,
+        totalXb: totalXb
+      })
+    }) 
   },
 
   /**
@@ -69,8 +83,8 @@ Page({
     //   // 来自页面内转发按钮
     // }
     return {
-      title: '自定义转发标题',
-      path: 'pages/index/index?type=receiveTicket&activityId=1&inviteId=' + userInfo.id
+      title: userInfo.userName + '送你一张水票，点击可免费领取1桶喜腾山泉！赶快行动吧！',
+      path: '/pages/index/index?type=receiveTicket&activityId=2&inviteId=' + userInfo.id
     }
   },
 })

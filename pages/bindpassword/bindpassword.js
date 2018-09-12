@@ -77,7 +77,7 @@ Page({
       password: password
     }
     huipayRequest.resource('/login/setPassword').save({}, postInfo).then((info) => {
-      if (this.active){
+      if (this.active && this.active.accept){
         this.active.acceptActivityWaterTicket().then(() => {
           wx.reLaunch({
             url: '/pages/receivewaterticketsuccess/receivewaterticketsuccess',
