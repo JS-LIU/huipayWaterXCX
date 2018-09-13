@@ -2,6 +2,7 @@ var {huipayRequest} = require('../init.js');
 var {loginInfo} = require('../login/LoginInfo.js');
 var SettleProductContainer = require('../order/SettleProductContainer.js');
 var UseWaterTicketContainer = require('../product/UseWaterTicketContainer.js');
+var XbContainer = require('../account/XbContainer.js');
 var {shoppingCartContainer} = require('../shoppingCart/ShoppingCartContainer.js');
 var ShoppingCartProduct = require('../product/ShoppingCartProduct.js')
 
@@ -11,6 +12,7 @@ class Order {
         this.settleParam;
         this.settleProductContainer = null;
         this.useWaterTicketContainer = null;
+        this.xbContainer = null;
         this.orderInfo = null;
         let self = this;
         this.strategies = {
@@ -122,6 +124,7 @@ class Order {
 
         this.settleProductContainer = new SettleProductContainer(orderProductInfo);
         this.useWaterTicketContainer = new UseWaterTicketContainer(orderTicketInfo);
+        this.xbContainer = new XbContainer(this.settleProductContainer, this.useWaterTicketContainer)
     }
 
     _matching(orderTicketInfo, orderProductInfo) {
@@ -149,15 +152,18 @@ class Order {
     getUseWaterTicketContainer() {
         return this.useWaterTicketContainer;
     }
-
+    getXbContainer(){
+      return this.xbContainer;
+    }
     getTotalPayRmb() {
         this.totalPayRmb = 0;
         let totalProductPrice = this.settleProductContainer.getTotalPrice();
         let totalWaterTicketPrice = this.useWaterTicketContainer.getTotalUsedMoney();
-        this.totalPayRmb = totalProductPrice - totalWaterTicketPrice;
+        let xbPrice = this.xbContainer.getTotalUseMoney() * 10;
+        this.totalPayRmb = totalProductPrice - totalWaterTicketPrice - xbPrice;
         return this.totalPayRmb;
     }
-
+    
     findSettleProductById(productItemId) {
 
     }
@@ -185,7 +191,8 @@ class Order {
             accessInfo: accessInfo,
             deliveryAddressId: deliveryAddressId,
             deliveryTime: deliveryTime,
-            payType: "online"
+            payType: "online",
+            useXtbMount: this.xbContainer.getTotalUseMoney()
         }, createOrderInfo[this.settleType]());
         return new Promise((resolve, reject) => {
             huipayRequest.resource('/order/:actionType').save({actionType: "create"}, postInfo).then((info) => {

@@ -69,6 +69,20 @@
       <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image>
     </view>
   </navigator>
+  <view class='use_ticket_counts'>
+    <view class='use_ticket_counts_title'>
+      <text>喜币抵用：</text> 
+      <text class='settle_total_can_use_count'>{{totalXb}}喜币可用</text> 
+    </view>
+    <view class='use_ticket_counts_info'>
+      <text>{{xbTotalUseMoney / 10 }}元</text>
+      <view class='count_ctrl'>
+        <view class='product_count_item' bindtap='bindReduceXb'>-</view>
+        <view class='product_count_item product_count'>{{xbTotalUseMoney}}xb</view>
+        <view class='product_count_item' bindtap='bindIncreaseXb'>+</view>
+      </view>
+    </view>
+  </view>
   <view class='mopoints'>
     <view class='mopoints_title'>
       <text>代金券抵用：</text> 
