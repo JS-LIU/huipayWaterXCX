@@ -1,0 +1,53 @@
+/* pages/givefriendlist/givefriendlist.wxss */
+.friend_list{
+  position:relative;
+  background:#FFF;
+}
+.friend_item{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:1rpx solid #F5F5F5;
+}
+.friend_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.friend_icon{
+  width:70rpx;
+  height:70rpx;
+  border-radius: 6rpx;
+  margin-left:30rpx;
+}
+.friend_name_info{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left:22rpx;
+}
+.friend_name{
+  font-size:#333;
+}
+.huibei_code{
+  font-size:#999;
+}
+.increase_money{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right:30rpx;
+  color:#333;
+}
+.increase_unit{
+  font-size:30rpx;
+}
+.increase_count{
+  font-size:32rpx;
+}
+.money_unit{
+  width:18rpx;
+  height:18rpx;
+}

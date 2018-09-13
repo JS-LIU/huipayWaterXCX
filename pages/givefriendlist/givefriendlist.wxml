@@ -1,0 +1,17 @@
+<!--pages/givefriendlist/givefriendlist.wxml-->
+<view class='friend_list'>
+  <view wx:for="{{friendList}}" wx:for-item="friend" wx:for-index="i" wx:key="i" class='friend_item'>
+    <view class='friend_left'>
+      <image src='{{friend.userIcon}}' class="friend_icon" mode='aspectFit'></image>
+      <view class='friend_name_info'>
+        <text class='friend_name'>{{friend.nickName}}</text>
+        <text class='huibei_code'>{{friend.huibeiCoede}}</text>
+      </view>
+    </view>
+    <view class='increase_money'>
+      <text class='increase_unit'>+</text>
+      <image src='../images/symbol_xiteng_black3@2x.png' mode="aspectFit" class='money_unit'></image>
+      <text class='increase_count'>{{friend.presentXtbMount}}</text>
+    </view>
+  </view>
+</view>
