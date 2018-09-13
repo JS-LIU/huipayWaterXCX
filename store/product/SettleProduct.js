@@ -1,4 +1,6 @@
+
 var { shoppingCartContainer } = require('../shoppingCart/ShoppingCartContainer.js');
+
 class SettleProduct{
   constructor(productInfo){
     this.baseCount = productInfo.baseCount;
@@ -24,7 +26,6 @@ class SettleProduct{
   }
   increase(){
     this.selectCount++;
-    
     //  修改购物车数量
     let shoppingCartProduct = this.findShopShoppingCartProduct();
     shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart)=>{
@@ -34,10 +35,11 @@ class SettleProduct{
   reduce(){
     if (this.selectCount > 1){
       this.selectCount--;
-
+      console.log(1231231);
       //  修改购物车数量
       let shoppingCartProduct = this.findShopShoppingCartProduct();
       shoppingCartContainer.removeProduct(shoppingCartProduct);
+     
     }
     
   }

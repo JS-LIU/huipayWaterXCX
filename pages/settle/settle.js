@@ -102,6 +102,7 @@ Page({
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.increase();
+    order.getSettleInfo('default');
     console.log('settleProduct:先getsettleproduct:',settleProduct);
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
@@ -119,6 +120,7 @@ Page({
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.reduce();
+    order.getSettleInfo('default');
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),
