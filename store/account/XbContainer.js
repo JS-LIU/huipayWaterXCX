@@ -16,25 +16,29 @@ class XbContainer{
   }
   getCanUseXb(){
     let maxXb = this.getMaxUseXb();
-    this.expectXb = (maxXb > this.expectUseXb ? this.expectUseXb : maxXb)
+    console.log('expectXb:', this.expectXb);
+    console.log('maxXb:', maxXb);
+    this.expectXb = (maxXb > this.expectXb ? this.expectXb : maxXb)
     return this.expectXb;
   }
   getMaxUseXb(){
     let totalProductPrice = this.settleProductContainer.getTotalPrice();
     let totalWaterTicketPrice = this.useWaterTicketContainer.getTotalUsedMoney();
-    let maxXb = totalProductPrice - totalWaterTicketPrice;
+    let maxXb = (totalProductPrice - totalWaterTicketPrice) / 10;
     return maxXb > this.totalXb ? this.totalXb : maxXb
   }
   reduceXb(){
     if (this.expectXb > 0){
       this.expectXb--;
     }
+    console.log('reduce:',this.expectXb)
     return this.expectXb;
   }
   increaseXb(){
-    if (this.expectXb < this.getMaxUseXb()) {
+    if (this.expectXb < this.getMaxUseXb()-1) {
       this.expectXb++;
     }
+    console.log('increase',this.expectXb)
     return this.expectXb;
   }
   getTotalUseMoney(){

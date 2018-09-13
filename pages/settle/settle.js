@@ -18,7 +18,8 @@ Page({
     totalPayRmb:0,
     totalXb:0,
     xbTotalUseMoney:0,
-    receiverInfo:null
+    receiverInfo:null,
+    isShowChangeXb:false
   },
 
   /**
@@ -55,7 +56,7 @@ Page({
         totalProductPrice: this.settleProductContainer.getTotalPrice(),
         totalPayRmb: order.getTotalPayRmb(),
         totalXb: this.xbContainer.totalXb,
-        xbTotalUseMoney: this.xbContainer.getCanUseXb(),
+        xbTotalUse: this.xbContainer.getCanUseXb(),
         receiverInfo: this.receiverInfo
       });
     })
@@ -126,13 +127,14 @@ Page({
       waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
       totalProductCount: this.settleProductContainer.getTotalCount(),
       totalProductPrice: this.settleProductContainer.getTotalPrice(),
-      xbTotalUseMoney: this.xbContainer.getCanUseXb(),
+      xbTotalUse: this.xbContainer.getCanUseXb(),
       totalPayRmb: order.getTotalPayRmb()
     })    
   },
-  bindCreateOrder:function(){
+  bindCreateOrder:function(e){
     let deliveryAddressId = this.receiverInfo.id;
     let deliveryTime = "9:00-17:00";
+    console.log(e.detail);
     order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo)=>{
       shoppingCartContainer.getShoppingCartContainer();
       if (orderInfo.totalPrice === 0){ 
@@ -141,7 +143,7 @@ Page({
         })
       }else{
         let wxP = new WxPay(orderInfo);
-        wxP.pay(orderInfo);
+        wxP.pay(e.detail);
       }
     });
   },
@@ -155,7 +157,7 @@ Page({
       totalProductCount: this.settleProductContainer.getTotalCount(),
       totalProductPrice: this.settleProductContainer.getTotalPrice(),
       totalPayRmb: order.getTotalPayRmb(),
-      xbTotalUseMoney: this.xbContainer.getCanUseXb()
+      xbTotalUse: this.xbContainer.getCanUseXb(),
     })    
   },
   bindIncreaseXb: function () {
@@ -168,7 +170,17 @@ Page({
       totalProductCount: this.settleProductContainer.getTotalCount(),
       totalProductPrice: this.settleProductContainer.getTotalPrice(),
       totalPayRmb: order.getTotalPayRmb(),
-      xbTotalUseMoney: this.xbContainer.getCanUseXb()
+      xbTotalUse: this.xbContainer.getCanUseXb(),
+    })
+  },
+  bindShowXbChange:function(){
+    this.setData({
+      isShowChangeXb: true
+    })
+  },
+  bindCloseXbChange:function(){
+    this.setData({
+      isShowChangeXb: false
     })
   }
 })

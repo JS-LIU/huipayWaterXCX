@@ -37,6 +37,7 @@ Page({
       let self = this;
       self.logger = new Logger();
       let baseUrl = "https://huipay.com/huibeiwater/index/index";
+      console.log('========options:',options);
       let url = HB.scanUrl.getUrl(options.q, baseUrl);
       self.activityId = HB.scanUrl.getQueryString(url, baseUrl, "activityId") || options.activityId;
       self.inviteId = HB.scanUrl.getQueryString(url, baseUrl, "inviteId") || options.inviteId;
@@ -103,7 +104,6 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        console.log("onReady");
     },
     /**
      * 生命周期函数--监听页面显示

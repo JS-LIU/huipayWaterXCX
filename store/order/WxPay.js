@@ -10,15 +10,15 @@ class WxPay{
     this.wxLogin = wxLogin;
   }
 
-  pay(){
+  pay(userInfo){
     wx.showLoading({
       title: '请稍后',
     })
 
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
-    this.wxLogin.getCode().then((code)=>{
-      return wxLogin.getWxUserInfo()
-    }).then((res)=>{
+    wxLogin.getWxUserInfo(userInfo).then(()=>{
+      return wxLogin.getCode()
+    }).then(()=>{
       let postData = wxLogin.getWxLoginPostData();
       let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
       postData = Object.assign(postData, { accessInfo: accessInfo });

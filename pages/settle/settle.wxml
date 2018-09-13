@@ -69,18 +69,15 @@
       <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image>
     </view>
   </navigator>
-  <view class='use_ticket_counts'>
+  <view class='use_ticket_counts' bindtap='bindShowXbChange'>
     <view class='use_ticket_counts_title'>
       <text>喜币抵用：</text> 
       <text class='settle_total_can_use_count'>{{totalXb}}喜币可用</text> 
     </view>
     <view class='use_ticket_counts_info'>
-      <text>{{xbTotalUseMoney / 10 }}元</text>
-      <view class='count_ctrl'>
-        <view class='product_count_item' bindtap='bindReduceXb'>-</view>
-        <view class='product_count_item product_count'>{{xbTotalUseMoney}}xb</view>
-        <view class='product_count_item' bindtap='bindIncreaseXb'>+</view>
-      </view>
+      <text>-￥</text>
+      <text>{{xbTotalUse / 10 }}</text>
+      <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image>
     </view>
   </view>
   <view class='mopoints'>
@@ -106,5 +103,26 @@
     <text class='settle_bottom_pay_unit'>￥</text>
     <text class='settle_bottom_pay_rmb'>{{totalPayRmb /100}}</text>
   </view>
-  <view class='settle_toPay' bindtap='bindCreateOrder'>提交订单</view>
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo='bindCreateOrder' class='settle_toPay'>提交订单</button>
+</view>
+
+
+<view class='xb_change_wrap' wx:if="{{isShowChangeXb}}"></view>
+<view class='change_xb' wx:if="{{isShowChangeXb}}">
+  <view class='use_xb_title'>
+    <text>喜币</text>
+  </view>
+  <view class='change_xb_body'>
+    
+    <text class='change_xb_title'>使用喜币</text>
+    
+    <view class='use_ticket_counts_info'>
+      <view class='count_ctrl'>
+        <view class='product_count_item' bindtap='bindReduceXb'>-</view>
+        <view class='product_count_item product_count'>{{xbTotalUse}}</view>
+        <view class='product_count_item' bindtap='bindIncreaseXb'>+</view>
+      </view>
+    </view>
+  </view>
+  <view class='confirm_change_xb' bindtap='bindCloseXbChange'>确定</view>
 </view>
