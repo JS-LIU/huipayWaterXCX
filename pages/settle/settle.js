@@ -137,17 +137,35 @@ Page({
     let deliveryAddressId = this.receiverInfo.id;
     let deliveryTime = "9:00-17:00";
     console.log(e.detail);
-    order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo)=>{
-      shoppingCartContainer.getShoppingCartContainer();
-      if (orderInfo.totalPrice === 0){ 
-        wx.redirectTo({
-          url: '/pages/orderlist/orderlist?orderType=total',
-        })
-      }else{
+    if (order.getTotalPayRmb() === 0){
+      wx.showModal({
+        content: "是否确认支付？",
+        success: function (res) {
+          console.log(res);
+          order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: '/pages/orderlist/orderlist?orderType=total',
+              })
+            }
+          })
+        }
+      }) 
+    }else{
+      order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
         let wxP = new WxPay(orderInfo);
         wxP.pay(e.detail);
-      }
-    });
+      })
+    }
+    // order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo)=>{
+    //   shoppingCartContainer.getShoppingCartContainer();
+    //   if (orderInfo.totalPrice === 0){
+        
+        
+    //   }else{
+        
+    //   }
+    // });
   },
   bindReduceXb:function(){
     this.xbContainer.reduceXb();

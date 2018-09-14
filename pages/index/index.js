@@ -209,6 +209,11 @@ Page({
           url: '/pages/login/login',
         })
       }
+      if (err.data.message === "已经领取过新用户赠送水票"){
+        wx.redirectTo({
+          url: '/pages/receivewaterticketfail/receivewaterticketfail'
+        })
+      }
     });
   }
 });  
