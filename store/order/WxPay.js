@@ -11,9 +11,7 @@ class WxPay{
   }
 
   pay(userInfo){
-    wx.showLoading({
-      title: '请稍后',
-    })
+    
 
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
     wxLogin.getWxUserInfo(userInfo).then(()=>{
@@ -23,6 +21,9 @@ class WxPay{
       postData = Object.assign(postData, { accessInfo: accessInfo });
       return huipayRequest.resource('/user/weixinInfo').save({}, postData)
     }).then((info)=>{
+      wx.showLoading({
+        title: '请稍后',
+      })
       return huipayRequest.resource('/client/pay/confirm').save({}, {
         payChannel: "WeixinMiniProgramPay",
         orderId: this.orderId,
@@ -44,6 +45,7 @@ class WxPay{
         'signType': 'MD5',
         "paySign": paySign,
         'success': function (res) {
+          wx.hideLoading();
           wx.redirectTo({
             url: '/pages/orderlist/orderlist',
           })
@@ -54,6 +56,8 @@ class WxPay{
           wx.hideLoading()
         }
       })
+    }).catch((err) => {
+      console.log(err);
     }); 
   }
 }

@@ -10,6 +10,7 @@ class Order {
     constructor() {
         this.settleType;
         this.settleParam;
+        this.shoppingCartProduct = null;
         this.settleProductContainer = null;
         this.useWaterTicketContainer = null;
         this.xbContainer = null;
@@ -45,14 +46,15 @@ class Order {
                 let shoppingCartProduct = param;
                 let productItemId = shoppingCartProduct.productItemId;
                 let shopId = shoppingCartProduct.shopInfo.shopId;
-
+      
                 self._setSettleParam({ productItemId: productItemId, shopId: shopId });
+                self._setShoppingCartProduct(shoppingCartProduct);
               }
 
                 return new Promise((resolve, reject) => {
                     //  如果购物车中没有该商品加入购物车结算否则结算购物车中的该商品
-                  if (!shoppingCartContainer.findProductByProductItemId(self.settleParam.productItemId)) {
-                        shoppingCartContainer.addProduct(shoppingCartProduct);
+                    if (!shoppingCartContainer.findProductByProductItemId(self.settleParam.productItemId)) {
+                        shoppingCartContainer.addProduct(self.shoppingCartProduct);
                     }
                     self._getSettleInfo(actionType).then((settle) => {
                         self._setContainer(settle.data);
@@ -84,10 +86,10 @@ class Order {
              * @param userTicketId
              * @returns {Promise<Order>}
              */
-            'useTicketSettle': function (actionType, userTicketId) {
+            'useTicketSettle': function (actionType, param) {
                 if (param) {
                   let userTicketId = param;
-                  self._setSettleParam({ userTicketId: userTicketId });
+                  self._setSettleParam({ userTicketId: userTicketId});
                 }
                 
                 return new Promise((resolve, reject) => {
@@ -111,7 +113,10 @@ class Order {
             }
         }
     }
-    
+    //  保存购物车商品（为shopNowSettle设计的接口）
+    _setShoppingCartProduct(shoppingCartProduct){
+      this.shoppingCartProduct = shoppingCartProduct;
+    }
     //  设置结算类型（购物车结算，立即购买，水票购买）
     _setSettleType(settleType) {
         this.settleType = settleType;
@@ -193,7 +198,8 @@ class Order {
             },
             "useTicketSettle": function () {
                 return {
-                    productItemId: self.settleProductContainer.settleProductList[0].productItemId
+                    productItemId: self.settleProductContainer.settleProductList[0].productItemId,
+                    shopId: self.settleProductContainer.settleProductList[0].shopId
                 }
             },
             "shopNowSettle": function () {
