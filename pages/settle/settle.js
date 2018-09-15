@@ -162,7 +162,7 @@ Page({
         title: '请选择收货地址',
         icon: 'none'
       });
-      setTimeOUt(() => {
+      setTimeOut(() => {
         wx.hideToast();
       }, 300)
     }

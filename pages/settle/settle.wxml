@@ -103,7 +103,7 @@
     <text class='settle_bottom_pay_unit'>￥</text>
     <text class='settle_bottom_pay_rmb'>{{totalPayRmb /100}}</text>
   </view>
-  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo='bindCreateOrder' class='settle_toPay'>提交订单</button>
+  <view class='settle_toPay'>提交订单</view>
 </view>
 
 

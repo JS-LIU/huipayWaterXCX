@@ -43,7 +43,7 @@ class Order {
             'shopNowSettle': function (actionType, shoppingCartProduct) {
                 let productItemId = shoppingCartProduct.productItemId;
                 let shopId = shoppingCartProduct.shopInfo.shopId;
-                self._setSettleParam({productItemId: productItemId});
+                self._setSettleParam({productItemId: productItemId,shopId:shopId});
                 return new Promise((resolve, reject) => {
                     //  如果购物车中没有该商品加入购物车结算否则结算购物车中的该商品
                     if (!shoppingCartContainer.findProductByProductItemId(productItemId)) {

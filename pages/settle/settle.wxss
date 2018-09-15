@@ -273,12 +273,8 @@
   width:250rpx;
   height:100%;
   font-size:36rpx;
-  margin:0;
-  border-radius: 0;
 }
-bottou::after{
-  border:none;
-}
+
 .xb_change_wrap{
   position:fixed;
   top:0;
