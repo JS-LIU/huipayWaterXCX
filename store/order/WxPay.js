@@ -20,8 +20,8 @@ class WxPay{
       return wxLogin.getCode()
     }).then(()=>{
       let postData = wxLogin.getWxLoginPostData();
-      let accessInfo = Object.assign({}, { app_key: loginInfo.appKey });
-      return huipayRequest.resource('/user/weixinInfo').save({}, { accessInfo: accessInfo })
+      postData = Object.assign(postData, { accessInfo: accessInfo });
+      return huipayRequest.resource('/user/weixinInfo').save({}, postData)
     }).then((info)=>{
       return huipayRequest.resource('/client/pay/confirm').save({}, {
         payChannel: "WeixinMiniProgramPay",

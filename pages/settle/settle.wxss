@@ -273,6 +273,11 @@
   width:250rpx;
   height:100%;
   font-size:36rpx;
+  border-radius: 0;
+  margin:0;
+}
+button::after{
+  border:none;
 }
 
 .xb_change_wrap{

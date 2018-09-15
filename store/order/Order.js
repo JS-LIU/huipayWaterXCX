@@ -40,13 +40,18 @@ class Order {
              * @param shoppingCartProduct
              * @returns {Promise<Order>}
              */
-            'shopNowSettle': function (actionType, shoppingCartProduct) {
+            'shopNowSettle': function (actionType, param) { 
+              if (param){
+                let shoppingCartProduct = param;
                 let productItemId = shoppingCartProduct.productItemId;
                 let shopId = shoppingCartProduct.shopInfo.shopId;
-                self._setSettleParam({productItemId: productItemId,shopId:shopId});
+
+                self._setSettleParam({ productItemId: productItemId, shopId: shopId });
+              }
+
                 return new Promise((resolve, reject) => {
                     //  如果购物车中没有该商品加入购物车结算否则结算购物车中的该商品
-                    if (!shoppingCartContainer.findProductByProductItemId(productItemId)) {
+                  if (!shoppingCartContainer.findProductByProductItemId(self.settleParam.productItemId)) {
                         shoppingCartContainer.addProduct(shoppingCartProduct);
                     }
                     self._getSettleInfo(actionType).then((settle) => {
@@ -58,8 +63,12 @@ class Order {
 
                 })
             },
-            "shopShoppingCartSettle": function (actionType, shopId) {
-                self._setSettleParam({shopId: shopId});
+          "shopShoppingCartSettle": function (actionType, param) {
+                if (param){
+                  let shopId = param;
+                  self._setSettleParam({ shopId: shopId });
+                }
+                
                 return new Promise((resolve, reject) => {
                     self._getSettleInfo(actionType).then((settle) => {
                         self._setContainer(settle.data);
@@ -76,7 +85,11 @@ class Order {
              * @returns {Promise<Order>}
              */
             'useTicketSettle': function (actionType, userTicketId) {
-                self._setSettleParam({userTicketId: userTicketId});
+                if (param) {
+                  let userTicketId = param;
+                  self._setSettleParam({ userTicketId: userTicketId });
+                }
+                
                 return new Promise((resolve, reject) => {
                     self._getSettleInfo(actionType).then((settle) => {
                         self._setContainer(settle.data);
@@ -98,7 +111,7 @@ class Order {
             }
         }
     }
-
+    
     //  设置结算类型（购物车结算，立即购买，水票购买）
     _setSettleType(settleType) {
         this.settleType = settleType;
@@ -108,7 +121,6 @@ class Order {
     _setSettleParam(settleParam) {
         this.settleParam = settleParam;
     }
-
     //  获取结算信息
     _getSettleInfo(actionType) {
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
@@ -144,7 +156,9 @@ class Order {
 
         return this.strategies[this.settleType](actionType, settleParam);
     }
-
+    refreshSettleInfo(){
+      this.getSettleInfo("default", this.settleType)
+    }
     getSettleProductContainer() {
         return this.settleProductContainer;
     }

@@ -97,12 +97,11 @@ Page({
   
   },
   bindAddProduct: function (e){
-    console.log(productItemId);
     let shopId = e.currentTarget.dataset.shopId;
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.increase();
-    order.getSettleInfo('default');
+    order.refreshSettleInfo();
     console.log('settleProduct:先getsettleproduct:',settleProduct);
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
@@ -120,7 +119,7 @@ Page({
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.reduce();
-    order.getSettleInfo('default');
+    order.refreshSettleInfo();
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),
@@ -162,9 +161,9 @@ Page({
         title: '请选择收货地址',
         icon: 'none'
       });
-      setTimeOut(() => {
+      setTimeout(() => {
         wx.hideToast();
-      }, 300)
+      }, 500)
     }
       
     
