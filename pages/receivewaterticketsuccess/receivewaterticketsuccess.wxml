@@ -3,7 +3,8 @@
   <view>
     <view class='receive_success'>
       <image src='../images/home_water_ticket.png' mode='aspectFit' class='receive_success_img'></image>
-      <text class='receive_success_title'>您已成功领取一张水票，凭水票可免费订喜腾山泉天然矿泉水一桶，包邮哦！</text>
+      <text class='receive_success_title'>您已成功领取一张水票，凭水票可免费</text>
+      <text class='receive_success_title_2'>订喜腾山泉天然矿泉水一桶，包邮哦！</text>
     </view>
     <view class='back_to_index_button' bindtap='bindNavigateToIndex'>立即订水</view>
   </view>

@@ -11,6 +11,7 @@
   display:flex;
   flex-direction: column;
   align-items: center;
+  padding:0 20rpx;
 }
 .receive_success_img{
   margin-top: 70rpx;
@@ -21,6 +22,10 @@
   color:#fe3800;
   font-size:32rpx;
   margin-top:82rpx;
+}
+.receive_success_title_2{
+  color:#fe3800;
+  font-size:32rpx;
 }
 .back_to_index_button{
   margin:182rpx auto 0;

@@ -134,29 +134,41 @@ Page({
     })    
   },
   bindCreateOrder:function(e){
-    let deliveryAddressId = this.receiverInfo.id;
     let deliveryTime = "9:00-17:00";
-    console.log(e.detail);
-    if (order.getTotalPayRmb() === 0){
-      wx.showModal({
-        content: "是否确认支付？",
-        success: function (res) {
-          console.log(res);
-          order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
-            if (res.confirm) {
-              wx.redirectTo({
-                url: '/pages/orderlist/orderlist?orderType=total',
-              })
-            }
-          })
-        }
-      }) 
+    if (this.receiverInfo){
+      let deliveryAddressId = this.receiverInfo.id;
+      if (order.getTotalPayRmb() === 0) {
+        wx.showModal({
+          content: "是否确认支付？",
+          success: function (res) {
+            console.log(res);
+            order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '/pages/orderlist/orderlist?orderType=total',
+                })
+              }
+            })
+          }
+        })
+      } else {
+        order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
+          let wxP = new WxPay(orderInfo);
+          wxP.pay(e.detail);
+        })
+      }
     }else{
-      order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
-        let wxP = new WxPay(orderInfo);
-        wxP.pay(e.detail);
-      })
+      wx.showToast({
+        title: '请选择收货地址',
+        icon: 'none'
+      });
+      setTimeOUt(() => {
+        wx.hideToast();
+      }, 300)
     }
+      
+    
+    
     // order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo)=>{
     //   shoppingCartContainer.getShoppingCartContainer();
     //   if (orderInfo.totalPrice === 0){
