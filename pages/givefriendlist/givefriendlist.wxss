@@ -1,4 +1,10 @@
 /* pages/givefriendlist/givefriendlist.wxss */
+.wrap{
+  background:#F5F5F5;
+  height:100%;
+  width:100%;
+  position:fixed;
+}
 .friend_list{
   position:relative;
   background:#FFF;
@@ -8,7 +14,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom:1rpx solid #F5F5F5;
+  border-top:1rpx solid #F5F5F5;
+  height:120rpx;
 }
 .friend_left{
   display:flex;
@@ -29,10 +36,12 @@
   margin-left:22rpx;
 }
 .friend_name{
-  font-size:#333;
+  font-size:28rpx;
+  color:#333;
 }
 .huibei_code{
-  font-size:#999;
+  font-size:24rpx;
+  color:#999;
 }
 .increase_money{
   display:flex;

@@ -16,10 +16,18 @@ class ShoppingCartProduct {
         this.volume = productInfo.volume;
         this.selectCount = productInfo.selectCount || 1;
 
-
         this.selected = productInfo.hasSelected;
         this.shopInfo = shopInfo;
     }
+
+    // static createShoppingCartProduct(settleProduct){
+    //     let product = new ShoppingCartProduct(settleProduct.productInfo, {shopId:settleProduct.shopId, shopName:null});
+    //     product.getShopInfo().then(({shopName})=>{
+    //         product.setShopName(shopName);
+    //     })
+    //     return product;
+    // }
+
 
     getShopInfo() {
         let self = this;

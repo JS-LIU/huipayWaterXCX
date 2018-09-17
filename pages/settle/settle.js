@@ -141,20 +141,32 @@ Page({
           content: "是否确认支付？",
           success: function (res) {
             console.log(res);
-            order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: '/pages/orderlist/orderlist?orderType=total',
-                })
-              }
-            })
+            if(res.confirm){
+              order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '/pages/orderlist/orderlist?orderType=total',
+                  })
+                }
+              })
+            }
           }
         })
       } else {
-        order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
-          let wxP = new WxPay(orderInfo);
-          wxP.pay(e.detail);
+        let wxP = new WxPay();
+        wxP.getOpenId(e.detail).then((info)=>{
+          
+          order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
+            // let wxP = new WxPay(orderInfo);
+            wxP.pay(orderInfo,info.data.openId);
+          })
+        }).catch(()=>{
+
         })
+        // order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
+        //   let wxP = new WxPay(orderInfo);
+        //   wxP.pay(e.detail);
+        // })
       }
     }else{
       wx.showToast({

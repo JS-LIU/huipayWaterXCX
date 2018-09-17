@@ -3,34 +3,35 @@ var { loginInfo } = require('../login/LoginInfo.js');
 var { wxLogin } = require('../login/WxLogin.js');
 var hex_md5 = require('../../libs/md5.js');
 class WxPay{
-  constructor(orderInfo){
-    this.totalPrice = orderInfo.totalPrice;
-    this.orderId = orderInfo.orderId;
-    this.orderNo = orderInfo.orderNo;
+  constructor(){
+    
     this.wxLogin = wxLogin;
   }
-
-  pay(userInfo){
-    
-
+  getOpenId(userInfo){
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
-    wxLogin.getWxUserInfo(userInfo).then(()=>{
+    return wxLogin.getWxUserInfo(userInfo).then(() => {
       return wxLogin.getCode()
-    }).then(()=>{
+    }).then(() => {
       let postData = wxLogin.getWxLoginPostData();
       postData = Object.assign(postData, { accessInfo: accessInfo });
       return huipayRequest.resource('/user/weixinInfo').save({}, postData)
-    }).then((info)=>{
-      wx.showLoading({
-        title: '请稍后',
-      })
-      return huipayRequest.resource('/client/pay/confirm').save({}, {
+    })
+  }
+  pay(orderInfo,openId){
+    this.totalPrice = orderInfo.totalPrice;
+    this.orderId = orderInfo.orderId;
+    this.orderNo = orderInfo.orderNo;
+
+    let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
+    wx.showLoading({
+      title: '请稍后',
+    })
+    huipayRequest.resource('/client/pay/confirm').save({}, {
         payChannel: "WeixinMiniProgramPay",
         orderId: this.orderId,
-        openId: info.data.openId,
+        openId: openId,
         accessInfo: accessInfo
-      })
-    }).then((info)=>{
+      }).then((info)=>{
       let data = info.data;
 
       var sign = "appId=" + data.wexinSpec.appid + "&nonceStr=" + data.wexinSpec.noncestr +

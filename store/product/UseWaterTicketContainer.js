@@ -1,6 +1,7 @@
 var UseWaterTicket = require('../product/UseWaterTicket.js');
 class UseWaterTicketContainer{
   constructor(useWaterTicketsInfo) {
+    console.log(useWaterTicketsInfo);
     this.totalUsed = useWaterTicketsInfo.totalUsed;
     this.userTicketModels = useWaterTicketsInfo.userTicketModels;
     this.useTicketList = [];

@@ -1,11 +1,12 @@
 <!--pages/givefriendlist/givefriendlist.wxml-->
+<view class='wrap'></view>
 <view class='friend_list'>
   <view wx:for="{{friendList}}" wx:for-item="friend" wx:for-index="i" wx:key="i" class='friend_item'>
     <view class='friend_left'>
       <image src='{{friend.userIcon}}' class="friend_icon" mode='aspectFit'></image>
       <view class='friend_name_info'>
         <text class='friend_name'>{{friend.nickName}}</text>
-        <text class='huibei_code'>{{friend.huibeiCoede}}</text>
+        <text class='huibei_code'>汇贝号：{{friend.huibeiCoede}}</text>
       </view>
     </view>
     <view class='increase_money'>

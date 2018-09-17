@@ -82,9 +82,12 @@ Page({
     // if (res.from === 'button') {
     //   // 来自页面内转发按钮
     // }
+    
     return {
       title: userInfo.userName + '送你一张水票，点击可免费领取1桶喜腾山泉！赶快行动吧！',
-      path: '/pages/index/index?type=receiveTicket&activityId=2&inviteId=' + userInfo.id
+      path: '/pages/index/index?type=receiveTicket&activityId=2&inviteId=' + userInfo.id,
+      imageUrl:'../images/fenxiang_photo_zhuanxiang@2x.png'
     }
+    
   },
 })

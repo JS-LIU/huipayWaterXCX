@@ -65,8 +65,16 @@ class ShoppingCartContainer {
         return this.getList();
     }
 
+    findShoppingCart(shopId) {
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].shopId === shopId) {
+                return this.list[i];
+            }
+        }
+    }
 
     getOrCreateShopShoppingCart(shopInfo) {
+
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].shopId === shopInfo.shopId) {
                 return this.list[i];
@@ -123,15 +131,14 @@ class ShoppingCartContainer {
         return this.list;
     }
 
-    findShoppingCart(shopId) {
-        for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].shopId === shopId) {
-                return this.list[i];
-            }
-        }
-    }
+    // getShopInfo(){
+    //     return {
+    //
+    //     }
+    // }
 
     findShopShoppingCartProduct(shopId, productId) {
+        // let shopInfo = this.getShopInfo(shopId);
         let shopShoppingCart = this.findShoppingCart(shopId);
         return shopShoppingCart.findProduct(productId);
     }

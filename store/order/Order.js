@@ -98,13 +98,7 @@ class Order {
                         let productInfo = settle.data.orderProductInfo.productItemModels[0];
 
                         let productItemId = productInfo.productItemId;
-                        if (!shoppingCartContainer.findProductByProductItemId(productItemId)) {
-                            let shoppingCartProduct = new ShoppingCartProduct(productInfo, {
-                                shopName: settle.data.shopName,
-                                shopId: settle.data.shopId
-                            });
-                            shoppingCartContainer.addProduct(shoppingCartProduct);
-                        }
+
                         resolve(self);
                     }).catch((info) => {
                         reject(info);
@@ -129,7 +123,7 @@ class Order {
     //  获取结算信息
     _getSettleInfo(actionType) {
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-        let postInfo = Object.assign({accessInfo, accessInfo}, this.settleParam);
+        let postInfo = Object.assign({accessInfo:accessInfo}, this.settleParam);
         return huipayRequest.resource('/order/confirmOrderInfo/:actionType').save({actionType: actionType}, postInfo)
     }
 
@@ -138,7 +132,6 @@ class Order {
         let orderProductInfo = settle.orderProductInfo;
         let orderTicketInfo = settle.orderTicketInfo;
         this._matching(orderTicketInfo, orderProductInfo);
-
         this.settleProductContainer = new SettleProductContainer(orderProductInfo);
         this.useWaterTicketContainer = new UseWaterTicketContainer(orderTicketInfo);
         this.xbContainer = new XbContainer(this.settleProductContainer, this.useWaterTicketContainer)
@@ -186,7 +179,7 @@ class Order {
     findSettleProductById(productItemId) {
 
     }
-
+    
     createOrder(deliveryAddressId, deliveryTime) {
         let self = this;
         let createOrderInfo = {
@@ -218,6 +211,7 @@ class Order {
             huipayRequest.resource('/order/:actionType').save({actionType: "create"}, postInfo).then((info) => {
                 this.orderInfo = info.data;
                 resolve(this.orderInfo);
+              shoppingCartContainer.removeAllSelectedProduct();
             });
         })
     }

@@ -1,8 +1,9 @@
 
 var { shoppingCartContainer } = require('../shoppingCart/ShoppingCartContainer.js');
-
+var ShoppingCartProduct = require('../product/ShoppingCartProduct.js');
 class SettleProduct{
   constructor(productInfo){
+    console.log('=============',productInfo);
     this.baseCount = productInfo.baseCount;
     this.imageUrl = productInfo.imageUrl;
     this.name = productInfo.name;
@@ -19,18 +20,29 @@ class SettleProduct{
     this.payRmb = productInfo.payRmb;
     this.hasSelected = productInfo.hasSelected;
     this.shopId = productInfo.shopId;
-    this.selectCount = productInfo.selectCount;    
+    this.selectCount = productInfo.selectCount;
+    this.productDetailPictures = productInfo.productDetailPictures;
+    this.productImage = productInfo.productImage;
+    this.productInfo = productInfo;
   }
+
+
+
   findShopShoppingCartProduct(){
-    return shoppingCartContainer.findShopShoppingCartProduct(this.shopId, this.productItemId);
+    return shoppingCartContainer.findShoppingCart(this.shopId);
   }
   increase(){
-    this.selectCount++;
-    //  修改购物车数量
-    let shoppingCartProduct = this.findShopShoppingCartProduct();
-    shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart)=>{
+    let shoppingCartProduct = new ShoppingCartProduct(this.productInfo,{shopId:this.shopId});
+    if (!this.findShopShoppingCartProduct()){
+      shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart) => {
         shopShoppingCart.increaseRequest(shoppingCartProduct);
+      });
+    }
+    shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart) => {
+      shopShoppingCart.increaseRequest(shoppingCartProduct);
     });
+    this.selectCount +=1;
+
   }
   reduce(){
     if (this.selectCount > 1){
