@@ -101,18 +101,23 @@ Page({
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.increase();
-    order.refreshSettleInfo();
+    // order.refreshSettleInfo();
     console.log('settleProduct:先getsettleproduct:',settleProduct);
     this.useWaterTicketContainer.matchingTicket(settleProduct);
+    let totalPrice = this.settleProductContainer.getTotalPrice();
+      let ticketUseMoney = this.useWaterTicketContainer.getTotalUsedMoney();
+
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),
       useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-      waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
       waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
       totalProductCount: this.settleProductContainer.getTotalCount(),
-      totalProductPrice: this.settleProductContainer.getTotalPrice(),
-      totalPayRmb: order.getTotalPayRmb()
-    })    
+
+        totalProductPrice: totalPrice,
+        waterTicketTotalUsedMoney: ticketUseMoney,
+      totalPayRmb: order.getTotalPayRmb(totalPrice,ticketUseMoney )
+    })
+
   },
   bindRemoveProduct: function (e){
     let shopId = e.currentTarget.dataset.shopId;

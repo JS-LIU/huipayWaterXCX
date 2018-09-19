@@ -167,12 +167,16 @@ class Order {
     getXbContainer(){
       return this.xbContainer;
     }
-    getTotalPayRmb() {
+    getTotalPayRmb(a, b) {
         this.totalPayRmb = 0;
         let totalProductPrice = this.settleProductContainer.getTotalPrice();
         let totalWaterTicketPrice = this.useWaterTicketContainer.getTotalUsedMoney();
+      console.log("总价钱：",totalProductPrice,"vs",a)
+      console.log("税票抵扣：", totalWaterTicketPrice,"vs",b)
+        console.log("totalCount", this.settleProductContainer.getTotalCount());
         let xbPrice = this.xbContainer.getTotalUseMoney() * 10;
         this.totalPayRmb = totalProductPrice - totalWaterTicketPrice - xbPrice;
+
         return this.totalPayRmb;
     }
     

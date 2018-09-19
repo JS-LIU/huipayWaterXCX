@@ -11,6 +11,6 @@
       {{address.locationInfo.fullAddress}}
     </view>
   </view>
-  <navigator url='/pages/createaddress/createaddress' bindtap='bindcreateaddress' class='create_address_btn'>创建地址</navigator>
+  <view bindtap='bindcreateaddress' class='create_address_btn'>创建地址</view>
 </view>
 

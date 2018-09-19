@@ -41,7 +41,7 @@ class SettleProduct{
     shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart) => {
       shopShoppingCart.increaseRequest(shoppingCartProduct);
     });
-    this.selectCount +=1;
+    this.selectCount ++;
 
   }
   reduce(){

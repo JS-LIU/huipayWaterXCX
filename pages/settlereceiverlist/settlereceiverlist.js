@@ -1,6 +1,7 @@
 var { settleMap } = require('../../store/map/SettleMap.js');
 var { customerAddressContainer } = require('../../store/map/CustomerAddressContainer.js');
 var { editCustomerAddress } = require('../../store/map/EditCustomerAddress.js');
+var { homeMap } = require('../../store/map/HomeMap.js');
 Page({
 
   /**
@@ -78,5 +79,16 @@ Page({
   },
   bindcreateaddress: function () {
     editCustomerAddress.setStrategy("create");
+    // editCustomerAddress.setStrategy("create");
+    editCustomerAddress.setName("");
+    editCustomerAddress.setPhoneNum("");
+    homeMap.getLocation().then((locationInfo) => {
+      editCustomerAddress.setSelectedLocationInfo(locationInfo);
+      wx.navigateTo({
+        url: '/pages/createaddress/createaddress'
+      })
+    })
+    editCustomerAddress.setPaddingAddress("");
+    editCustomerAddress.setTagId("");
   }
 })

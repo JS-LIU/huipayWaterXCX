@@ -74,7 +74,6 @@ let strategies = {
           cityCode: this.getLocation().citycode,
           cityName: this.getLocation().city,
           adCode: this.getLocation().adcode,
-          adCode: this.getLocation().adcode,
           mappingAddress: (this.getLocation().address || "") + this.getLocation().fullAddress,
           latitude: this.getLocation().latitude,
           longtitude: this.getLocation().longitude
@@ -97,7 +96,6 @@ let strategies = {
           pName: this.getLocation().province,
           cityCode: this.getLocation().citycode,
           cityName: this.getLocation().city,
-          adCode: this.getLocation().adcode,
           adCode: this.getLocation().adcode,
           mappingAddress: (this.getLocation().address || "") + this.getLocation().fullAddress,
           latitude: this.getLocation().latitude,
