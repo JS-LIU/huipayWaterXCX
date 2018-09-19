@@ -104,27 +104,22 @@ Page({
     // order.refreshSettleInfo();
     console.log('settleProduct:先getsettleproduct:',settleProduct);
     this.useWaterTicketContainer.matchingTicket(settleProduct);
-    let totalPrice = this.settleProductContainer.getTotalPrice();
-      let ticketUseMoney = this.useWaterTicketContainer.getTotalUsedMoney();
-
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),
       useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
       waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
       totalProductCount: this.settleProductContainer.getTotalCount(),
-
-        totalProductPrice: totalPrice,
-        waterTicketTotalUsedMoney: ticketUseMoney,
-      totalPayRmb: order.getTotalPayRmb(totalPrice,ticketUseMoney )
+      totalProductPrice: this.settleProductContainer.getTotalPrice(),
+      waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
+      totalPayRmb: order.getTotalPayRmb()
     })
-
   },
   bindRemoveProduct: function (e){
     let shopId = e.currentTarget.dataset.shopId;
     let productItemId = e.currentTarget.dataset.productId;
     let settleProduct = this.settleProductContainer.findProductById(productItemId);
     settleProduct.reduce();
-    order.refreshSettleInfo();
+    // order.refreshSettleInfo();
     this.useWaterTicketContainer.matchingTicket(settleProduct);
     this.setData({
       settleProductList: this.settleProductContainer.getSettleProductList(),
@@ -160,18 +155,12 @@ Page({
       } else {
         let wxP = new WxPay();
         wxP.getOpenId(e.detail).then((info)=>{
-          
           order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
-            // let wxP = new WxPay(orderInfo);
             wxP.pay(orderInfo,info.data.openId);
           })
         }).catch(()=>{
 
         })
-        // order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
-        //   let wxP = new WxPay(orderInfo);
-        //   wxP.pay(e.detail);
-        // })
       }
     }else{
       wx.showToast({
@@ -182,18 +171,7 @@ Page({
         wx.hideToast();
       }, 500)
     }
-      
-    
-    
-    // order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo)=>{
-    //   shoppingCartContainer.getShoppingCartContainer();
-    //   if (orderInfo.totalPrice === 0){
-        
-        
-    //   }else{
-        
-    //   }
-    // });
+
   },
   bindReduceXb:function(){
     this.xbContainer.reduceXb();

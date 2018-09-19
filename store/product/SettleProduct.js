@@ -3,7 +3,6 @@ var { shoppingCartContainer } = require('../shoppingCart/ShoppingCartContainer.j
 var ShoppingCartProduct = require('../product/ShoppingCartProduct.js');
 class SettleProduct{
   constructor(productInfo){
-    console.log('=============',productInfo);
     this.baseCount = productInfo.baseCount;
     this.imageUrl = productInfo.imageUrl;
     this.name = productInfo.name;
@@ -28,12 +27,13 @@ class SettleProduct{
 
 
 
-  findShopShoppingCartProduct(){
-    return shoppingCartContainer.findShoppingCart(this.shopId);
-  }
+  // findShopShoppingCartProduct(){
+  //   return shoppingCartContainer.findShoppingCart(this.shopId);
+  // }
+
   increase(){
     let shoppingCartProduct = new ShoppingCartProduct(this.productInfo,{shopId:this.shopId});
-    if (!this.findShopShoppingCartProduct()){
+    if (!shoppingCartContainer.findProductByProductItemId(this.productItemId)){
       shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart) => {
         shopShoppingCart.increaseRequest(shoppingCartProduct);
       });
@@ -47,9 +47,8 @@ class SettleProduct{
   reduce(){
     if (this.selectCount > 1){
       this.selectCount--;
-      console.log(1231231);
       //  修改购物车数量
-      let shoppingCartProduct = this.findShopShoppingCartProduct();
+      let shoppingCartProduct = shoppingCartContainer.findProductByProductItemId(this.productItemId);
       shoppingCartContainer.removeProduct(shoppingCartProduct);
      
     }

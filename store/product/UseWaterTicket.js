@@ -2,7 +2,6 @@ var {huipayRequest} = require('../init.js');
 var {loginInfo} = require('../login/LoginInfo.js');
 class UseWaterTicket{
   constructor(waterTicketInfo){
-    console.log(waterTicketInfo);
     this.name = waterTicketInfo.name;
     this.brandName = waterTicketInfo.brandName;
     this.canUseCount = waterTicketInfo.canUseCount;
