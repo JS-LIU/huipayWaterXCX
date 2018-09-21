@@ -4,7 +4,6 @@ var SettleProductContainer = require('../order/SettleProductContainer.js');
 var UseWaterTicketContainer = require('../product/UseWaterTicketContainer.js');
 var XbContainer = require('../account/XbContainer.js');
 var {shoppingCartContainer} = require('../shoppingCart/ShoppingCartContainer.js');
-var ShoppingCartProduct = require('../product/ShoppingCartProduct.js')
 
 class Order {
     constructor() {
@@ -16,6 +15,7 @@ class Order {
         this.xbContainer = null;
         this.orderInfo = null;
         let self = this;
+        this.byEmptyBucket = null;
         this.strategies = {
             /**
              * 购物车结算
@@ -129,6 +129,7 @@ class Order {
 
     //  给【结算商品】、【使用水票】赋值
     _setContainer(settle) {
+        this.byEmptyBucket = settle.byEmptyBucket;
         let orderProductInfo = settle.orderProductInfo;
         let orderTicketInfo = settle.orderTicketInfo;
         this._matching(orderTicketInfo, orderProductInfo);

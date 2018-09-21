@@ -15,7 +15,7 @@ class ShoppingCartProduct {
         this.saleMount = productInfo.saleMount;
         this.volume = productInfo.volume;
         this.selectCount = productInfo.selectCount || 1;
-
+        this.emptyBucketProduct = productInfo.emptyBucketProduct;
         this.selected = productInfo.hasSelected;
         this.shopInfo = shopInfo;
     }
@@ -53,7 +53,7 @@ class ShoppingCartProduct {
         })
     }
     isBucketProduct(){
-        return true;
+        return this.emptyBucketProduct;
     }
     increase() {
         this.selectCount++;

@@ -30,7 +30,17 @@ class SettleProductContainer {
         }
         return bucketProductList;
     }
-
+    //  没有桶套餐
+    getExcludeBucketSettleProductList(){
+        let excludeBucketSettleProductList = [];
+        for (let i = 0; i < this.settleProductList.length; i++) {
+            let product = this.settleProductList[i];
+            if(!product.isBucketProduct()){
+                excludeBucketSettleProductList.push(product);
+            }
+        }
+        return excludeBucketSettleProductList;
+    }
     findOrCreateProduct(shoppingCartProduct){
         let product = this.findProductById(shoppingCartProduct.productItemId);
         if(!product){

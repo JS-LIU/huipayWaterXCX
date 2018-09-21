@@ -22,11 +22,12 @@ class SettleProduct {
         this.selectCount = productInfo.selectCount;
         this.productDetailPictures = productInfo.productDetailPictures;
         this.productImage = productInfo.productImage;
+        this.emptyBucketProduct = productInfo.emptyBucketProduct;
         this.productInfo = productInfo;
     }
 
     isBucketProduct() {
-        return true;
+        return this.emptyBucketProduct;
     }
 
 

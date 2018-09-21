@@ -21,23 +21,6 @@ class ShopShoppingCart {
 
         this.selected = shopShoppingCartInfo.shopSelected;
         this.ajax = huipayRequest.resource('/shop/shoppingcart/:action');
-        // this.increaseToServer = function (shoppingCartProduct) {
-        //     let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-        //     huipayRequest.resource('/shop/shoppingcart/:action').save({action: "increase"}, {
-        //         accessInfo: accessInfo,
-        //         productItemId: shoppingCartProduct.productItemId,
-        //         productType: shoppingCartProduct.productType,
-        //         shopId: shoppingCartProduct.shopInfo.shopId
-        //     }).then((info) => {
-        //         wx.showToast({
-        //             title: "成功加入购物车",
-        //             icon: "success",
-        //             duration: 1000
-        //         });
-        //         console.log("addProduct:", info);
-        //     });
-        //     return this.productList;
-        // }
     }
 
     /**
@@ -88,6 +71,27 @@ class ShopShoppingCart {
         return this.productList;
     }
 
+    findByProductItemId(productItemId){
+        return this.productList.find((product)=>{
+            return product.productItemId == productItemId;
+        });
+    }
+
+    updateShoppingCartInfo(){
+        this.getSelectedCount();
+        this.getSelectedPrice();
+        this.hasSelected();
+        this.getTotalCount();
+    }
+
+    addToShoppingCart(shoppingCartProduct){
+        let product = this.findByProductItemId(shoppingCartProduct.productItemId);
+        if (product == null){
+            this.productList.push(product);
+            this.updateShoppingCartInfo();
+        }
+    }
+
     addProduct(shoppingCartProduct) {
         let flag = true;
         for (let i = 0; i < this.productList.length; i++) {
@@ -98,7 +102,7 @@ class ShopShoppingCart {
                 this.getSelectedPrice();
                 this.hasSelected();
                 this.getTotalCount();
-                flag = false;
+                flag = false
             }
         }
         if (flag) {

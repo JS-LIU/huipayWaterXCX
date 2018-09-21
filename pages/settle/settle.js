@@ -38,6 +38,48 @@ Page({
 
     },
 
+
+    updateShowProductList(){
+        let shoppingCartProductList = [];
+        let settleProductList = [];
+        let bucketProductList = [];
+        if(order.byEmptyBucket){
+            settleProductList = this.settleProductContainer.getExcludeBucketSettleProductList();
+            bucketProductList = this.settleProductContainer.getBucketProductList();
+
+            shoppingCartProductList = shoppingCartContainer.getBucketList();
+
+        }else{
+            settleProductList = this.settleProductContainer.getSettleProductList();
+            bucketProductList = [];
+            shoppingCartProductList = [];
+        }
+        this.setData({
+            settleProductList: settleProductList,
+            bucketProductList: bucketProductList,
+            shoppingCartProductList: shoppingCartProductList
+        });
+    },
+    updateCalcInfo(){
+        this.setData({
+            useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
+            waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
+            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
+            totalProductCount: this.settleProductContainer.getTotalCount(),
+            totalProductPrice: this.settleProductContainer.getTotalPrice(),
+            totalPayRmb: order.getTotalPayRmb(),
+            totalXb: this.xbContainer.totalXb,
+            xbTotalUse: this.xbContainer.getCanUseXb(),
+            receiverInfo: this.receiverInfo
+        });
+    },
+
+    updatePageShowData(){
+        this.updateShowProductList();
+        this.updateCalcInfo();
+    },
+
+
     /**
      * 生命周期函数--监听页面显示
      */
@@ -46,28 +88,19 @@ Page({
         this.useWaterTicketContainer = order.getUseWaterTicketContainer();
         this.xbContainer = order.getXbContainer();
         this.receiverInfo = settleMap.getSettleReceiverInfo();
-
-        let productList = [];
-        // this.shoppingCartContainer.addAll(productList);
-        console.log(this.receiverInfo);
-        this.xbContainer.getTotalXb().then((info) => {
+        shoppingCartContainer.syncBucketList(()=>{
+            this.updatePageShowData();
+        }).then(()=>{
+            return this.xbContainer.getTotalXb()
+        }).then((info)=>{
             this.xbContainer.totalXb = info.data.xtbMount;
-            let shoppingCartList = shoppingCartContainer.getList();
-            this.setData({
-                shoppingCartList: shoppingCartList,
-                settleProductList: this.settleProductContainer.getSettleProductList(),
-                bucketProductList: this.settleProductContainer.getBucketProductList(),
-                useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-                waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-                waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-                totalProductCount: this.settleProductContainer.getTotalCount(),
-                totalProductPrice: this.settleProductContainer.getTotalPrice(),
-                totalPayRmb: order.getTotalPayRmb(),
-                totalXb: this.xbContainer.totalXb,
-                xbTotalUse: this.xbContainer.getCanUseXb(),
-                receiverInfo: this.receiverInfo
-            });
-        })
+            this.updatePageShowData();
+        });
+        // console.log(this.receiverInfo);
+        // this.xbContainer.getTotalXb().then((info) => {
+        //
+        //
+        // })
 
     },
 
@@ -112,16 +145,7 @@ Page({
         // order.refreshSettleInfo();
         console.log('settleProduct:先getsettleproduct:', settleProduct);
         this.useWaterTicketContainer.matchingTicket(settleProduct);
-        this.setData({
-            settleProductList: this.settleProductContainer.getSettleProductList(),
-            bucketProductList: this.settleProductContainer.getBucketProductList(),
-            useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-            totalProductCount: this.settleProductContainer.getTotalCount(),
-            totalProductPrice: this.settleProductContainer.getTotalPrice(),
-            waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-            totalPayRmb: order.getTotalPayRmb()
-        })
+        this.updatePageShowData();
     },
     bindRemoveProduct: function (e) {
         let shopId = e.currentTarget.dataset.shopId;
@@ -130,17 +154,7 @@ Page({
         settleProduct.reduce();
         // order.refreshSettleInfo();
         this.useWaterTicketContainer.matchingTicket(settleProduct);
-        this.setData({
-            settleProductList: this.settleProductContainer.getSettleProductList(),
-            bucketProductList: this.settleProductContainer.getBucketProductList(),
-            useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-            waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-            totalProductCount: this.settleProductContainer.getTotalCount(),
-            totalProductPrice: this.settleProductContainer.getTotalPrice(),
-            xbTotalUse: this.xbContainer.getCanUseXb(),
-            totalPayRmb: order.getTotalPayRmb()
-        })
+        this.updatePageShowData();
     },
     bindCreateOrder: function (e) {
         let deliveryTime = "9:00-17:00";
@@ -185,29 +199,11 @@ Page({
     },
     bindReduceXb: function () {
         this.xbContainer.reduceXb();
-        this.setData({
-            settleProductList: this.settleProductContainer.getSettleProductList(),
-            useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-            waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-            totalProductCount: this.settleProductContainer.getTotalCount(),
-            totalProductPrice: this.settleProductContainer.getTotalPrice(),
-            totalPayRmb: order.getTotalPayRmb(),
-            xbTotalUse: this.xbContainer.getCanUseXb(),
-        })
+        this.updatePageShowData();
     },
     bindIncreaseXb: function () {
         this.xbContainer.increaseXb();
-        this.setData({
-            settleProductList: this.settleProductContainer.getSettleProductList(),
-            useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-            waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-            totalProductCount: this.settleProductContainer.getTotalCount(),
-            totalProductPrice: this.settleProductContainer.getTotalPrice(),
-            totalPayRmb: order.getTotalPayRmb(),
-            xbTotalUse: this.xbContainer.getCanUseXb(),
-        })
+        this.updatePageShowData();
     },
     bindShowXbChange: function () {
         this.setData({
@@ -226,19 +222,7 @@ Page({
         shoppingCartContainer.removeProduct(shoppingCartProduct, () => {
             let settleProduct = this.settleProductContainer.findOrCreateProduct(shoppingCartProduct);
             settleProduct.remove();
-            this.setData({
-                settleProductList: this.settleProductContainer.getSettleProductList(),
-                bucketProductList: this.settleProductContainer.getBucketProductList(),
-                useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-                waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-                waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-                totalProductCount: this.settleProductContainer.getTotalCount(),
-                totalProductPrice: this.settleProductContainer.getTotalPrice(),
-                totalPayRmb: order.getTotalPayRmb(),
-                xbTotalUse: this.xbContainer.getCanUseXb(),
-                shoppingCartList: shoppingCartContainer.getList(),
-                selected: shoppingCartContainer.hasSelected()
-            })
+            this.updatePageShowData();
         });
     },
     bindAddShoppingCartProduct: function (e) {
@@ -249,20 +233,7 @@ Page({
 
             let settleProduct = this.settleProductContainer.findOrCreateProduct(shoppingCartProduct);
             settleProduct.add();
-            this.setData({
-                settleProductList: this.settleProductContainer.getSettleProductList(),
-                bucketProductList: this.settleProductContainer.getBucketProductList(),
-                useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-                waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-                waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-                totalProductCount: this.settleProductContainer.getTotalCount(),
-                totalProductPrice: this.settleProductContainer.getTotalPrice(),
-                totalPayRmb: order.getTotalPayRmb(),
-                xbTotalUse: this.xbContainer.getCanUseXb(),
-                shoppingCartList: shoppingCartContainer.getList(),
-                selectedCount: shoppingCartContainer.getSelectedCount(),
-                selectedPrice: shoppingCartContainer.getSelectedPrice()
-            })
+            this.updatePageShowData();
         }).then((shopShoppingCart) => {
             shopShoppingCart.increaseRequest(shoppingCartProduct);
         });
@@ -280,20 +251,6 @@ Page({
         }
         let selected = shoppingCartContainer.hasSelected();
         let shoppingCartList = shoppingCartContainer.getList();
-        this.setData({
-            settleProductList: this.settleProductContainer.getSettleProductList(),
-            useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
-            bucketProductList: this.settleProductContainer.getBucketProductList(),
-            waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
-            totalProductCount: this.settleProductContainer.getTotalCount(),
-            totalProductPrice: this.settleProductContainer.getTotalPrice(),
-            totalPayRmb: order.getTotalPayRmb(),
-            xbTotalUse: this.xbContainer.getCanUseXb(),
-            shoppingCartList: shoppingCartList,
-            selected: selected,
-            selectedCount: shoppingCartContainer.getSelectedCount(),
-            selectedPrice: shoppingCartContainer.getSelectedPrice()
-        });
+        this.updatePageShowData();
     },
 })

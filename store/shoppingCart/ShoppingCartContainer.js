@@ -1,7 +1,7 @@
 var {huipayRequest} = require('../init.js');
 var {loginInfo} = require('../../store/login/LoginInfo.js');
 var ShopShoppingCart = require('./ShopShoppingCart.js');
-
+var ShoppingCartProduct = require('../product/ShoppingCartProduct');
 class ShoppingCartContainer {
     constructor() {
         this.list = [];
@@ -11,7 +11,7 @@ class ShoppingCartContainer {
     }
     getBucketList(){
         let bucketList = [];
-        let allProductList = this.getList();
+        let allProductList = this.getProductList();
         for(let i = 0;i < allProductList.length;i++){
             if(allProductList[i].isBucketProduct()){
                 bucketList.push(allProductList[i]);
@@ -20,16 +20,43 @@ class ShoppingCartContainer {
         return bucketList;
     }
 
-    // addAll(productList){
-    //     for (let newProduct in productList){
-    //         let product = this.findProductByProductItemId(newProduct.productItemId);
-    //         if (product == null){
-    //
-    //         }
-    //     }
-    //
-    // }
+    addProductList(productList, callback){
 
+        for(let i = 0;i < productList.length;i++){
+            for(let j = 0;j < productList[i].productItemModels.length;j++){
+                let productItemModel = productList[i].productItemModels[j];
+                let shoppingCartProduct = new ShoppingCartProduct(productItemModel,{shopId:productItemModel.shopId});
+                this.addProductToShoppingCart(shoppingCartProduct).then(()=>{
+                    callback();
+                })
+            }
+        }
+
+
+
+    }
+
+    syncBucketList(callback){
+        let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
+        return new Promise((resolve, reject)=>{
+            huipayRequest.resource('/shop/shoppingCart/:list').save({list: "emptyBucketProduct"}, {
+                accessInfo: accessInfo
+            }).then((info) => {
+                this.addProductList(info.data.productList, callback);
+                resolve();
+            });
+        })
+    }
+
+    addProductToShoppingCart(shoppingCartProduct){
+        return new Promise((resolve,reject)=>{
+            shoppingCartProduct.getShopInfo().then((shopInfo) => {
+                let shopShoppingCart = this.getOrCreateShopShoppingCart(shopInfo);
+                shopShoppingCart.addProduct(shoppingCartProduct);
+                resolve(shopShoppingCart);
+            })
+        })
+    }
 
     getShoppingCartContainer() {
         this.list = [];
@@ -151,12 +178,17 @@ class ShoppingCartContainer {
         this.list = list;
         return this.list;
     }
+    getProductList(){
+        let list = [];
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].productList.length !== 0) {
 
-    // getShopInfo(){
-    //     return {
-    //
-    //     }
-    // }
+                list = list.concat(this.list[i].productList);
+            }
+        }
+
+        return list;
+    }
 
     findShopShoppingCartProduct(shopId, productId) {
         // let shopInfo = this.getShopInfo(shopId);

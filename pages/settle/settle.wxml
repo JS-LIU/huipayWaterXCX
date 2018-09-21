@@ -149,15 +149,14 @@
   <view class='confirm_change_xb' bindtap='bindCloseXbChange'>确定</view>
 </view>
 
-<view class='change_xb'>
+<view class='change_xb select_bucket'>
   <view class='use_xb_title'>
     <text>选择空桶</text>
   </view>
   <view class='change_shopping_cart_bucket_body'>
     
-    <view wx:for="{{shoppingCartList}}" wx:for-item="shoppingCart" wx:for-index="i" wx:key="i" class='shop'>
-    <view wx:for="{{shoppingCart.productList}}" wx:for-item="shoppingCartProduct" wx:for-index="j" wx:key="j" class='shopping_cart_product'>
-      <view class='product_selected' bindtap='bindSelectedProductItem' data-shop-shopping-cart-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>
+    <view wx:for="{{shoppingCartProductList}}" wx:for-item="shoppingCartProduct" wx:for-index="j" wx:key="j" class='shopping_cart_product'>
+      <view class='product_selected' bindtap='bindSelectedProductItem' data-shop-shopping-cart-id='{{shoppingCartProduct.shopInfo.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>
         <image wx:if="{{shoppingCartProduct.selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
         <image wx:if="{{!shoppingCartProduct.selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
       </view>
@@ -174,14 +173,13 @@
           </view>
         </view>
         <view class='shopping_cart_product_count_ctrl'>
-          <view class='shopping_cart_product_count_item' bindtap='bindRemoveShoppingCartProduct' data-shop-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>-</view>
+          <view class='shopping_cart_product_count_item' bindtap='bindRemoveShoppingCartProduct' data-shop-id='{{shoppingCartProduct.shopInfo.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>-</view>
           <view class='shopping_cart_product_count_item shopping_cart_product_count'>{{shoppingCartProduct.selectCount}}</view>
-          <view class='shopping_cart_product_count_item' bindtap='bindAddShoppingCartProduct' data-shop-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>+</view>
+          <view class='shopping_cart_product_count_item' bindtap='bindAddShoppingCartProduct' data-shop-id='{{shoppingCartProduct.shopInfo.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>+</view>
         </view>
       </view>
       
     </view>
-  </view>
   </view>
   <view class='confirm_change_xb' bindtap='bindCloseXbChange'>确定</view>
 </view>
