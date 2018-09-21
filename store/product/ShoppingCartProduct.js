@@ -52,7 +52,9 @@ class ShoppingCartProduct {
             }
         })
     }
-
+    isBucketProduct(){
+        return true;
+    }
     increase() {
         this.selectCount++;
     }

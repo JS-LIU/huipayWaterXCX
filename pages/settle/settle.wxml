@@ -57,6 +57,28 @@
   <text>商品金额：</text>
   <view class='settle_product_total_price_unit'>￥{{totalProductPrice /100}}</view>
 </view>
+
+<view class='settle_product_list'>
+  <view wx:for="{{bucketProductList}}" wx:for-item="bucketProduct" wx:for-index="i" wx:key="i" class='settle_product'>
+    <view class='product_left'>
+      <image src='{{bucketProduct.imageUrl}}' mode='aspectFit' class='product_img'></image>
+      <view class='product_info'>
+        <view class='product_name'>
+          <text>{{bucketProduct.name}}</text>
+          <text class='product_type'>{{bucketProduct.productType}}</text>
+        </view>
+        <text class='product_volume'>{{bucketProduct.volume}}</text>
+        <view class='product_money'>
+          <text>￥</text>
+          <text class='product_money_price'>{{bucketProduct.currentPrice /100}}</text>
+        </view>      
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
 <view class='product_list_info'>
   <navigator class='use_ticket_counts' url='/pages/usewaterticketlist/usewaterticketlist'>
     <view class='use_ticket_counts_title'>
@@ -123,6 +145,43 @@
         <view class='product_count_item' bindtap='bindIncreaseXb'>+</view>
       </view>
     </view>
+  </view>
+  <view class='confirm_change_xb' bindtap='bindCloseXbChange'>确定</view>
+</view>
+
+<view class='change_xb'>
+  <view class='use_xb_title'>
+    <text>选择空桶</text>
+  </view>
+  <view class='change_shopping_cart_bucket_body'>
+    
+    <view wx:for="{{shoppingCartList}}" wx:for-item="shoppingCart" wx:for-index="i" wx:key="i" class='shop'>
+    <view wx:for="{{shoppingCart.productList}}" wx:for-item="shoppingCartProduct" wx:for-index="j" wx:key="j" class='shopping_cart_product'>
+      <view class='product_selected' bindtap='bindSelectedProductItem' data-shop-shopping-cart-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>
+        <image wx:if="{{shoppingCartProduct.selected}}" src='../images/shoppingcart_choose_s.png' class="selected_icon"></image>
+        <image wx:if="{{!shoppingCartProduct.selected}}" src='../images/shoppingcart_choose_n.png' class="selected_icon"></image>
+      </view>
+      <view class='shopping_cart_right'>
+        <view class='shop_info'>
+          <image src='{{shoppingCartProduct.imageUrl}}' mode='aspectFit' class='shopping_cart_product_img'></image>
+          <view class='shopping_cart_product_info'>
+            <view class='shopping_cart_product_name'>{{shoppingCartProduct.name}}</view>
+            <view class='shopping_cart_product_volume'>{{shoppingCartProduct.volume}}</view>
+            <view class="shopping_cart_product_price">
+              <text class='shopping_cart_product_price_unit'>￥</text>
+              <text>{{shoppingCartProduct.currentPrice / 100}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='shopping_cart_product_count_ctrl'>
+          <view class='shopping_cart_product_count_item' bindtap='bindRemoveShoppingCartProduct' data-shop-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>-</view>
+          <view class='shopping_cart_product_count_item shopping_cart_product_count'>{{shoppingCartProduct.selectCount}}</view>
+          <view class='shopping_cart_product_count_item' bindtap='bindAddShoppingCartProduct' data-shop-id='{{shoppingCart.shopId}}' data-product-id='{{shoppingCartProduct.productItemId}}'>+</view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
   </view>
   <view class='confirm_change_xb' bindtap='bindCloseXbChange'>确定</view>
 </view>

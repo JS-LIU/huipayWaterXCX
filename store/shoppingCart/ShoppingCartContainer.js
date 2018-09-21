@@ -9,6 +9,27 @@ class ShoppingCartContainer {
         this.allPrice = 0;
         this.selected = false;
     }
+    getBucketList(){
+        let bucketList = [];
+        let allProductList = this.getList();
+        for(let i = 0;i < allProductList.length;i++){
+            if(allProductList[i].isBucketProduct()){
+                bucketList.push(allProductList[i]);
+            }
+        }
+        return bucketList;
+    }
+
+    // addAll(productList){
+    //     for (let newProduct in productList){
+    //         let product = this.findProductByProductItemId(newProduct.productItemId);
+    //         if (product == null){
+    //
+    //         }
+    //     }
+    //
+    // }
+
 
     getShoppingCartContainer() {
         this.list = [];
