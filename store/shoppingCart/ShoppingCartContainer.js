@@ -20,39 +20,50 @@ class ShoppingCartContainer {
         return bucketList;
     }
 
-    addProductList(productList, callback){
-
-        for(let i = 0;i < productList.length;i++){
-            for(let j = 0;j < productList[i].productItemModels.length;j++){
-                let productItemModel = productList[i].productItemModels[j];
-                let shoppingCartProduct = new ShoppingCartProduct(productItemModel,{shopId:productItemModel.shopId});
-                this.addProductToShoppingCart(shoppingCartProduct).then(()=>{
-                    callback();
-                })
-            }
-        }
-
-
-
-    }
-
+    /**
+     * 同步水桶水票
+     * @param callback
+     * @returns {Promise<null>}
+     */
     syncBucketList(callback){
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
         return new Promise((resolve, reject)=>{
-            huipayRequest.resource('/shop/shoppingCart/:list').save({list: "emptyBucketProduct"}, {
+            huipayRequest.resource('/shop/shoppingCart/emptyBucketProduct/:action').save({action: "default"}, {
                 accessInfo: accessInfo
             }).then((info) => {
-                this.addProductList(info.data.productList, callback);
+                this.putBucketListToProductList(info.data.productList, callback);
                 resolve();
             });
         })
     }
 
-    addProductToShoppingCart(shoppingCartProduct){
+    /**
+     * 将桶列表同步到购物车商品中
+     * @param productList
+     * @param callback
+     */
+    putBucketListToProductList(productList, callback){
+        for(let i = 0;i < productList.length;i++){
+            for(let j = 0;j < productList[i].productItemModels.length;j++){
+                let productItemModel = productList[i].productItemModels[j];
+                let shoppingCartProduct = new ShoppingCartProduct(productItemModel,{shopId:productItemModel.shopId});
+                this.appendBucketProductToShoppingCart(shoppingCartProduct).then(()=>{
+                    callback();
+                })
+            }
+        }
+    }
+    /**
+     * 将结算时同步过来的水桶水票加入到购物车中
+     * @param shoppingCartProduct
+     * @returns {Promise<shopShoppingCart>}
+     */
+    appendBucketProductToShoppingCart(shoppingCartProduct){
+        let self = this;
         return new Promise((resolve,reject)=>{
             shoppingCartProduct.getShopInfo().then((shopInfo) => {
-                let shopShoppingCart = this.getOrCreateShopShoppingCart(shopInfo);
-                shopShoppingCart.addProduct(shoppingCartProduct);
+                let shopShoppingCart = self.getOrCreateShopShoppingCart(shopInfo);
+                shopShoppingCart.syncProductInfo(shoppingCartProduct);
                 resolve(shopShoppingCart);
             })
         })
@@ -61,7 +72,6 @@ class ShoppingCartContainer {
     getShoppingCartContainer() {
         this.list = [];
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-        let self = this;
         huipayRequest.resource('/shoppingCart/:list').save({list: "list"}, {
             accessInfo: accessInfo
         }).then((info) => {

@@ -41,15 +41,15 @@ class Order {
              * @param shoppingCartProduct
              * @returns {Promise<Order>}
              */
-            'shopNowSettle': function (actionType, param) { 
-              if (param){
-                let shoppingCartProduct = param;
-                let productItemId = shoppingCartProduct.productItemId;
-                let shopId = shoppingCartProduct.shopInfo.shopId;
-      
-                self._setSettleParam({ productItemId: productItemId, shopId: shopId });
-                self._setShoppingCartProduct(shoppingCartProduct);
-              }
+            'shopNowSettle': function (actionType, param) {
+                if (param) {
+                    let shoppingCartProduct = param;
+                    let productItemId = shoppingCartProduct.productItemId;
+                    let shopId = shoppingCartProduct.shopInfo.shopId;
+
+                    self._setSettleParam({productItemId: productItemId, shopId: shopId});
+                    self._setShoppingCartProduct(shoppingCartProduct);
+                }
 
                 return new Promise((resolve, reject) => {
                     //  如果购物车中没有该商品加入购物车结算否则结算购物车中的该商品
@@ -65,12 +65,12 @@ class Order {
 
                 })
             },
-          "shopShoppingCartSettle": function (actionType, param) {
-                if (param){
-                  let shopId = param;
-                  self._setSettleParam({ shopId: shopId });
+            "shopShoppingCartSettle": function (actionType, param) {
+                if (param) {
+                    let shopId = param;
+                    self._setSettleParam({shopId: shopId});
                 }
-                
+
                 return new Promise((resolve, reject) => {
                     self._getSettleInfo(actionType).then((settle) => {
                         self._setContainer(settle.data);
@@ -88,10 +88,10 @@ class Order {
              */
             'useTicketSettle': function (actionType, param) {
                 if (param) {
-                  let userTicketId = param;
-                  self._setSettleParam({ userTicketId: userTicketId});
+                    let userTicketId = param;
+                    self._setSettleParam({userTicketId: userTicketId});
                 }
-                
+
                 return new Promise((resolve, reject) => {
                     self._getSettleInfo(actionType).then((settle) => {
                         self._setContainer(settle.data);
@@ -107,10 +107,12 @@ class Order {
             }
         }
     }
+
     //  保存购物车商品（为shopNowSettle设计的接口）
-    _setShoppingCartProduct(shoppingCartProduct){
-      this.shoppingCartProduct = shoppingCartProduct;
+    _setShoppingCartProduct(shoppingCartProduct) {
+        this.shoppingCartProduct = shoppingCartProduct;
     }
+
     //  设置结算类型（购物车结算，立即购买，水票购买）
     _setSettleType(settleType) {
         this.settleType = settleType;
@@ -120,10 +122,11 @@ class Order {
     _setSettleParam(settleParam) {
         this.settleParam = settleParam;
     }
+
     //  获取结算信息
     _getSettleInfo(actionType) {
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-        let postInfo = Object.assign({accessInfo:accessInfo}, this.settleParam);
+        let postInfo = Object.assign({accessInfo: accessInfo}, this.settleParam);
         return huipayRequest.resource('/order/confirmOrderInfo/:actionType').save({actionType: actionType}, postInfo)
     }
 
@@ -155,9 +158,11 @@ class Order {
 
         return this.strategies[this.settleType](actionType, settleParam);
     }
-    refreshSettleInfo(){
-      this.getSettleInfo("default", this.settleType)
+
+    refreshSettleInfo() {
+        this.getSettleInfo("default", this.settleType)
     }
+
     getSettleProductContainer() {
         return this.settleProductContainer;
     }
@@ -165,9 +170,11 @@ class Order {
     getUseWaterTicketContainer() {
         return this.useWaterTicketContainer;
     }
-    getXbContainer(){
-      return this.xbContainer;
+
+    getXbContainer() {
+        return this.xbContainer;
     }
+
     getTotalPayRmb() {
         this.totalPayRmb = 0;
         let totalProductPrice = this.settleProductContainer.getTotalPrice();
@@ -177,11 +184,11 @@ class Order {
 
         return this.totalPayRmb;
     }
-    
+
     findSettleProductById(productItemId) {
 
     }
-    
+
     createOrder(deliveryAddressId, deliveryTime) {
         let self = this;
         let createOrderInfo = {
@@ -213,7 +220,7 @@ class Order {
             huipayRequest.resource('/order/:actionType').save({actionType: "create"}, postInfo).then((info) => {
                 this.orderInfo = info.data;
                 resolve(this.orderInfo);
-              shoppingCartContainer.removeAllSelectedProduct();
+                shoppingCartContainer.removeAllSelectedProduct();
             });
         })
     }

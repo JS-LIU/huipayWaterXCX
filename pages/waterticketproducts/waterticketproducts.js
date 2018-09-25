@@ -15,7 +15,6 @@ Page({
    */
   onLoad: function (options) {
     shopWaterTicketList.getWaterTicketlList(1, "desc", "saleMount").then((waterTicketList)=>{
-      console.log("waterTicketList：",waterTicketList);
       this.setData({
         waterTicketList: waterTicketList
       })

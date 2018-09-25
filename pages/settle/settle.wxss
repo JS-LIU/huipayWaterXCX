@@ -47,7 +47,7 @@
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline; 
+  align-items: baseline;
   padding:20rpx 40rpx 0 67rpx;
   font-size:26rpx;
 }
@@ -90,7 +90,6 @@
   height:4rpx;
 }
 .settle_product_list{
-  margin-top:30rpx;
   position:relative;
 }
 .settle_product{
@@ -100,7 +99,7 @@
   align-items: center;
   height:170rpx;
   background:#fff;
-  border-bottom:1rpx solid #d7d7d7; 
+  border-bottom:1rpx solid #d7d7d7;
 }
 .product_left{
   display:flex;
@@ -124,7 +123,7 @@
   display:flex;
   flex-direction: row;
   font-size:30rpx;
-  color:#333; 
+  color:#333;
 }
 .product_type{
   margin-left:10rpx;
@@ -290,8 +289,7 @@ button::after{
   background:#000;
   opacity: 0.7;
 }
-.change_xb,
-.select_bucket{
+.change_xb{
   position:fixed;
   bottom:0;
   height:50%;
@@ -301,6 +299,12 @@ button::after{
   z-index:3;
 }
 .select_bucket{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#FFF;
+  color:#333;
+  z-index:3;
   height:75%;
   opacity: 1;
 }
@@ -323,6 +327,19 @@ button::after{
   text-align: center;
   line-height:120rpx;
   height:120rpx;
+  position:relative;
+  font-size:34rpx;
+}
+.close_button{
+  position:absolute;
+  right:0;
+  top:0;
+  width:120rpx;
+  height:120rpx;
+}
+.bucket_list_close_img{
+    width:44rpx;
+    height:44rpx;
 }
 .change_xb_title{
   font-size:32rpx;
@@ -335,7 +352,7 @@ button::after{
   height:80rpx;
   font-size:30rpx;
   color:#333;
-  border-bottom:1rpx solid #d7d7d7; 
+  border-bottom:1rpx solid #d7d7d7;
   padding-left:24rpx;
 }
 .shopping_cart_product{
@@ -349,7 +366,7 @@ button::after{
   display:flex;
   flex-direction: column;
   justify-content: center;
-  margin-left:24rpx;  
+  margin-left:24rpx;
   padding-right:28rpx;
   height:100%;
 }
@@ -364,7 +381,7 @@ button::after{
   justify-content: space-between;
   align-items: center;
   flex:1;
-  margin-top:-1rpx; 
+  margin-top:-1rpx;
   height:100%;
   border-top:1rpx solid #d7d7d7;
 }
@@ -448,4 +465,20 @@ button::after{
   display: flex;
   flex-direction: column;
   overflow: auto;
+}
+.bucket_list{
+    position:relative;
+    background:#FFF;
+    margin-top:30rpx;
+}
+.my_bucket_list_button{
+    background:#FFF;
+    height:90rpx;
+    line-height:90rpx;
+    border-bottom:1rpx solid #d7d7d7;
+}
+.my_bucket_text{
+    font-size:30rpx;
+    color:#333;
+    margin-left:28rpx;
 }

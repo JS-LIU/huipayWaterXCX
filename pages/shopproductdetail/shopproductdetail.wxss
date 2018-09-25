@@ -309,11 +309,13 @@
   line-height: 90rpx;
 }
 .water_ticket_list{
-  padding:0 20rpx 0 30rpx;
+  padding-left:30rpx;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width:100%;
+  overflow:auto;
 }
 .water_ticket_details{
   position: absolute;

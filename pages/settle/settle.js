@@ -21,7 +21,9 @@ Page({
         totalXb: 0,
         xbTotalUseMoney: 0,
         receiverInfo: null,
-        isShowChangeXb: false
+        isShowChangeXb: false,
+        hasBucketList:false,
+        isShowBucketList:false
     },
 
     /**
@@ -46,13 +48,17 @@ Page({
         if(order.byEmptyBucket){
             settleProductList = this.settleProductContainer.getExcludeBucketSettleProductList();
             bucketProductList = this.settleProductContainer.getBucketProductList();
-
             shoppingCartProductList = shoppingCartContainer.getBucketList();
-
+            this.setData({
+                hasBucketList:true
+            })
         }else{
             settleProductList = this.settleProductContainer.getSettleProductList();
             bucketProductList = [];
             shoppingCartProductList = [];
+            this.setData({
+                hasBucketList:false
+            })
         }
         this.setData({
             settleProductList: settleProductList,
@@ -88,6 +94,7 @@ Page({
         this.useWaterTicketContainer = order.getUseWaterTicketContainer();
         this.xbContainer = order.getXbContainer();
         this.receiverInfo = settleMap.getSettleReceiverInfo();
+
         shoppingCartContainer.syncBucketList(()=>{
             this.updatePageShowData();
         }).then(()=>{
@@ -96,11 +103,7 @@ Page({
             this.xbContainer.totalXb = info.data.xtbMount;
             this.updatePageShowData();
         });
-        // console.log(this.receiverInfo);
-        // this.xbContainer.getTotalXb().then((info) => {
-        //
-        //
-        // })
+        // this.updatePageShowData();
 
     },
 
@@ -253,4 +256,14 @@ Page({
         let shoppingCartList = shoppingCartContainer.getList();
         this.updatePageShowData();
     },
-})
+    bindShowBucketList:function(){
+        this.setData({
+            isShowBucketList:true
+        })
+    },
+    bindCloseBucketList:function(){
+        this.setData({
+            isShowBucketList:false
+        })
+    }
+});

@@ -3,6 +3,7 @@
   <view class='water_ticket_top'>
     <image src='../images/img_ticket@2x.png' mode='aspectFit' class="water_ticket_img"></image>    
     <view class='water_ticket_name'>
+      <text>{{waterTicket.prefix}}</text>
       <text>{{waterTicket.name}}</text>
       <text class='water_ticket_volume'>{{waterTicket.volume}}</text>
     </view>

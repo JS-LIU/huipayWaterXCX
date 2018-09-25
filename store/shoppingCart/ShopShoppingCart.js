@@ -73,7 +73,7 @@ class ShopShoppingCart {
 
     findByProductItemId(productItemId){
         return this.productList.find((product)=>{
-            return product.productItemId == productItemId;
+            return product.productItemId === productItemId;
         });
     }
 
@@ -84,14 +84,23 @@ class ShopShoppingCart {
         this.getTotalCount();
     }
 
-    addToShoppingCart(shoppingCartProduct){
+    /**
+     * 将结算时同步过来的水桶水票加入到购物车中（该方法不自增只从后台获取）
+     * @param shoppingCartProduct
+     */
+    syncProductInfo(shoppingCartProduct){
         let product = this.findByProductItemId(shoppingCartProduct.productItemId);
-        if (product == null){
-            this.productList.push(product);
+        if (!product){
+            this.productList.push(shoppingCartProduct);
             this.updateShoppingCartInfo();
         }
     }
 
+    /**
+     * 正常的购物车加减
+     * @param shoppingCartProduct
+     * @returns {ShopShoppingCart}
+     */
     addProduct(shoppingCartProduct) {
         let flag = true;
         for (let i = 0; i < this.productList.length; i++) {
