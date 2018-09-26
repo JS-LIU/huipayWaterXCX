@@ -482,3 +482,152 @@ button::after{
     color:#333;
     margin-left:28rpx;
 }
+
+
+
+.water_ticket_list{
+  position:fixed;
+  bottom:0;
+  height:75%;
+  width:100%;
+  background:#FFF;
+  color:#333;
+  z-index:3;
+}
+.water_ticket{
+  position: relative;
+  background:#fff;
+  margin-top:30rpx;
+}
+.water_ticket_top{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height:295rpx;
+}
+.water_ticket_img{
+  position: absolute;
+  width:663rpx;
+  height:287rpx;
+}
+.water_ticket_name{
+  position:relative;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height:120rpx;
+  font-size:62rpx;
+  font-weight: bold;
+  color:#FFF;
+}
+.water_ticket_volume{
+  font-size:28rpx;
+  font-weight: normal;
+  text-align: center;
+}
+.water_ticket_right{
+  position:absolute;
+  top:110rpx;
+  font-size:54rpx;
+  right:105rpx;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color:#FFF;
+}
+.water_ticket_unit{
+  font-size:40rpx;
+}
+
+.water_ticket_smallName{
+  position: absolute;
+  bottom:65rpx;
+  right:85rpx;
+  width:120rpx;
+  height:35rpx;
+  font-size:24rpx;
+  color:#FFF;
+  background:#FF8752;
+  text-align: center;
+  border-radius: 3rpx;
+}
+.water_ticket_bottom{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 30rpx;
+  height:90rpx;
+  font-size:26rpx;
+  color:#333;
+  border-bottom:1rpx solid #d7d7d7;
+}
+.water_ticket_name_info{
+  display:flex;
+  flex-direction: row;
+  font-size:32rpx;
+  color:#333;
+}
+.water_ticket_sale_tag{
+  color:#ff2d2d;
+  border:1rpx solid #ff2d2d;
+  font-size:26rpx;
+  border-radius: 3rpx;
+  padding:0 5rpx;
+}
+.water_ticket_other_info{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.water_ticket_money_unit{
+  font-size:26rpx;
+  color:#ff2d2d;
+}
+.water_ticket_current_money{
+  font-size:32rpx;
+  color:#ff2d2d;
+}
+.water_ticket_sale_mount{
+  margin-left:80rpx;
+  font-size:24rpx;
+  color:#999;
+}
+.water_ticket_bottom_name,
+.water_ticket_bottom_volume{
+  margin-left:20rpx;
+}
+.count_ctrl{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  border:1rpx solid #d7d7d7;
+  border-radius: 3rpx;
+  width:220rpx;
+  height:55rpx;
+  font-size:26rpx;
+  color:#999;
+}
+.water_ticket_count_item{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height:55rpx;
+  flex:1;
+}
+.water_ticket_count{
+  border-left:1rpx solid #d7d7d7;
+  border-right:1rpx solid #d7d7d7;
+  flex:1.5;
+  color:#333;
+}
+.use_water_ticket_status{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size:34rpx;
+}

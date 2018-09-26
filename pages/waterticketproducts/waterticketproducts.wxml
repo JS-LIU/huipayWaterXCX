@@ -7,7 +7,7 @@
       <text>{{waterTicket.name}}</text>
       <text class='water_ticket_volume'>{{waterTicket.volume}}</text>
     </view>
-    <text class='water_ticket_smallName'>{{waterTicket.smallName}}</text> 
+    <text wx:if="{{waterTicket.smallName&&waterTicket.smallName!=''}}" class='water_ticket_smallName'>{{waterTicket.smallName}}</text> 
     <view class='water_ticket_right'>
       <text>{{waterTicket.baseCount}}</text>
       <text class='water_ticket_unit'>张</text>

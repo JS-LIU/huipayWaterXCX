@@ -90,7 +90,7 @@
 
 
 <view class='product_list_info'>
-    <navigator class='use_ticket_counts' url='/pages/usewaterticketlist/usewaterticketlist'>
+    <view class='use_ticket_counts' bindtap='bindShowWaterTicketList'>
         <view class='use_ticket_counts_title'>
             <text>水票抵用：</text>
             <text class='settle_total_can_use_count'>{{waterTicketTotalCount}}张可用</text>
@@ -100,7 +100,7 @@
             <text>{{waterTicketTotalUsedMoney/100}}</text>
             <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image>
         </view>
-    </navigator>
+    </view>
     <view class='use_ticket_counts' bindtap='bindShowXbChange'>
         <view class='use_ticket_counts_title'>
             <text>喜币抵用：</text>
@@ -208,5 +208,44 @@
 
         </view>
     </view>
-    <view class='confirm_change_xb' bindtap='bindCloseXbChange'>确定</view>
+    <view class='confirm_change_xb' bindtap="bindCloseBucketList">确定</view>
 </view>
+
+<view class='xb_change_wrap' wx:if="{{isShowWaterTicketList}}"></view>
+<view class='water_ticket_list' wx:if="{{isShowWaterTicketList}}">
+    <view class='use_xb_title'>
+        <text>使用水票</text>
+        <view class="close_button" bindtap="bindCloseWaterTicketList">
+            <image src='../images/icon_dingdan_quxiao@2x.png' mode="aspectFit" class="bucket_list_close_img"></image>
+        </view>
+    </view>
+    <view class='use_water_ticket_status'>
+      <text>可使用水票</text>
+      <text>不可使用水票</text>
+    </view>
+    <view wx:for="{{useWaterTicketList}}" wx:for-item="waterTicket" wx:for-index="i" wx:key="i" class='water_ticket'>
+      <view class='water_ticket_top'>
+        <image src='../images/img_ticket@2x.png' mode='aspectFit' class="water_ticket_img"></image>    
+        <view class='water_ticket_name'>
+          <text>{{waterTicket.name}}</text>
+        </view>
+        <!-- <text class='water_ticket_smallName'>{{waterTicket.volume}}</text>  -->
+        <view class='water_ticket_right'>
+          <text>{{waterTicket.totalCount}}</text>
+          <text class='water_ticket_unit'>张</text>
+        </view>      
+      </view>
+
+      <view class='water_ticket_bottom'>
+        <text>使用水票</text>
+        <view class='count_ctrl'>
+          <view class='water_ticket_count_item' bindtap='bindReduceSelectUseCount' data-ticket-id='{{waterTicket.ticketId}}'>-</view>
+          <view class='water_ticket_count_item water_ticket_count'>{{waterTicket.selectUseCount}}</view>
+          <view class='water_ticket_count_item' bindtap='bindIncreaseSelectUseCount' data-ticket-id='{{waterTicket.ticketId}}'>+</view>
+        </view>
+      </view> 
+    </view>
+    <view class='confirm_change_xb' bindtap='bindCloseWaterTicketList'>确定</view>
+</view>
+
+

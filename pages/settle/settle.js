@@ -21,9 +21,10 @@ Page({
         totalXb: 0,
         xbTotalUseMoney: 0,
         receiverInfo: null,
+        hasBucketList: false,
         isShowChangeXb: false,
-        hasBucketList:false,
-        isShowBucketList:false
+        isShowBucketList:false,
+        isShowWaterTicketList:false,
     },
 
     /**
@@ -31,6 +32,7 @@ Page({
      */
     onLoad: function (options) {
         console.log(options.actionType);
+
     },
 
     /**
@@ -39,7 +41,7 @@ Page({
     onReady: function () {
 
     },
-
+    
 
     updateShowProductList(){
         let shoppingCartProductList = [];
@@ -79,6 +81,7 @@ Page({
             receiverInfo: this.receiverInfo
         });
     },
+    
 
     updatePageShowData(){
         this.updateShowProductList();
@@ -102,8 +105,7 @@ Page({
         }).then((info)=>{
             this.xbContainer.totalXb = info.data.xtbMount;
             this.updatePageShowData();
-        });
-        // this.updatePageShowData();
+        })
 
     },
 
@@ -265,5 +267,27 @@ Page({
         this.setData({
             isShowBucketList:false
         })
+    },
+    bindIncreaseSelectUseCount: function (e) {
+      let ticketId = e.currentTarget.dataset.ticketId;
+      let waterTicket = this.useWaterTicketContainer.findTicketById(ticketId);
+      waterTicket.increase();
+      this.updateCalcInfo();
+    },
+    bindReduceSelectUseCount: function (e) {
+      let ticketId = e.currentTarget.dataset.ticketId;
+      let waterTicket = this.useWaterTicketContainer.findTicketById(ticketId);
+      waterTicket.reduce();
+      this.updateCalcInfo();
+    },
+    bindShowWaterTicketList:function(){
+      this.setData({
+        isShowWaterTicketList: true
+      })
+    },
+    bindCloseWaterTicketList: function () {
+      this.setData({
+        isShowWaterTicketList: false
+      })
     }
 });

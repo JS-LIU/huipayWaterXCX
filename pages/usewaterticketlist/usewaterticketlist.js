@@ -13,7 +13,6 @@ Page({
    */
   onLoad: function (options) {
     this.useWaterTicketContainer = order.getUseWaterTicketContainer();
-    console.log(this.useWaterTicketContainer.getUseTicketList())
     this.setData({
       waterTicketList: this.useWaterTicketContainer.getUseTicketList()
     })
