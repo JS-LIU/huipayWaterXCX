@@ -46,15 +46,15 @@ class WxPay{
         'signType': 'MD5',
         "paySign": paySign,
         'success': function (res) {
-          wx.hideLoading();
-          wx.redirectTo({
-            url: '/pages/orderlist/orderlist',
-          })
+          
         },
         'fail': function (res) {
         },
         'complete':function(){
-          wx.hideLoading()
+          wx.hideLoading();
+          wx.redirectTo({
+            url: '/pages/orderlist/orderlist',
+          })
         }
       })
     }).catch((err) => {

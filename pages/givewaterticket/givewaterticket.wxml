@@ -1,14 +1,37 @@
 <!--pages/givewaterticket.wxml-->
 <view class='wrap'></view>
 
+<view class='give_header'>
+  <navigator url="/pages/myfriend/myfriend" class='give_header_item'>
+    <view class='give_header_img_text'>
+      <image class='my_friend_icon' src='../images/me_icon_shuipiao_haoyou@2x.png' mode='aspectFit'></image>
+      <text>我的好友</text>
+    </view>
+    <text class='my_friend_count'>{{inviteProfitXtbAmount}}人</text>
+  </navigator>
+  <navigator url="/pages/inviteredpocket/inviteredpocket" class='give_header_item'>
+    <view class='give_header_img_text'>
+      <image class='invite_red_pocket' src='../images/me_icon_shuipiao_hongbao@2x.png' mode='aspectFit'></image>
+      <text>邀请红包</text>
+    </view>
+    <text class='invite_red_pocket_price'>{{shareSellProfitRmbAmount}}喜币</text>
+  </navigator>
+  <navigator url="/pages/saleaward/saleaward" class='give_header_item'>
+    <view class='give_header_img_text'>
+      <image class='sale_award' src='../images/me_icon_shuipiao_jiangli@2x.png' mode='aspectFit'></image>
+      <text>销售奖励</text>
+    </view>
+    <text class='sale_award_price'>{{userFriendAmount}}元</text>
+  </navigator>
+</view>
 <view class='give_body'>
-  <view class='red_pocket'>
+  <!-- <view class='red_pocket'>
     <view class='red_money'>
       <image class='money_unit' src='../images/symbol_xiteng@2x.png' mode="aspectFit"></image>
       <text class='money'>{{totalXb}}</text>
     </view>
     <text class='money_text'>累计奖励喜币红包</text>
-  </view>
+  </view> -->
     <image mode='aspectFit' src='../images/yaoqing_slogon@2x.png' class='invite_slogon'></image>
     <text class='money_text'>(红包金额0~10喜币随机)</text>
     <image src='../images/dingshui_photo_present@2x.png' class='share_red_pocket_img'></image>
@@ -20,13 +43,13 @@
     </view>
     
   </view>
-<navigator class='to_give_friend_list' url='/pages/givefriendlist/givefriendlist'>
+<!-- <navigator class='to_give_friend_list' url='/pages/givefriendlist/givefriendlist'>
   <view class='to_give_friend_list_left'>
     <image src='../images/yaoqing_icon_renqun@2x.png' mode='aspectFit' class='give_friend_list_icon'></image>
     <text>赠送好友（{{friendAcceptActivityListCount}}）</text>
   </view>
   <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
   
-</navigator>
+</navigator> -->
 
 

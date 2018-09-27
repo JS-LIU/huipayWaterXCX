@@ -97,7 +97,8 @@ Page({
             this.setData({
                 shoppingCartList: shoppingCartContainer.getList(),
                 selectedCount: shoppingCartContainer.getSelectedCount(),
-                selectedPrice: shoppingCartContainer.getSelectedPrice()
+                selectedPrice: shoppingCartContainer.getSelectedPrice(),
+                selected: shoppingCartContainer.hasSelected()
             })
         }).then((shopShoppingCart)=>{
             shopShoppingCart.increaseRequest(shoppingCartProduct);

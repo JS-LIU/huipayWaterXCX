@@ -79,7 +79,7 @@
   <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/givewaterticket/givewaterticket'>
     <view class='my_list_item_left'>
       <image src='../images/icon_me_hongbao@2x.png' mode='aspectFit' class='my_list_item_img'></image>
-      <text>赠送好友</text>
+      <text>赠送水票</text>
     </view>
     <view class='my_list_item_right'>
       <text>免费领红包</text>

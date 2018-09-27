@@ -14,6 +14,7 @@ class Order {
         this.useWaterTicketContainer = null;
         this.xbContainer = null;
         this.orderInfo = null;
+      this.mark = "";
         let self = this;
         this.byEmptyBucket = null;
         this.strategies = {
@@ -188,7 +189,12 @@ class Order {
     findSettleProductById(productItemId) {
 
     }
-
+    setMark(mark){
+        this.mark = mark;
+    }
+    clearMark(){
+      this.mark = "";
+    }
     createOrder(deliveryAddressId, deliveryTime) {
         let self = this;
         let createOrderInfo = {
@@ -214,7 +220,8 @@ class Order {
             deliveryAddressId: deliveryAddressId,
             deliveryTime: deliveryTime,
             payType: "online",
-            useXtbMount: this.xbContainer.getTotalUseMoney()
+            useXtbMount: this.xbContainer.getTotalUseMoney(),
+            mark:this.mark
         }, createOrderInfo[this.settleType]());
         return new Promise((resolve, reject) => {
             huipayRequest.resource('/order/:actionType').save({actionType: "create"}, postInfo).then((info) => {

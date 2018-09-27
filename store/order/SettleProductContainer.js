@@ -30,6 +30,15 @@ class SettleProductContainer {
         }
         return bucketProductList;
     }
+    //  桶套餐的price
+    getBucketPrice(){
+        let bucketPrice = 0;
+        let list = this.getBucketProductList();
+        for(let i = 0;i < list.length;i++){
+            bucketPrice += list[i].selectCount * list[i].currentPrice;
+        }
+        return bucketPrice;
+    }
     //  没有桶套餐
     getExcludeBucketSettleProductList(){
         let excludeBucketSettleProductList = [];
@@ -40,6 +49,16 @@ class SettleProductContainer {
             }
         }
         return excludeBucketSettleProductList;
+    }
+    //  没有桶套餐的price
+    getExcludeBucketPrice(){
+        let excludeBucketPrice = 0;
+        let list = this.getExcludeBucketSettleProductList();
+        for(let i = 0;i < list.length;i++){
+
+            excludeBucketPrice += list[i].selectCount * list[i].currentPrice;
+        }
+        return excludeBucketPrice;
     }
     findOrCreateProduct(shoppingCartProduct){
         let product = this.findProductById(shoppingCartProduct.productItemId);

@@ -200,7 +200,7 @@
   font-size:26rpx;
   color:#333;
 }
-.use_ticket_counts,.delivery_costs,.mopoints{
+.use_ticket_counts,.delivery_costs,.mopoints,.my_bucket_list_button{
   display:flex;
   flex-direction: row;
   justify-content: space-between;
@@ -208,10 +208,14 @@
   height:84rpx;
   border-bottom:1rpx solid #d7d7d7;
 }
-.use_ticket_counts_title,.mopoints_title,.delivery_costs_title{
+.my_bucket_list_button{
+  font-size:26rpx;
+  color:#333;
+}
+.use_ticket_counts_title,.mopoints_title,.delivery_costs_title,.my_bucket_text{
   padding-left: 24rpx;
 }
-.settle_total_can_use_count{
+.settle_total_can_use_count,.my_has_bucket{
   font-size:24rpx;
   color:#ff2d2d;
   border:1rpx solid #ff2d2d;
@@ -219,11 +223,14 @@
   padding:0 5rpx;
   text-align: center;
 }
-.delivery_costs_info,.mopoints_info,.use_ticket_counts_info{
+.delivery_costs_info,.mopoints_info,.use_ticket_counts_info,.my_bucket_info{
   display:flex;
   flex-direction: row;
   align-items: center;
   padding-right:24rpx;
+}
+.my_bucket_info_text{
+  color:#ff2d2d;
 }
 .arrow_right{
   width:18rpx;
@@ -471,18 +478,6 @@ button::after{
     background:#FFF;
     margin-top:30rpx;
 }
-.my_bucket_list_button{
-    background:#FFF;
-    height:90rpx;
-    line-height:90rpx;
-    border-bottom:1rpx solid #d7d7d7;
-}
-.my_bucket_text{
-    font-size:30rpx;
-    color:#333;
-    margin-left:28rpx;
-}
-
 
 
 .water_ticket_list{
@@ -630,4 +625,16 @@ button::after{
   flex-direction: row;
   justify-content: space-around;
   font-size:34rpx;
+}
+.mark_box{
+  margin:24rpx;
+  background:#FFF;
+  height:125rpx;
+  border-radius: 12rpx;
+  position:relative;
+}
+.mark{
+  padding-left:24rpx;
+  font-size:26rpx;
+  color:#999; 
 }

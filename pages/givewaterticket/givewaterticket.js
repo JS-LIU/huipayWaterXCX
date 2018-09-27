@@ -9,7 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    friendAcceptActivityListLength:0
+    inviteProfitXtbAmount: "",
+    shareSellProfitRmbAmount: "",
+    userFriendAmount: ""
   },
 
   /**
@@ -35,14 +37,11 @@ Page({
     let postInfo = {
       accessInfo: accessInfo
     }
-    huipayRequest.resource('/activity/friendAcceptActivityList').save({}, postInfo).then((info)=>{
-      let totalXb = 0;
-      for (let i = 0; i < info.data.length; i++) {
-        totalXb += info.data[i].presentXtbMount;
-      }
+    huipayRequest.resource('/profit/userProfitInfo').save({}, postInfo).then((info)=>{
       this.setData({
-        friendAcceptActivityListCount: info.data.length,
-        totalXb: totalXb
+        inviteProfitXtbAmount: info.data.inviteProfitXtbAmount,
+        shareSellProfitRmbAmount: info.data.shareSellProfitRmbAmount,
+        userFriendAmount: info.data.userFriendAmount
       })
     }) 
   },

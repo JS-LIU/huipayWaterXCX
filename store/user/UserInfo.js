@@ -31,5 +31,12 @@ class UserInfo{
     }
     return huipayRequest.resource('/activity/getInviteInfo').save({}, postInfo)
   }
+  getEmptyBucket(){
+    let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
+    let postInfo = {
+      accessInfo: accessInfo
+    }
+    return huipayRequest.resource('/user/emptyBucket').save({}, postInfo);
+  }
 }
 module.exports.userInfo = new UserInfo();

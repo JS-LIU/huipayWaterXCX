@@ -7,7 +7,44 @@
   width:100%;
   background:#F5F5F5;
 }
-
+.give_header{
+  position:relative;
+  background:#FFF;
+  display:flex;
+  flex-direction: row;
+}
+.give_header_item{
+  display:flex;
+  flex:1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding:50rpx 0;
+  height:155rpx;
+}
+.give_header_img_text{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size:26rpx;
+  color:#333;
+}
+.sale_award_price,.invite_red_pocket_price,.my_friend_count{
+  font-size:30rpx;
+  color:#FF4E4E;
+}
+.my_friend_icon{
+  width:50rpx;
+  height:38rpx;
+}
+.invite_red_pocket{
+  width:35rpx;
+  height:42rpx;
+}
+.sale_award{
+  width:40rpx;
+  height:40rpx;
+}
 .give_body{
   position:relative;
   background:#FFF;
@@ -15,6 +52,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin-top:20rpx;
 }
 .red_pocket{
   width:690rpx;

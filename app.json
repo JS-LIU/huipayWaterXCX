@@ -40,7 +40,8 @@
     "pages/receivewaterticketactive/receivewaterticketactive",
     "pages/receivewaterticketsuccess/receivewaterticketsuccess",
     "pages/receivewaterticketfail/receivewaterticketfail",
-    "pages/givefriendlist/givefriendlist"
+    "pages/givefriendlist/givefriendlist",
+    "pages/myfriend/myfriend"
   ],
   "window": {
     "backgroundTextStyle": "light",

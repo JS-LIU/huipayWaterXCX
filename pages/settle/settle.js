@@ -3,12 +3,14 @@ var {order} = require('../../store/order/Order.js');
 var {shoppingCartContainer} = require('../../store/shoppingCart/ShoppingCartContainer.js');
 var {settleMap} = require('../../store/map/SettleMap.js');
 var WxPay = require('../../store/order/WxPay.js');
+var {userInfo} = require('../../store/user/UserInfo.js');
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        emptyBucketAmount:"",
         settleProductList: [],
         bucketProductList: [],
         shoppingCartList:[],
@@ -75,10 +77,12 @@ Page({
             waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
             totalProductCount: this.settleProductContainer.getTotalCount(),
             totalProductPrice: this.settleProductContainer.getTotalPrice(),
+            bucketPrice:this.settleProductContainer.getBucketPrice(),
+            excludeBucketPrice:this.settleProductContainer.getExcludeBucketPrice(),
             totalPayRmb: order.getTotalPayRmb(),
             totalXb: this.xbContainer.totalXb,
             xbTotalUse: this.xbContainer.getCanUseXb(),
-            receiverInfo: this.receiverInfo
+            receiverInfo: this.receiverInfo,
         });
     },
     
@@ -105,6 +109,11 @@ Page({
         }).then((info)=>{
             this.xbContainer.totalXb = info.data.xtbMount;
             this.updatePageShowData();
+            return userInfo.getEmptyBucket()
+        }).then((info)=>{
+            this.setData({
+              emptyBucketAmount: info.data.emptyBucketAmount
+            })
         })
 
     },
@@ -113,6 +122,7 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
+        order.clearMark();
     },
 
     /**
@@ -161,6 +171,9 @@ Page({
         this.useWaterTicketContainer.matchingTicket(settleProduct);
         this.updatePageShowData();
     },
+  bindSetMark:function(e){
+    order.setMark(e.detail.value);
+  },
     bindCreateOrder: function (e) {
         let deliveryTime = "9:00-17:00";
         if (this.receiverInfo) {
@@ -169,7 +182,6 @@ Page({
                 wx.showModal({
                     content: "是否确认支付？",
                     success: function (res) {
-                        console.log(res);
                         if (res.confirm) {
                             order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
                                 if (res.confirm) {
@@ -179,7 +191,8 @@ Page({
                                 }
                             })
                         }
-                    }
+                    },
+                    
                 })
             } else {
                 let wxP = new WxPay();

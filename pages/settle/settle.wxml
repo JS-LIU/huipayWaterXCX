@@ -58,12 +58,19 @@
     </view>
 </view>
 <view class='settle_product_total_price'>
-    <text>商品金额：</text>
-    <view class='settle_product_total_price_unit'>￥{{totalProductPrice /100}}</view>
+    <text>小计：</text>
+    <view class='settle_product_total_price_unit'>￥{{excludeBucketPrice /100}}</view>
 </view>
 <view wx:if="{{hasBucketList}}" class="bucket_list">
     <view class="my_bucket_list_button" bindtap="bindShowBucketList">
-        <text class="my_bucket_text">我的空桶</text>
+        <view class='my_bucket_text'>
+            <text>我的空桶</text>
+            <text class='my_has_bucket'>(余额：{{emptyBucketAmount}}个)</text>
+        </view>
+        <view class='my_bucket_info'>
+            <text class="my_bucket_info_text">购买套餐，赠送空桶</text>
+            <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image>
+        </view>
     </view>
 
     <view class='settle_product_list'>
@@ -78,15 +85,21 @@
                     <text class='product_volume'>{{bucketProduct.volume}}</text>
                     <view class='product_money'>
                         <text>￥</text>
-                        <text class='product_money_price'>{{bucketProduct.currentPrice /100}}</text>
+                        <text class='product_money_price'>{{bucketProduct.currentPrice / 100}}</text>
                     </view>
                 </view>
             </view>
         </view>
     </view>
 </view>
+<view class='settle_product_total_price'>
+    <text>小计：</text>
+    <view class='settle_product_total_price_unit'>￥{{bucketPrice / 100}}</view>
+</view>
 
-
+<view class='mark_box'>
+  <input placeholder="我要留言：" bindinput="bindSetMark" class='mark'></input> 
+</view>
 
 
 <view class='product_list_info'>
@@ -248,4 +261,4 @@
     <view class='confirm_change_xb' bindtap='bindCloseWaterTicketList'>确定</view>
 </view>
 
-
+ 

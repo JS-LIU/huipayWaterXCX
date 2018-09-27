@@ -102,19 +102,15 @@ class ShopShoppingCart {
      * @returns {ShopShoppingCart}
      */
     addProduct(shoppingCartProduct) {
-        let flag = true;
-        for (let i = 0; i < this.productList.length; i++) {
-            if (this.productList[i].productItemId === shoppingCartProduct.productItemId) {
-                this.productList[i].increase();
-                this.productList[i].toggleSelected(true);
-                this.getSelectedCount();
-                this.getSelectedPrice();
-                this.hasSelected();
-                this.getTotalCount();
-                flag = false
-            }
-        }
-        if (flag) {
+        let product = this.findByProductItemId(shoppingCartProduct.productItemId);
+        if(product){
+            product.increase();
+            product.toggleSelected(true);
+            this.getSelectedCount();
+            this.getSelectedPrice();
+            this.hasSelected();
+            this.getTotalCount();
+        }else{
             this.productList.push(shoppingCartProduct);
             this.getSelectedCount();
             this.getSelectedPrice();
@@ -130,22 +126,18 @@ class ShopShoppingCart {
      * @returns {Array|*}
      */
     removeProduct(shoppingCartProduct) {
+        let product = this.findByProductItemId(shoppingCartProduct.productItemId);
 
-        for (let i = 0; i < this.productList.length; i++) {
-            if (this.productList[i].productItemId === shoppingCartProduct.productItemId) {
-                this.productList[i].reduce();
-                this.productList[i].toggleSelected(true);
-                if (this.productList[i].selectCount === 0) {
-                    this.productList.splice(i, 1);
-                }
+        if(product.selectCount > 1){
+            product.reduce();
+            product.toggleSelected(true);
+            this.getSelectedCount();
+            this.getSelectedPrice();
+            this.hasSelected();
+            this.getTotalCount();
+            this.decreaseRequest(shoppingCartProduct);
 
-                this.getSelectedCount();
-                this.getSelectedPrice();
-                this.hasSelected();
-                this.getTotalCount();
-            }
         }
-        this.decreaseRequest(shoppingCartProduct);
         return this.productList;
     }
 
