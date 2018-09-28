@@ -28,8 +28,8 @@ class OrderItem{
     let convertTable = {
       "待付款": [{ name:'支付',key:"pay"}],
       "待收货": [{ name: "签收", key: "sign" }],
-      "待评价": [{ name: '评价', key: "comment" }, {key:"payAgain",name: '再来一单'}],
-      "已完成": [{ key: "payAgain", name: '再来一单' }]
+      "待评价": [{ name: '评价', key: "comment" }],
+      "已完成": [{ key: "payAgain", name: '已完成' }]
     }
     return convertTable[status];
   }
@@ -37,14 +37,23 @@ class OrderItem{
   getDetail(){
     
   }
-  pay(){
+  pay(orderId){
     console.log("支付：",this.orderId)
-    let wxPay = new WxPay({
+    // let wxPay = new WxPay({
+    //   orderId: this.orderId,
+    //   totalPrice: this.totalPayRmb,
+    //   orderNo: this.orderNo
+    // });
+    // wxPay.pay();
+    let wxP = new WxPay();
+    
+      
+    wxP.pay({
       orderId: this.orderId,
       totalPrice: this.totalPayRmb,
       orderNo: this.orderNo
-    });
-    wxPay.pay();
+    }, orderId);
+      
     
   }
   sign() {
@@ -57,6 +66,13 @@ class OrderItem{
       wx.redirectTo({
         url: '/pages/orderlist/orderlist?orderType=waiting_comment',
       })
+    }).catch((err)=>{
+      if (err.data.message === "订单还没有配送"){
+        wx.showToast({
+          icon:"none",
+          title: err.data.message,
+        })
+      }
     })
   }
   payAgain(){
@@ -64,7 +80,7 @@ class OrderItem{
   }
   
   orderOperation(actionKey){
-    return this.strategies[actionKey]();
+    return this.strategies[actionKey];
   }
 }
 module.exports = OrderItem;

@@ -110,12 +110,23 @@
   justify-content: flex-end;
   align-items: center;
   padding-right:24rpx;
+
+  
 }
 .action_text{
+  position:absolute;
   font-size:28rpx;
   color:#4dc0ff;
-  padding:5rpx 40rpx;
   border:1rpx solid #4dc0ff;
   border-radius: 5rpx;
-  margin-left:20rpx;
+  width:130rpx;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background:#FFF;
+  height:50rpx;
+}
+button::after{
+  border:none;
 }

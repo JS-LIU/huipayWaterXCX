@@ -1,0 +1,8 @@
+<!--pages/goldfriendlist/goldfriendlist.wxml-->
+<view class='wrap'></view>
+<view wx:for="{{userProfitDiamondFriendList}}"  wx:for-item="firend" wx:for-index="i" wx:key="i" class='diamond_friend_info'>
+  <view class='friend_info_left'>
+    <image src="{{firend.iconUrl}}" class='friend_info_icon' mode="aspectFit"></image>
+    <text class='friend_nick_name'>{{firend.nickName}}</text>
+  </view>
+</view>

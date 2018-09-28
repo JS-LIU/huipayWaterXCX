@@ -1,0 +1,83 @@
+/* pages/myfriend/myfriend.wxss */
+.wrap{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:#F8F8F8; 
+}
+.my_friend_header{
+  position:relative;
+  display:flex;
+  background:#FFF;
+}
+.friend_type{
+  display:flex;
+  flex:1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding:40rpx 0;
+  
+}
+.friend_title{
+  display:flex;
+  flex-direction: column;
+  font-size:26rpx;
+  color:#333;
+  align-items: center;
+}
+.friend_count{
+  margin-top:30rpx;
+  font-size:30rpx;
+  color:#ff4e4e;
+}
+.diamond_friend_icon,.gold_friend_icon{
+  width:50rpx;
+  height:38rpx;
+}
+.friend_list{
+  position:relative;
+  margin-top:20rpx;
+  display:flex;
+  flex-direction: column;
+  background:#FFF;
+}
+.diamond_friend_info{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height:120rpx;
+  border-top:1rpx solid #e3e3e3;
+}
+.friend_info_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left:30rpx;
+}
+.friend_info_icon{
+  border-radius: 3rpx;
+  width:80rpx;
+  height:80rpx;
+}
+.friend_nick_name{
+  font-size:28rpx;
+  color:#333;
+  margin-left:20rpx;
+}
+.friend_info_right{
+  padding-right:35rpx;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size:28rpx;
+  color:#333;
+}
+.right_arrow{
+  margin-left:12rpx;
+  width:18rpx;
+  height:30rpx;
+}

@@ -1,0 +1,48 @@
+<!--pages/inviteredpocket/inviteredpocket.wxml-->
+<view class='wrap'></view>
+<view class='my_friend_header'>
+  <view class='friend_type' bindtap='bindCutFriendType' data-friend-type="diamond">
+    <view class='friend_title'>
+      <image src='../images/icon_haoyou_zuanshi@2x.png' class='diamond_friend_icon' mode='aspectFit'></image>
+      <text>钻石好友({{userProfitDiamondFriendAmount}}人)</text>
+    </view>
+    <text class='friend_count'>{{diamondFriendShareSellProfitRmbAmount}}元</text>
+  </view>
+  <view class='friend_type' data-friend-type="gold">
+    <view class='friend_title'>
+      <image src='../images/icon_haoyou_huangjin@2x.png' class='gold_friend_icon' mode='aspectFit'></image>
+      <text>黄金好友({{userProfitGoldenFriendAmount}}人)</text>
+    </view>
+    <text class='friend_count'>{{goldenFriendShareSellProfitRmbAmount}}元</text>
+  </view>
+</view>
+<view class='friend_list'>
+  <view wx:if="{{currenFriendType==='diamond'}}" wx:for="{{diamondFriendShareSellProfitRmbRecordModelList}}" wx:for-item="firend" wx:for-index="i" wx:key="i" class='diamond_friend_info'>
+    <view class='friend_info_left'>
+      <image src="{{firend.iconUrl}}" class='friend_info_icon' mode="aspectFit"></image>
+      <view class='profit_name_time'>
+        <text class='friend_nick_name'>{{firend.nickName}}</text>
+        <text class='profit_time'>2018-1-1</text>
+      </view>
+      
+    </view>
+    <view class="friend_info_right">
+      <text>{{firend.diamondFriendAmount}}人</text>
+      <image src='../image/me-arrow@2x.png' mode='aspectFit' class='right_arrow'></image>
+    </view>
+  </view>
+  <view wx:if="{{currenFriendType==='gold'}}" wx:for="{{goldenFriendShareSellProfitRmbRecordModelList}}" wx:for-item="firend" wx:for-index="i" wx:key="i" class='diamond_friend_info'>
+    <view class='friend_info_left'>
+      <image src="{{firend.iconUrl}}" class='friend_info_icon' mode="aspectFit"></image>
+      <view class='profit_name_time'>
+        <text class='friend_nick_name'>{{firend.nickName}}</text>
+        <text class='profit_time'>2018-1-1</text>
+      </view>
+      
+    </view>
+    <view class="friend_info_right">
+      <text>{{firend.diamondFriendAmount}}人</text>
+      <image src='../image/me-arrow@2x.png' mode='aspectFit' class='right_arrow'></image>
+    </view>
+  </view>
+</view>

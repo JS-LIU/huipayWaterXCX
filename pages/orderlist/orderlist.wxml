@@ -29,8 +29,11 @@
     <text class='shop_order_totalPayRmb'>{{orderShop.totalPayRmb /100}}</text>
   </view>
   <view class='shop_order_action_list'>
-    <view wx:for="{{orderShop.actionList}}" wx:for-item="action"  wx:for-index="k" wx:key="k" class='action_text' bindtap='bindOrderOperate' data-order-id='{{orderShop.orderId}}' data-order-action='{{action.key}}'>
-      {{action.name}}
+    <view wx:for="{{orderShop.actionList}}" wx:for-item="action"  wx:for-index="k" wx:key="k" class='action_text' bindtap='bindOrderOperate' data-order-id='{{orderShop.orderId}}' data-order-action='{{action.key}}' wx:if="{{action.key!='pay'}}">
+      <text>{{action.name}}</text>
     </view>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo='bindOrderOperate' wx:for="{{orderShop.actionList}}" wx:for-item="action"  wx:for-index="k" wx:key="k" class='action_text' data-order-id='{{orderShop.orderId}}' data-order-action='{{action.key}}' wx:if="{{action.key=='pay'}}">
+      <text>{{action.name}}</text>
+    </button>
   </view>
 </view>

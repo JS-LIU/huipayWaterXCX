@@ -36,12 +36,9 @@ class OrderContainer {
     }
 
     findOrderItemByOrderId(orderId){
-      for(let i = 0;i < this.productList.length;i++){
-        if (this.productList[i].orderId === orderId){
-          return this.productList[i];
-        }
-      }
-      return null;
+      return this.productList.find((productItem)=>{
+        return productItem.orderId === orderId
+      })
     } 
 }
 module.exports.orderContainer = new OrderContainer();
