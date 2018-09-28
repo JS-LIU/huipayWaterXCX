@@ -1,2 +1,12 @@
 <!--pages/inviteredpocket/inviteredpocket.wxml-->
-<text>pages/inviteredpocket/inviteredpocket.wxml</text>
+<view class='wrap'></view>
+<view class='invited_red_pocket_header'>
+  <view>
+    <image src='../image/me_icon_shuipiao_hongbao@2x.png' class='invite_red_pocket_icon' mode="aspectFit"></image>
+    <text>钻石好友（7人）</text>
+  </view>
+  <text>64.00喜币</text>
+</view>
+<view>
+  
+</view>

@@ -43,7 +43,8 @@
     "pages/givefriendlist/givefriendlist",
     "pages/myfriend/myfriend",
     "pages/goldfriendlist/goldfriendlist",
-    "pages/saleaward/saleaward"
+    "pages/saleaward/saleaward",
+    "pages/inviteredpocket/inviteredpocket"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,4 +1,7 @@
 // pages/inviteredpocket/inviteredpocket.js
+var { login } = require('../../store/login/Login.js');
+var { loginInfo } = require('../../store/login/LoginInfo.js');
+var { huipayRequest } = require('../../store/init.js');
 Page({
 
   /**
