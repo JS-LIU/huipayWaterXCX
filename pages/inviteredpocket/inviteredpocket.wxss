@@ -1,1 +1,87 @@
 /* pages/inviteredpocket/inviteredpocket.wxss */
+.wrap{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:#F8F8F8; 
+}
+.invite_red_pocket_header{
+  position: relative;
+  background:#FFF;
+  height:220rpx;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.invite_red_top{
+  height:88rpx;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size:26rpx;
+  color:#333;
+}
+.invite_red_pocket_icon{
+  width:35rpx;
+  height:42rpx;
+}
+.invite_total_xb{
+  color:#FF4E4E;
+  font-size:30rpx;
+}
+.friend_list{
+  position:relative;
+  margin-top:20rpx;
+  display:flex;
+  flex-direction: column;
+  background:#FFF;
+}
+.diamond_friend_info{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height:120rpx;
+  border-top:1rpx solid #e3e3e3;
+}
+.friend_info_left{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left:30rpx;
+}
+.friend_info_icon{
+  border-radius: 3rpx;
+  width:80rpx;
+  height:80rpx;
+}
+.friend_nick_name{
+  font-size:28rpx;
+  color:#333;
+}
+.friend_info_right{
+  padding-right:35rpx;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  font-size:28rpx;
+  color:#333;
+}
+.profit_name_time{ 
+  margin-left:20rpx;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.profit_time{
+  font-size:24rpx;
+  color:#999;
+}
+.xt_unit_icon{
+  width:23rpx;
+  height:23rpx;
+}

@@ -47,6 +47,13 @@
 </view>
 
 <view class='my_list'>
+  <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/wallet/wallet'>
+    <view class='my_list_item_left'>
+      <image src='../images/my_wallet_icon.png' mode='aspectFit' class='my_list_item_img'></image>
+      <text>钱包</text>
+    </view>
+    <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
+  </view>
   <view class='my_list_item' bindtap='bindNavigateTo' data-url='/pages/mywaterticketlist/mywaterticketlist'>
     <view class='my_list_item_left'>
       <image src='../images/me_icon_ticket@2x.png' mode='aspectFit' class='my_list_item_img'></image>
@@ -54,6 +61,7 @@
     </view>
     <image src='../images/me-arrow@2x.png' mode='aspectFit' class='arrow_right'></image> 
   </view>
+  
 </view>
 
 <view class='my_list'>

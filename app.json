@@ -44,7 +44,8 @@
     "pages/myfriend/myfriend",
     "pages/goldfriendlist/goldfriendlist",
     "pages/saleaward/saleaward",
-    "pages/inviteredpocket/inviteredpocket"
+    "pages/inviteredpocket/inviteredpocket",
+    "pages/wallet/wallet"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -61,7 +62,7 @@
         "iconPath": "pages/images/tab_btn_order water_n.png",
         "selectedIconPath": "pages/images/tab_btn_order water_s.png",
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "订水"
       },
       {
         "iconPath": "pages/images/tab_btn_station_n.png",

@@ -85,7 +85,7 @@
                     <text class='product_volume'>{{bucketProduct.volume}}</text>
                     <view class='product_money'>
                         <text>￥</text>
-                        <text class='product_money_price'>{{bucketProduct.currentPrice / 100}}</text>
+                        <text class='product_money_price'>{{bucketProduct.currentPrice / 100}}*{{bucketProduct.selectCount}}</text>
                     </view>
                 </view>
             </view>
@@ -105,8 +105,8 @@
 <view class='product_list_info'>
     <view class='use_ticket_counts' bindtap='bindShowWaterTicketList'>
         <view class='use_ticket_counts_title'>
-            <text>水票抵用：</text>
-            <text class='settle_total_can_use_count'>{{waterTicketTotalCount}}张可用</text>
+            <text>使用水票</text>
+            <text class='settle_total_can_use_count' wx:if="{{!waterTicketUseCount == 0}}">使用{{waterTicketUseCount}}张</text>
         </view>
         <view class='use_ticket_counts_info'>
             <text>-￥</text>
@@ -116,8 +116,8 @@
     </view>
     <view class='use_ticket_counts' bindtap='bindShowXbChange'>
         <view class='use_ticket_counts_title'>
-            <text>喜币抵用：</text>
-            <text class='settle_total_can_use_count'>{{totalXb}}喜币可用</text>
+            <text>喜币</text>
+            <text class='settle_total_can_use_count' wx:if="{{!useXb == 0}}">使用{{useXb}}喜币</text>
         </view>
         <view class='use_ticket_counts_info'>
             <text>-￥</text>
@@ -127,15 +127,15 @@
     </view>
     <view class='mopoints'>
         <view class='mopoints_title'>
-            <text>代金券抵用：</text>
-            <text class='settle_total_can_use_count'>0张可用</text>
+            <text>优惠券</text>
+            <!-- <text class='settle_total_can_use_count'></text> -->
         </view>
         <view class='mopoints_info'>
             <text>-0张</text>
         </view>
     </view>
     <view class='delivery_costs'>
-        <text class='delivery_costs_title'>快递费用：</text>
+        <text class='delivery_costs_title'>运费</text>
         <view class='delivery_costs_info'>
             <text>+0.00元</text>
         </view>

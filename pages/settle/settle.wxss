@@ -218,10 +218,12 @@
 .settle_total_can_use_count,.my_has_bucket{
   font-size:24rpx;
   color:#ff2d2d;
-  border:1rpx solid #ff2d2d;
   border-radius: 5rpx;
   padding:0 5rpx;
   text-align: center;
+}
+.my_has_bucket{
+  color:#333;
 }
 .delivery_costs_info,.mopoints_info,.use_ticket_counts_info,.my_bucket_info{
   display:flex;

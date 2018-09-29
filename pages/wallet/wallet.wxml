@@ -1,0 +1,56 @@
+<!--pages/wallet/wallet.wxml-->
+<!-- <text>pages/wallet/wallet.wxml</text> -->
+<view class='wrap'></view>
+<view class='wallet_header'>
+  <view class='wallet_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/my_wallet_rmb_icon.png' class='wallet_rmb_icon' mode='aspectFit'></image>
+      <text class='wallet_item_top_title'>人民币</text>
+    </view>
+    <text class='wallet_money_count'>{{rmbMount/100}}</text>
+  </view>
+  <view class='wallet_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/my_wallet_xb_icon.png' class='wallet_rmb_icon' mode='aspectFit'></image>
+      <text class='wallet_item_top_title'>喜币</text>
+    </view>
+    <text class='wallet_money_count'>{{xtbMount}}</text>
+  </view>
+</view>
+<view class='wallet_fun'>
+  <navigator url="/pages/myfriend/myfriend" class='wallet_fun_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/me_icon_shuipiao_haoyou@2x.png' class='my_friend_item_img' mode='aspectFit'></image>
+      <text>我的好友</text>
+    </view>
+    <text class='wallet_fun_count_item'>{{userFriendAmount}}人</text>
+  </navigator>
+  <navigator url="/pages/inviteredpocket/inviteredpocket" class='wallet_fun_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/me_icon_shuipiao_hongbao@2x.png' class='my_invite_item_img' mode='aspectFit'></image>
+      <text>邀请红包</text>
+    </view>
+    <text class='wallet_fun_count_item'>{{inviteProfitXtbAmount}}喜币</text>
+  </navigator>
+  <navigator url="/pages/saleaward/saleaward" class='wallet_fun_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/me_icon_shuipiao_jiangli@2x.png' class='my_sale_item_img' mode='aspectFit'></image>
+      <text>销售奖励</text>
+    </view>
+    <text class='wallet_fun_count_item'>{{shareSellProfitRmbAmount/100}}元</text>
+  </navigator>
+  <navigator url='/pages/mywaterticketlist/mywaterticketlist' class='wallet_fun_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/me_icon_ticket_blue@2x.png' class='my_water_ticket_item_img' mode='aspectFit'></image>
+      <text>我的水票</text>
+    </view>
+    <text class='wallet_fun_count_item'>{{waterTicketListCount}}张</text>
+  </navigator>
+  <view class='wallet_fun_item'>
+    <view class='wallet_item_top'>
+      <image src='../images/me_icon_yinhangka@2x.png' class='my_bank_item_img' mode='aspectFit'></image>
+      <text>银行卡</text>
+    </view>
+    <text class='wallet_fun_count_item_big'>+</text>
+  </view>
+</view>

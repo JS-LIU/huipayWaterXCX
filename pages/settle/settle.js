@@ -10,23 +10,24 @@ Page({
      * 页面的初始数据
      */
     data: {
-        emptyBucketAmount:"",
+        emptyBucketAmount: "",
         settleProductList: [],
         bucketProductList: [],
-        shoppingCartList:[],
+        shoppingCartList: [],
         useWaterTicketList: [],
         waterTicketTotalUsedMoney: 0,
-        waterTicketTotalCount: 0,
+        waterTicketUseCount: 0,
         totalProductCount: 0,
         totalProductPrice: 0,
         totalPayRmb: 0,
-        totalXb: 0,
+        useXb: 0,
         xbTotalUseMoney: 0,
         receiverInfo: null,
         hasBucketList: false,
         isShowChangeXb: false,
-        isShowBucketList:false,
-        isShowWaterTicketList:false,
+        isShowBucketList: false,
+        isShowWaterTicketList: false,
+        isCanSelectTicket: true
     },
 
     /**
@@ -43,25 +44,25 @@ Page({
     onReady: function () {
 
     },
-    
 
-    updateShowProductList(){
+
+    updateShowProductList() {
         let shoppingCartProductList = [];
         let settleProductList = [];
         let bucketProductList = [];
-        if(order.byEmptyBucket){
+        if (order.byEmptyBucket) {
             settleProductList = this.settleProductContainer.getExcludeBucketSettleProductList();
             bucketProductList = this.settleProductContainer.getBucketProductList();
             shoppingCartProductList = shoppingCartContainer.getBucketList();
             this.setData({
-                hasBucketList:true
+                hasBucketList: true
             })
-        }else{
+        } else {
             settleProductList = this.settleProductContainer.getSettleProductList();
             bucketProductList = [];
             shoppingCartProductList = [];
             this.setData({
-                hasBucketList:false
+                hasBucketList: false
             })
         }
         this.setData({
@@ -70,24 +71,24 @@ Page({
             shoppingCartProductList: shoppingCartProductList
         });
     },
-    updateCalcInfo(){
+    updateCalcInfo() {
         this.setData({
             useWaterTicketList: this.useWaterTicketContainer.getUseTicketList(),
             waterTicketTotalUsedMoney: this.useWaterTicketContainer.getTotalUsedMoney(),
-            waterTicketTotalCount: this.useWaterTicketContainer.getTotalCount(),
+            waterTicketUseCount: this.useWaterTicketContainer.getTotalUsed(),
             totalProductCount: this.settleProductContainer.getTotalCount(),
             totalProductPrice: this.settleProductContainer.getTotalPrice(),
-            bucketPrice:this.settleProductContainer.getBucketPrice(),
-            excludeBucketPrice:this.settleProductContainer.getExcludeBucketPrice(),
+            bucketPrice: this.settleProductContainer.getBucketPrice(),
+            excludeBucketPrice: this.settleProductContainer.getExcludeBucketPrice(),
             totalPayRmb: order.getTotalPayRmb(),
-            totalXb: this.xbContainer.totalXb,
+            useXb: this.xbContainer.getTotalUseMoney(),
             xbTotalUse: this.xbContainer.getCanUseXb(),
             receiverInfo: this.receiverInfo,
         });
     },
-    
 
-    updatePageShowData(){
+
+    updatePageShowData() {
         this.updateShowProductList();
         this.updateCalcInfo();
     },
@@ -102,19 +103,23 @@ Page({
         this.xbContainer = order.getXbContainer();
         this.receiverInfo = settleMap.getSettleReceiverInfo();
 
-        shoppingCartContainer.syncBucketList(()=>{
+        shoppingCartContainer.syncBucketList(() => {
             this.updatePageShowData();
-        }).then(()=>{
+        }).then(() => {
             return this.xbContainer.getTotalXb()
-        }).then((info)=>{
+        }).then((info) => {
             this.xbContainer.totalXb = info.data.xtbMount;
             this.updatePageShowData();
             return userInfo.getEmptyBucket()
-        }).then((info)=>{
+        }).then((info) => {
             this.setData({
-              emptyBucketAmount: info.data.emptyBucketAmount
+                emptyBucketAmount: info.data.emptyBucketAmount
             })
+        });
+        this.setData({
+            isCanSelectTicket: !(order.settleType === "useTicketSettle")
         })
+        // console.log("==========",order.settleType);
 
     },
 
@@ -156,24 +161,25 @@ Page({
         let shopId = e.currentTarget.dataset.shopId;
         let productItemId = e.currentTarget.dataset.productId;
         let settleProduct = this.settleProductContainer.findProductById(productItemId);
-        settleProduct.increase();
-        // order.refreshSettleInfo();
-        console.log('settleProduct:先getsettleproduct:', settleProduct);
-        this.useWaterTicketContainer.matchingTicket(settleProduct);
+        settleProduct.increase(()=>{order.refreshSettleInfo()});
+
+        let maxUseTicketFlag = !this.data.isCanSelectTicket;
+        this.useWaterTicketContainer.refreshTicketUse(settleProduct, maxUseTicketFlag);
         this.updatePageShowData();
     },
     bindRemoveProduct: function (e) {
         let shopId = e.currentTarget.dataset.shopId;
         let productItemId = e.currentTarget.dataset.productId;
         let settleProduct = this.settleProductContainer.findProductById(productItemId);
-        settleProduct.reduce();
-        // order.refreshSettleInfo();
-        this.useWaterTicketContainer.matchingTicket(settleProduct);
+        settleProduct.reduce(()=>{order.refreshSettleInfo()});
+
+        let maxUseTicketFlag = !this.data.isCanSelectTicket;
+        this.useWaterTicketContainer.refreshTicketUse(settleProduct, maxUseTicketFlag);
         this.updatePageShowData();
     },
-  bindSetMark:function(e){
-    order.setMark(e.detail.value);
-  },
+    bindSetMark: function (e) {
+        order.setMark(e.detail.value);
+    },
     bindCreateOrder: function (e) {
         let deliveryTime = "9:00-17:00";
         if (this.receiverInfo) {
@@ -192,7 +198,7 @@ Page({
                             })
                         }
                     },
-                    
+
                 })
             } else {
                 let wxP = new WxPay();
@@ -262,45 +268,45 @@ Page({
         let shopId = e.currentTarget.dataset.shopShoppingCartId;
         let shoppingCartProduct = shoppingCartContainer.findShopShoppingCartProduct(shopId, productId);
         shoppingCartProduct.toggleSelected().selectedRequest();
-        if(!shoppingCartProduct.hasSelected()){
+        if (!shoppingCartProduct.hasSelected()) {
             this.settleProductContainer.deleteProduct(productId);
-        }else{
+        } else {
             this.settleProductContainer.findOrCreateProduct(shoppingCartProduct);
         }
         let selected = shoppingCartContainer.hasSelected();
         let shoppingCartList = shoppingCartContainer.getList();
         this.updatePageShowData();
     },
-    bindShowBucketList:function(){
+    bindShowBucketList: function () {
         this.setData({
-            isShowBucketList:true
+            isShowBucketList: true
         })
     },
-    bindCloseBucketList:function(){
+    bindCloseBucketList: function () {
         this.setData({
-            isShowBucketList:false
+            isShowBucketList: false
         })
     },
     bindIncreaseSelectUseCount: function (e) {
-      let ticketId = e.currentTarget.dataset.ticketId;
-      let waterTicket = this.useWaterTicketContainer.findTicketById(ticketId);
-      waterTicket.increase();
-      this.updateCalcInfo();
+        let ticketId = e.currentTarget.dataset.ticketId;
+        let waterTicket = this.useWaterTicketContainer.findTicketById(ticketId);
+        waterTicket.increase();
+        this.updateCalcInfo();
     },
     bindReduceSelectUseCount: function (e) {
-      let ticketId = e.currentTarget.dataset.ticketId;
-      let waterTicket = this.useWaterTicketContainer.findTicketById(ticketId);
-      waterTicket.reduce();
-      this.updateCalcInfo();
+        let ticketId = e.currentTarget.dataset.ticketId;
+        let waterTicket = this.useWaterTicketContainer.findTicketById(ticketId);
+        waterTicket.reduce();
+        this.updateCalcInfo();
     },
-    bindShowWaterTicketList:function(){
-      this.setData({
-        isShowWaterTicketList: true
-      })
+    bindShowWaterTicketList: function () {
+        this.setData({
+            isShowWaterTicketList: true
+        })
     },
     bindCloseWaterTicketList: function () {
-      this.setData({
-        isShowWaterTicketList: false
-      })
+        this.setData({
+            isShowWaterTicketList: false
+        })
     }
 });

@@ -1,0 +1,106 @@
+/* pages/wallet/wallet.wxss */
+.wrap{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:#F8F8F8; 
+}
+.wallet_header{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  background:#8C8E95;
+  height:260rpx;
+}
+.wallet_item{
+  display:flex;
+  flex:1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wallet_item_top{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height:100rpx;
+  color:#fff;
+  font-size:26rpx;
+}
+.wallet_rmb_icon{
+  width:58rpx;
+  height:58rpx;
+}
+.wallet_rmb_icon{
+  width:58rpx;
+  height:58rpx;
+}
+.wallet_item_top_title{
+  color:#FFF;
+  padding-top:10rpx;
+}
+.wallet_money_count{
+  margin-top:25rpx;
+  color:#FFF;
+}
+.wallet_fun{
+  position:relative;
+  background:#FFF;
+  display:flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  height:500rpx;
+  margin-top:20rpx;
+}
+.wallet_fun_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:250rpx;
+  width:33%;
+  border-bottom:1rpx solid #F8F8F8;
+  
+}
+.wallet_item_top{
+  height:85rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size:26rpx;
+  color:#333;
+}
+.my_friend_item_img{
+  width:50rpx;
+  height:38rpx;
+}
+.my_invite_item_img{
+  width:35rpx;
+  height:42rpx;
+}
+.my_sale_item_img{
+  width:40rpx;
+  height:40rpx;
+}
+.my_water_ticket_item_img{
+  width:38rpx;
+  height:32rpx;
+}
+.my_bank_item_img{
+  width:36rpx;
+  height:32rpx;
+}
+.wallet_fun_count_item{
+  color:#FF4F4E;
+  font-size:30rpx;
+  margin-top:40rpx;
+}
+.wallet_fun_count_item_big{
+  font-size:40rpx;
+  color:#FF4F4E;
+  margin-top:40rpx;
+}

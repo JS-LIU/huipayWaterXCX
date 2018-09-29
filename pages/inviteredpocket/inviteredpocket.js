@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    diamondUserAmount: 0,
+    inviteProfitXtbAmount: 0,
+    inviteProfitXtbRecordModelList:[]
   },
 
   /**
@@ -29,7 +31,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
+    let postInfo = {
+      accessInfo: accessInfo
+    }
+    huipayRequest.resource('/profit/InviteProfitXtb').save({}, postInfo).then((info) => {
+      this.setData({
+        diamondUserAmount: info.data.diamondUserAmount||0,
+        inviteProfitXtbAmount: info.data.inviteProfitXtbAmount||0,
+        inviteProfitXtbRecordModelList: info.data.inviteProfitXtbRecordModelList
+      })
+    }) 
   },
 
   /**

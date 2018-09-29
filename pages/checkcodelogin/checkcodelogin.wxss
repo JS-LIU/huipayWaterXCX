@@ -111,4 +111,4 @@
   width:400rpx;
   background:#FFF;
 }
-button::after{ border: none; }
+button::after{ border: none!important; }

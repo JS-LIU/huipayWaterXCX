@@ -1,6 +1,6 @@
 var {shoppingCartContainer} = require('../shoppingCart/ShoppingCartContainer.js');
 var ShoppingCartProduct = require('../product/ShoppingCartProduct.js');
-
+// var ShopShoppingCart = require('../shoppingCart/ShopShoppingCart');
 class SettleProduct {
     constructor(productInfo) {
         this.baseCount = productInfo.baseCount;
@@ -41,28 +41,27 @@ class SettleProduct {
         this.selectCount--;
     }
     //  同步到购物车
-    increase() {
+    increase(callback=function(){}) {
         let shoppingCartProduct = new ShoppingCartProduct(this.productInfo, {shopId: this.shopId});
         if (!shoppingCartContainer.findProductByProductItemId(this.productItemId)) {
             shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart) => {
-                shopShoppingCart.increaseRequest(shoppingCartProduct);
+                shopShoppingCart.increaseRequest(shoppingCartProduct,callback);
             });
         }
         shoppingCartContainer.addProduct(shoppingCartProduct).then((shopShoppingCart) => {
-            shopShoppingCart.increaseRequest(shoppingCartProduct);
+            shopShoppingCart.increaseRequest(shoppingCartProduct,callback);
         });
         this.add();
+
     }
 
-    reduce() {
+    reduce(callback=function(){}) {
         if (this.selectCount > 1) {
             this.remove();
             //  修改购物车数量
             let shoppingCartProduct = shoppingCartContainer.findProductByProductItemId(this.productItemId);
-            shoppingCartContainer.removeProduct(shoppingCartProduct);
-
+            shoppingCartContainer.removeProduct(shoppingCartProduct,()=>{},callback);
         }
-
     }
 
 }

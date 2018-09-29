@@ -70,17 +70,21 @@ class ShoppingCartContainer {
     }
 
     getShoppingCartContainer() {
-        this.list = [];
-        let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
-        huipayRequest.resource('/shoppingCart/:list').save({list: "list"}, {
-            accessInfo: accessInfo
-        }).then((info) => {
-            this.selected = info.data.shoppingCartSelected;
-            let list = info.data.list;
-            for (let i = 0; i < list.length; i++) {
-                this.list.push(new ShopShoppingCart(list[i]));
-            }
-        });
+        return new Promise((resolve, reject)=>{
+            this.list = [];
+            let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
+            huipayRequest.resource('/shoppingCart/:list').save({list: "list"}, {
+                accessInfo: accessInfo
+            }).then((info) => {
+                this.selected = info.data.shoppingCartSelected;
+                let list = info.data.list;
+                for (let i = 0; i < list.length; i++) {
+                    this.list.push(new ShopShoppingCart(list[i]));
+                }
+                resolve();
+            });
+        })
+
 
     }
 
@@ -103,11 +107,12 @@ class ShoppingCartContainer {
         })
     }
 
-    removeProduct(shoppingCartProduct, callback = function () {
-    }) {
+    removeProduct(shoppingCartProduct, refreshPage = function () {
+    },callback=function(){}) {
         shoppingCartProduct.getShopInfo().then((shopInfo) => {
             let shopShoppingCart = this.getOrCreateShopShoppingCart(shopInfo);
             shopShoppingCart.removeProduct(shoppingCartProduct);
+            refreshPage();
             callback();
         })
     }

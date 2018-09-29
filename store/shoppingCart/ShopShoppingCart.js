@@ -28,7 +28,7 @@ class ShopShoppingCart {
      * @param shoppingCartProduct
      * @returns {Array}
      */
-    increaseRequest(shoppingCartProduct) {
+    increaseRequest(shoppingCartProduct,callback=function(){}) {
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
         this.ajax.save({action: "increase"}, {
             accessInfo: accessInfo,
@@ -41,12 +41,11 @@ class ShopShoppingCart {
                 icon: "success",
                 duration: 1000
             });
-            console.log("addProduct:", info);
+            callback();
         });
-        return this.productList;
     }
 
-    decreaseRequest(shoppingCartProduct,delta = 1){
+    decreaseRequest(shoppingCartProduct,delta = 1,callback=function(){}){
         let accessInfo = Object.assign({}, {app_key: loginInfo.appKey}, loginInfo.getInfo());
         this.ajax.save({action: "decrease"}, {
             accessInfo: accessInfo,
@@ -55,7 +54,7 @@ class ShopShoppingCart {
             shopId: shoppingCartProduct.shopInfo.shopId,
             delta:delta
         }).then((info) => {
-            console.log("removeProduct:", info);
+            callback();
         });
     }
     removeProductsRequest(removeProductList){
@@ -125,7 +124,7 @@ class ShopShoppingCart {
      * @param shoppingCartProduct
      * @returns {Array|*}
      */
-    removeProduct(shoppingCartProduct) {
+    removeProduct(shoppingCartProduct,callback) {
         let product = this.findByProductItemId(shoppingCartProduct.productItemId);
 
         if(product.selectCount > 1){
@@ -135,7 +134,7 @@ class ShopShoppingCart {
             this.getSelectedPrice();
             this.hasSelected();
             this.getTotalCount();
-            this.decreaseRequest(shoppingCartProduct);
+            this.decreaseRequest(shoppingCartProduct,1,callback);
 
         }
         return this.productList;

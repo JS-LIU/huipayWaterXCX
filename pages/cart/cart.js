@@ -106,7 +106,14 @@ Page({
 
     },
     bindNavigateToSettle: function (e) {
+        wx.showLoading({
+            title:"提交中"
+        });
         order.getSettleInfo('default', "cartSettle", {}).then(() => {
+
+            return shoppingCartContainer.getShoppingCartContainer();
+        }).then(()=>{
+            wx.hideLoading();
             wx.navigateTo({
                 url: '/pages/settle/settle'
             })
