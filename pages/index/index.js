@@ -215,5 +215,19 @@ Page({
         })
       }
     });
+  },
+  bindHeaderImgNavigateTo:function(e){
+    let linkType = e.currentTarget.dataset.bannerMsg.linkType;
+    if (linkType === "shopEntityProduct"){
+      
+      wx.navigateTo({
+        url: '/pages/shopproductdetail/shopproductdetail?productItemId=95553&shopId=1'
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/waterticketproducts/waterticketproducts'
+      })
+    }
+    
   }
 });  

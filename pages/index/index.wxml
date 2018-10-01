@@ -10,35 +10,23 @@
     <image mode='left' src='../images/line.png' class='address_line'></image>
   </view>
   <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}">
-    <swiper-item wx:for="{{cPic}}" wx:for-item="pic"  wx:for-index="i" wx:key="i">
+    <swiper-item wx:for="{{cPic}}" wx:for-item="pic"  wx:for-index="i" wx:key="i" bindtap="bindHeaderImgNavigateTo" data-banner-msg="{{pic}}">
       <image src="{{pic.imageUrl}}" mode='scaleToFill' class='c_Pic_img'></image>
     </swiper-item>
   </swiper>
-  <view class='hot_sale'>
-    <view class='hot_sale_title'>
-      <text>桶装水热卖</text>  
-    </view>
-    <navigator url='/pages/hotsaleproduct/hotsaleproduct'>
-      <image src='{{hotSale.imageUrl}}' class='hot_sale_img' mode='aspectFit'></image>
-    </navigator>     
-  </view>
+  
   <view class='to_buy'>
-    <navigator url='/pages/waterticketproducts/waterticketproducts' class='water_tickets'>
-      <view class='water_tickets_title'>
-        <text>水票更优惠</text>
-        <text class='water_tickets_title_small'>电子水票，全城通用</text>
-      </view>
-      <image src='../images/home_water_ticket.png' class='water_tickets_img' mode='aspectFit'></image>
-    </navigator>
+    <navigator url='/pages/hotsaleproduct/hotsaleproduct'>
+      <image src="../images/photo_shuoye_remai@2x.png" class='hot_sale_img' mode='aspectFit'></image>
+    </navigator> 
     <navigator url='/pages/discoverproductlist/discoverproductlist' class='find_good_products'>
-      <view class='find_good_products_title'>
-        <text>发现好货</text>
-        <text class='find_good_products_small'>柴米油盐酱醋茶</text>
-      </view>
-      <image src='../images/find_good_product.png' class='find_good_products_img' mode='aspectFit'></image>
+
+      <image src='../images/photo_shouye_haohuo@2x.png' class='find_good_products_img' mode='aspectFit'></image>
     </navigator>
   </view>
-
+  <navigator url='/pages/waterticketproducts/waterticketproducts' class='water_tickets'>
+    <image src='../images/photo_shouye_youhui@2x.png' class='water_tickets_img' mode='aspectFit'></image>
+  </navigator>   
   <view class='guess_u_like'>
     <view class='guess_title'>猜你喜欢</view>
     <view class='guess_product_list'>
