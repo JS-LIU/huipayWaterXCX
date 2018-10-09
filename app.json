@@ -45,7 +45,8 @@
     "pages/goldfriendlist/goldfriendlist",
     "pages/saleaward/saleaward",
     "pages/inviteredpocket/inviteredpocket",
-    "pages/wallet/wallet"
+    "pages/wallet/wallet",
+    "pages/orderdetail/orderdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

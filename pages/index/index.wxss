@@ -81,7 +81,7 @@
 
 }
 .guess_product{
-  height:530rpx;
+  height:555rpx;
   width:calc(50% - 2rpx);
   background:#FFF;
   margin-top:4rpx;
@@ -95,24 +95,22 @@
   display:flex;
   flex-direction: column;
   justify-content: space-around;
-  height:157rpx;
+  height:185rpx;
 }
 .guess_product_name{
   margin:10rpx 24rpx 0;
   color:#333;
-  font-size:32rpx;
+  font-size:28rpx;
   overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
 }
 .guess_product_volume{
   padding-left:10rpx;
-  font-size:32rpx;
+  font-size:28rpx;
   color:#333;
 }
 .guess_product_price{
   margin-left:24rpx;
-  font-size:32rpx;
+  font-size:28rpx;
   color:#ff2d2d; 
 }
 .guess_product_unit{

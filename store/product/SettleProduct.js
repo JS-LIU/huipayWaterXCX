@@ -38,7 +38,10 @@ class SettleProduct {
         this.selectCount++;
     }
     remove(){
+      if(this.selectCount > 1){
         this.selectCount--;
+      }
+        
     }
     //  同步到购物车
     increase(callback=function(){}) {

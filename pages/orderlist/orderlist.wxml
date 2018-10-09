@@ -1,32 +1,35 @@
 <view class="wrap"></view>
 <view class='shop_order' wx:for="{{orderList}}" wx:for-item="orderShop"  wx:for-index="i" wx:key="i">
-  <view class='shop_title'>
-    <view class='shop_title_info'>
-      <image src='../images/shoppingcart_icon_station.png' mode='aspectFit' class='shop_icon'></image>
-      <text>{{orderShop.shopName}}</text>
-      <image src='../images/me-arrow@2x.png' mode='aspectFit' class='shop_enter_icon'></image>
-    </view>
-    <text class='order_status'>{{orderShop.status}}</text>
-  </view>
-  <view class='product_item' wx:for="{{orderShop.productItemModels}}" wx:for-item="productItem"  wx:for-index="j" wx:key="j">
-    <image class='product_img' mode='aspectFit' src='{{productItem.imageUrl}}'></image>
-    <view class='product_detail'>
-      <view class='product_detail_name'>
-        <text>{{productItem.name}}</text>
-        <text class='product_detail_productType'>{{productItem.productType}}</text>
+  
+  <view bindtap='bindNavigateToDetail' data-order-id="{{orderShop.orderId}}">
+    <view class='shop_title'>
+      <view class='shop_title_info'>
+        <image src='../images/shoppingcart_icon_station.png' mode='aspectFit' class='shop_icon'></image>
+        <text>{{orderShop.shopName}}</text>
+        <image src='../images/me-arrow@2x.png' mode='aspectFit' class='shop_enter_icon'></image>
       </view>
-      <text class='product_detail_volume'>{{productItem.volume}}</text>
-      <view class='product_detail_price'>
-        <text>￥</text>
-        <text class='product_detail_current_price'>{{productItem.currentPrice /100}}</text>
-        <text>*{{productItem.selectCount}}</text>
+      <text class='order_status'>{{orderShop.status}}</text>
+    </view>
+    <view class='product_item' wx:for="{{orderShop.productItemModels}}" wx:for-item="productItem"  wx:for-index="j" wx:key="j">
+      <image class='product_img' mode='aspectFit' src='{{productItem.imageUrl}}'></image>
+      <view class='product_detail'>
+        <view class='product_detail_name'>
+          <text>{{productItem.name}}</text>
+          <text class='product_detail_productType'>{{productItem.productType}}</text>
+        </view>
+        <text class='product_detail_volume'>{{productItem.volume}}</text>
+        <view class='product_detail_price'>
+          <text>￥</text>
+          <text class='product_detail_current_price'>{{productItem.currentPrice /100}}</text>
+          <text>*{{productItem.selectCount}}</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view class='shop_order_info'>
-    <text>共{{orderShop.totalCount}}件商品，实付</text>
-    <text class='shop_order_unit'>￥</text>
-    <text class='shop_order_totalPayRmb'>{{orderShop.totalPayRmb /100}}</text>
+    <view class='shop_order_info'>
+      <text>共{{orderShop.totalCount}}件商品，实付</text>
+      <text class='shop_order_unit'>￥</text>
+      <text class='shop_order_totalPayRmb'>{{orderShop.totalPayRmb /100}}</text>
+    </view>
   </view>
   <view class='shop_order_action_list'>
     <view wx:for="{{orderShop.actionList}}" wx:for-item="action"  wx:for-index="k" wx:key="k" class='action_text' bindtap='bindOrderOperate' data-order-id='{{orderShop.orderId}}' data-order-action='{{action.key}}' wx:if="{{action.key!='pay'}}">
