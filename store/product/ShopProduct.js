@@ -4,7 +4,7 @@ var ShopWaterTicket = require('../product/ShopWaterTicket.js');
 var ShoppingCartProduct = require('./ShoppingCartProduct.js');
 class ShopProduct{
   constructor(productInfo, shopId, ticketProductItemId){
-    this.name = productInfo.name;
+    this.name = productInfo.name != "" ? productInfo.name : productInfo.prefix + productInfo.volume;
     this.currentPrice = productInfo.currentPrice;
     this.imageUrl = productInfo.imageUrl;
     this.originalPrice = productInfo.originalPrice;
@@ -17,6 +17,8 @@ class ShopProduct{
     this.volume = productInfo.volume;
     this.shopId = shopId;
     this.ticketProductItemId = ticketProductItemId;
+    this.prefix = productInfo.prefix;
+    this.presentEntityInfo = productInfo.presentEntityInfo;
   }
   convertToShoppingCartProduct(shopInfo){
     let self = this;

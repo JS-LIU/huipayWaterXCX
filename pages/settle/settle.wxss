@@ -132,6 +132,13 @@
   font-size:24rpx;
   color:#999;
 }
+.shopping_cart_product_present_entity_info{
+  font-size:24rpx;
+  color:rgb(216, 181, 27);
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 .product_money{
   display:flex;
   flex-direction: row;
@@ -316,6 +323,8 @@ button::after{
   z-index:3;
   height:75%;
   opacity: 1;
+  overflow:auto;
+  padding-bottom:100rpx;
 }
 .change_xb_body{
   display:flex;

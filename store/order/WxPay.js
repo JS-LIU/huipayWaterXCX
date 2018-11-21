@@ -53,7 +53,7 @@ class WxPay{
         'complete':function(){
           wx.hideLoading();
           wx.redirectTo({
-            url: '/pages/orderlist/orderlist',
+            url: '/pages/orderlist/orderlist?orderType=total',
           })
         }
       })

@@ -5,8 +5,9 @@ class SettleProduct {
     constructor(productInfo) {
         this.baseCount = productInfo.baseCount;
         this.imageUrl = productInfo.imageUrl;
-        this.name = productInfo.name;
+        this.name = productInfo.name != "" ? productInfo.name : productInfo.prefix + productInfo.volume;
         this.volume = productInfo.volume;
+        this.prefix = productInfo.prefix;
         this.productCategory = productInfo.productCategory;
         this.productItemId = productInfo.productItemId;
         this.productType = productInfo.productType;
@@ -23,6 +24,7 @@ class SettleProduct {
         this.productDetailPictures = productInfo.productDetailPictures;
         this.productImage = productInfo.productImage;
         this.emptyBucketProduct = productInfo.emptyBucketProduct;
+        this.presentEntityInfo = productInfo.presentEntityInfo;
         this.productInfo = productInfo;
     }
 

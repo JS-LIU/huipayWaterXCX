@@ -19,13 +19,18 @@ class HomeMap{
   }
   //  首页展示的位置
   getLocation() {
+    wx.showLoading()
     return new Promise((resolve, reject) => {
       if (!this.selectedAddress) {
         this.getCurrentLocation().then((locationInfo)=>{
+          wx.hideLoading()
           resolve(locationInfo)
+        }).catch(()=>{
+          wx.hideLoading()
         })
         
       } else {
+        wx.hideLoading();
         resolve(this.selectedAddress)
       }
     })

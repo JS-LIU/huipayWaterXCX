@@ -4,7 +4,8 @@ var {homeMap} = require('../map/HomeMap.js');
 
 class ShoppingCartProduct {
     constructor(productInfo, shopInfo) {
-        this.name = productInfo.name;
+        this.name = productInfo.name != "" ? productInfo.name : productInfo.prefix + productInfo.volume;
+        this.prefix = productInfo.prefix;
         this.currentPrice = productInfo.currentPrice;
         this.imageUrl = productInfo.imageUrl;
         this.originalPrice = productInfo.originalPrice;
@@ -18,6 +19,7 @@ class ShoppingCartProduct {
         this.emptyBucketProduct = productInfo.emptyBucketProduct;
         this.selected = productInfo.hasSelected;
         this.shopInfo = shopInfo;
+        this.presentEntityInfo = productInfo.presentEntityInfo;
     }
 
     // static createShoppingCartProduct(settleProduct){

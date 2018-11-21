@@ -196,8 +196,8 @@
                     <image src='{{shoppingCartProduct.imageUrl}}' mode='aspectFit'
                            class='shopping_cart_product_img'></image>
                     <view class='shopping_cart_product_info'>
-                        <view class='shopping_cart_product_name'>{{shoppingCartProduct.name}}</view>
-                        <view class='shopping_cart_product_volume'>{{shoppingCartProduct.volume}}</view>
+                        <view class='shopping_cart_product_volume'>{{shoppingCartProduct.name}}</view>
+                        <view class='shopping_cart_product_present_entity_info'>{{shoppingCartProduct.presentEntityInfo||shoppingCartProduct.volume}}</view>
                         <view class="shopping_cart_product_price">
                             <text class='shopping_cart_product_price_unit'>￥</text>
                             <text>{{shoppingCartProduct.currentPrice / 100}}</text>

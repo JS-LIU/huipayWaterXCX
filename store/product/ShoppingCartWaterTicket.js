@@ -3,6 +3,7 @@ var { loginInfo } = require('../login/LoginInfo.js');
 var { homeMap } = require('../map/HomeMap.js');
 class ShoppingCartWaterTicket {
   constructor(waterTicket,shopInfo) {
+    this.prefix = waterTicket.prefix;
     this.name = waterTicket.name;
     this.volume = waterTicket.volume;
     this.productType = waterTicket.productType;
@@ -14,7 +15,7 @@ class ShoppingCartWaterTicket {
     this.baseCount = waterTicket.baseCount;
     this.smallName = waterTicket.smallName;
     this.imageUrl = waterTicket.imageUrl;
-    
+    this.presentEntityInfo = waterTicket.presentEntityInfo; 
     this.selectCount = waterTicket.selectCount || 1;
     this.selected = waterTicket.hasSelected;
     this.shopInfo = shopInfo;

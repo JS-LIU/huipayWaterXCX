@@ -3,7 +3,6 @@
   <view class='water_ticket_top'>
     <image src='../images/img_ticket@2x.png' mode='aspectFit' class="water_ticket_img"></image>    
     <view class='water_ticket_name'>
-      <text>{{waterTicket.prefix}}</text>
       <text>{{waterTicket.name}}</text>
       <text class='water_ticket_volume'>{{waterTicket.volume}}</text>
     </view>
@@ -17,13 +16,14 @@
   <view class='water_ticket_bottom'>
     <view class='water_ticket_name_info'>
       <text class='water_ticket_sale_tag'>自营</text>
-      <text class='water_ticket_bottom_name'>{{waterTicket.name}}</text>
+      <text class='water_ticket_bottom_name'>{{waterTicket.prefix||""}}{{waterTicket.name}}</text>
       <text class='water_ticket_bottom_volume'>{{waterTicket.volume}}</text>
     </view>
     <view class='water_ticket_other_info'>
       <view>
         <text class='water_ticket_money_unit'>￥</text>
         <text class='water_ticket_current_money'>{{waterTicket.currentPrice /100}}</text>
+        <text class='water_ticket_present_entity_info'>{{waterTicket.presentEntityInfo||""}}</text>
       </view>
       <view class='water_ticket_sale_mount'>已售：{{waterTicket.saleMount}}</view>
     </view>

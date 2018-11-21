@@ -74,6 +74,7 @@ Page({
     let shopId = e.currentTarget.dataset.shopId;
     let shopWaterTicket = shopWaterTicketList.findWaterTicketById(waterTicketItemId);
     let shoppingCartWaterTicket = shopWaterTicket.convertToShoppingCartWaterTicket({ shopId: shopId });
+
     shoppingCartContainer.addProduct(shoppingCartWaterTicket).then((shopShoppingCart)=>{
         shopShoppingCart.increaseRequest(shoppingCartWaterTicket);
     });
