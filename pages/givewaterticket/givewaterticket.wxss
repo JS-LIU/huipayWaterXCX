@@ -25,9 +25,12 @@
 .give_header_img_text{
   display:flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  height:88rpx;
   font-size:26rpx;
   color:#333;
+  
 }
 .sale_award_price,.invite_red_pocket_price,.my_friend_count{
   font-size:30rpx;

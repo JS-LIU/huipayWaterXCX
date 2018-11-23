@@ -89,4 +89,9 @@ Page({
     }
     
   },
+  bindGiveWaterTicket:function(){
+    wx.navigateTo({
+      url: '/pages/savepicture/savepicture',
+    })
+  }
 })

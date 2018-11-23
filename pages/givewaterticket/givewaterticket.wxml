@@ -36,7 +36,8 @@
     <text class='money_text'>(红包金额0~10喜币随机)</text>
     <image src='../images/dingshui_photo_present@2x.png' class='share_red_pocket_img'></image>
     <view class='red_pocket_explan_text'>你邀请1个朋友免费领取喜腾山泉天然矿泉水1桶（水票），你可获赠喜币红包，邀请越多，奖励越多！</view>
-    <button open-type='share' class='share_button'>立即赠送</button>
+    <view class='share_button' bindtap='bindGiveWaterTicket'>立即赠送</view>
+    <!-- <button open-type='share' class='share_button'>立即赠送</button> -->
     <view class='share_img_introduce'>
       <image mode='aspectFit' class='share_img_introduce_img' src='../images/yaoqing_icon_zengsong@2x.png'></image>
       <text class='share_img_introduce_text'>如何赠送好友</text>
