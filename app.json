@@ -62,7 +62,7 @@
     "list": [
       {
         "iconPath": "pages/images/tab_btn_order water_n.png",
-        "selectedIconPath": "pages/images/tab_btn_order water_s.png",
+        "selectedIconPath": "pages/images/tab_btn_order_water_s.png",
         "pagePath": "pages/index/index",
         "text": "订水"
       },

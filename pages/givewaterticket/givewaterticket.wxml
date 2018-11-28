@@ -1,6 +1,6 @@
 <!--pages/givewaterticket.wxml-->
 <view class='wrap'></view>
-
+<view class='shadowWrap' wx:if="{{showFooter}}" bindtap='bindHideFooter'></view>
 <view class='give_header'>
   <navigator url="/pages/myfriend/myfriend" class='give_header_item'>
     <view class='give_header_img_text'>
@@ -32,18 +32,39 @@
     </view>
     <text class='money_text'>累计奖励喜币红包</text>
   </view> -->
-    <image mode='aspectFit' src='../images/yaoqing_slogon@2x.png' class='invite_slogon'></image>
-    <text class='money_text'>(红包金额0~10喜币随机)</text>
-    <image src='../images/dingshui_photo_present@2x.png' class='share_red_pocket_img'></image>
-    <view class='red_pocket_explan_text'>你邀请1个朋友免费领取喜腾山泉天然矿泉水1桶（水票），你可获赠喜币红包，邀请越多，奖励越多！</view>
-    <view class='share_button' bindtap='bindGiveWaterTicket'>立即赠送</view>
-    <!-- <button open-type='share' class='share_button'>立即赠送</button> -->
-    <view class='share_img_introduce'>
-      <image mode='aspectFit' class='share_img_introduce_img' src='../images/yaoqing_icon_zengsong@2x.png'></image>
-      <text class='share_img_introduce_text'>如何赠送好友</text>
-    </view>
-    
+  <image mode='aspectFit' src='../images/yaoqing_slogon@2x.png' class='invite_slogon'></image>
+  <text class='money_text'>(红包金额0~10喜币随机)</text>
+  <image src='../images/dingshui_photo_present@2x.png' class='share_red_pocket_img'></image>
+  <view class='red_pocket_explan_text'>你邀请1个朋友免费领取喜腾山泉天然矿泉水1桶（水票），你可获赠喜币红包，邀请越多，奖励越多！</view>
+  <view class='share_button' bindtap='bindGiveWaterTicket'>立即赠送</view>
+  <!-- <button open-type='share' class='share_button'>立即赠送</button> -->
+  <view class='share_img_introduce'>
+    <image mode='aspectFit' class='share_img_introduce_img' src='../images/yaoqing_icon_zengsong@2x.png'></image>
+    <text class='share_img_introduce_text'>如何赠送好友</text>
   </view>
+  
+</view>
+<view class='give_footer' wx:if="{{showFooter}}">
+  <view class='share_list'>
+    <button open-type='share' class='share_item'>
+      <image mode='aspectFit' class='share_item_icon' src='../images/icon_weixin@2x.png'></image>
+      <text>微信</text>
+    </button>
+    <view class='share_item' bindtap='bindCreatePic'>
+      <image mode='aspectFit' class='share_item_icon' src='../images/icon_friendcircle@2x.png'></image>
+      <text>朋友圈</text>
+    </view>
+    <view class='share_item' bindtap='bindCreatePic'>
+      <image mode='aspectFit' class='share_item_icon' src='../images/icon_weibo@2x.png'></image>
+      <text>微博</text>
+    </view>
+    <view class='share_item' bindtap='bindCreatePic'>
+      <image mode='aspectFit' class='share_item_icon' src='../images/icon_qq@2x.png'></image>
+      <text>QQ</text>
+    </view>
+  </view>
+  <view class='cancel_share_btn' bindtap='bindHideFooter'>取消</view>
+</view>
 <!-- <navigator class='to_give_friend_list' url='/pages/givefriendlist/givefriendlist'>
   <view class='to_give_friend_list_left'>
     <image src='../images/yaoqing_icon_renqun@2x.png' mode='aspectFit' class='give_friend_list_icon'></image>

@@ -1,0 +1,3 @@
+<view class="wrap"></view>
+<canvas class='water_ticket_draw_pic' canvas-id="giveCanvas"></canvas>
+<view class='save_to_photo' bindtap='bindSaveToPhoto'>保存到相册</view>

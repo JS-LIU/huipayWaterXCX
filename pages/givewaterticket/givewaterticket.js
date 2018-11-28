@@ -11,7 +11,8 @@ Page({
   data: {
     inviteProfitXtbAmount: "",
     shareSellProfitRmbAmount: "",
-    userFriendAmount: ""
+    userFriendAmount: "",
+    showFooter:false
   },
 
   /**
@@ -90,6 +91,16 @@ Page({
     
   },
   bindGiveWaterTicket:function(){
+    this.setData({
+      showFooter:true
+    });
+  },
+  bindHideFooter:function(){
+    this.setData({
+      showFooter:false
+    });
+  },
+  bindCreatePic:function(){
     wx.navigateTo({
       url: '/pages/savepicture/savepicture',
     })
