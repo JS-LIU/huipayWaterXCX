@@ -35,7 +35,7 @@ class XbContainer{
     return this.expectXb;
   }
   increaseXb(){
-    if (this.expectXb < this.getMaxUseXb()-1) {
+    if (this.expectXb < this.getMaxUseXb()) {
       this.expectXb++;
     }
     console.log('increase',this.expectXb)
