@@ -21,7 +21,7 @@ class WxPay{
     this.totalPrice = orderInfo.totalPrice;
     this.orderId = orderInfo.orderId;
     this.orderNo = orderInfo.orderNo;
-
+    this.openId = openId;
     let accessInfo = Object.assign({}, { app_key: loginInfo.appKey }, loginInfo.getInfo());
     wx.showLoading({
       title: '请稍后',
@@ -38,7 +38,7 @@ class WxPay{
         "&package=prepay_id=" + data.wexinSpec.prepay_id + "&signType=MD5&timeStamp=" +
         data.wexinSpec.timestamp + "&key=9LhHxg6qg29YHCp3TnL6Qvl6jfprZh2q";
       var paySign = hex_md5(sign).toUpperCase();
-      console.log(paySign);
+      let self = this;
       wx.requestPayment({
         "timeStamp": data.wexinSpec.timestamp,
         "nonceStr": data.wexinSpec.noncestr,
@@ -50,16 +50,25 @@ class WxPay{
         },
         'fail': function (res) {
         },
-        'complete':function(){
+        'complete':function(res){
           wx.hideLoading();
-          wx.redirectTo({
-            url: '/pages/orderlist/orderlist?orderType=total',
+          self.queryResult({ 
+            orderNo: self.orderNo, 
+            payChannel: "WeixinMiniProgramPay"
+          }).then(()=>{
+            wx.redirectTo({
+              url: '/pages/orderlist/orderlist?orderType=total',
+            })
           })
+          
         }
       })
     }).catch((err) => {
       console.log(err);
     }); 
+  }
+  queryResult(postInfo){
+    return huipayRequest.resource('/client/pay/queryResult').save({}, postInfo)
   }
 }
 module.exports = WxPay

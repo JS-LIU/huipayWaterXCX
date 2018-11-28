@@ -87,9 +87,9 @@ Page({
     
   },
   bindNavigateToDetail:function(e){
-    let orderId = e.currentTarget.dataset.orderId;
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?orderId=' + orderId,
-    })
+    // let orderId = e.currentTarget.dataset.orderId;
+    // wx.navigateTo({
+    //   url: '/pages/orderdetail/orderdetail?orderId=' + orderId,
+    // })
   }
 })
