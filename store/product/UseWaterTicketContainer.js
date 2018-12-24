@@ -1,9 +1,12 @@
 var UseWaterTicket = require('../product/UseWaterTicket.js');
 
 class UseWaterTicketContainer {
-    constructor(useWaterTicketsInfo) {
+  constructor(useWaterTicketsInfo, isCanUnconditionalUse) {
         console.log(useWaterTicketsInfo);
         this.totalUsed = useWaterTicketsInfo.totalUsed;
+        //  使用的是否是赠送水票
+        this.isCanUnconditionalUse = (isCanUnconditionalUse === "present_ticket_need_by_empty_bucket" ? false : true );
+
         this.userTicketModels = useWaterTicketsInfo.userTicketModels;
         this.useTicketList = [];
         for (let i = 0; i < this.userTicketModels.length; i++) {

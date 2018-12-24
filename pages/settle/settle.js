@@ -181,6 +181,7 @@ Page({
         order.setMark(e.detail.value);
     },
     bindCreateOrder: function (e) {
+        let self = this;
         let deliveryTime = "9:00-17:00";
         if (this.receiverInfo) {
             let deliveryAddressId = this.receiverInfo.id;
@@ -195,16 +196,43 @@ Page({
                                         url: '/pages/orderlist/orderlist?orderType=total',
                                     })
                                 }
+                            }).catch((err)=>{
+                                if (err.data.message === "没有选择购买空桶商品"){
+                                  wx.showModal({
+                                    title:"温馨提示",
+                                    content:"使用免费水票换购喜腾山泉矿泉水，需购买喜腾专用水桶，或购买水票套餐立即赠送水桶。",
+                                    confirmText:"去购买",
+                                    success: function (res) {
+                                      if (res.confirm) {
+                                        self.bindShowBucketList();
+                                      }
+                                      
+                                    }
+                                  })
+                                }
                             })
                         }
-                    },
-
+                    }
                 })
             } else {
                 let wxP = new WxPay();
                 wxP.getOpenId(e.detail).then((info) => {
                     order.createOrder(deliveryAddressId, deliveryTime).then((orderInfo) => {
                         wxP.pay(orderInfo, info.data.openId);
+                    }).catch((err) => {
+                      if (err.data.message === "没有选择购买空桶商品") {
+                        wx.showModal({
+                          title: "温馨提示",
+                          content: "使用免费水票换购喜腾山泉矿泉水，需购买喜腾专用水桶，或购买水票套餐立即赠送水桶。",
+                          confirmText: "去购买",
+                          success: function (res) {
+                            if (res.confirm) {
+                              self.bindShowBucketList();
+                            }
+
+                          }
+                        })
+                      }
                     })
                 }).catch(() => {
 

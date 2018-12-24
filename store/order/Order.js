@@ -138,7 +138,7 @@ class Order {
         let orderTicketInfo = settle.orderTicketInfo;
         this._matching(orderTicketInfo, orderProductInfo);
         this.settleProductContainer = new SettleProductContainer(orderProductInfo);
-        this.useWaterTicketContainer = new UseWaterTicketContainer(orderTicketInfo);
+        this.useWaterTicketContainer = new UseWaterTicketContainer(orderTicketInfo, settle.alertType);
         this.xbContainer = new XbContainer(this.settleProductContainer, this.useWaterTicketContainer)
     }
 
@@ -231,6 +231,8 @@ class Order {
                 this.orderInfo = info.data;
                 resolve(this.orderInfo);
                 shoppingCartContainer.removeAllSelectedProduct();
+            }).catch((err)=>{
+              reject(err);
             });
         })
     }
