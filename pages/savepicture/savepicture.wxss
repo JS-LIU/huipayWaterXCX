@@ -10,8 +10,8 @@
 .water_ticket_draw_pic{
   position:relative;
   margin:28rpx auto;
-  width:292px;
-  height:1040rpx;
+  width:728rpx;
+  height:1005rpx;
   background:#FFF;
 }
 .qrcode{

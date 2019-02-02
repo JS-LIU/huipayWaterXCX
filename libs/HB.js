@@ -88,19 +88,19 @@ HB.scanUrl = (function(){
       return baseUrl;
     }
     
-  }
+  };
 
   var getQueryString = function (url, baseUrl,name,) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = url.substr(baseUrl.length, url.length).substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
-  }
+  };
   return {
     getUrl: getUrl,
     getQueryString: getQueryString
   }
 
-})()
+})();
 
 
 

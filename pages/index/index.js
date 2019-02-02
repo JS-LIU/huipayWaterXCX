@@ -37,8 +37,20 @@ Page({
       let self = this;
       self.logger = new Logger();
       let baseUrl = "https://huipay.com/huibeiwater/index/index";
-      console.log('========options:',options);
+      console.log('========options:',options.q);
       let url = HB.scanUrl.getUrl(options.q, baseUrl);
+      let productItemId = HB.scanUrl.getQueryString(url, baseUrl, "productItemId");
+      let shopId = HB.scanUrl.getQueryString(url, baseUrl, "shopId");
+      if (productItemId && shopId){
+        wx.navigateTo({
+          url: '/pages/shopproductdetail/shopproductdetail?productItemId=' + productItemId + "&shopId=" + shopId,
+        })
+      } else if (shopId){
+        wx.navigateTo({
+          url: '/pages/shop/shop?shopId=' + shopId
+        })
+      }
+
       self.activityId = HB.scanUrl.getQueryString(url, baseUrl, "activityId") || options.activityId;
       self.inviteId = HB.scanUrl.getQueryString(url, baseUrl, "inviteId") || options.inviteId;
       self.type = HB.scanUrl.getQueryString(url, baseUrl, "type") || options.type;

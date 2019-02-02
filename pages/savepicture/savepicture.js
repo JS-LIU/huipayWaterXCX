@@ -16,73 +16,82 @@ Page({
    */
   onLoad: function (options) {
     let ctx = wx.createCanvasContext('giveCanvas');
+    let wW = wx.getSystemInfoSync().windowWidth;
+    let wH = wx.getSystemInfoSync().windowHeight;
+    let rate = wW / 375;
+    let canvasW = 364 * rate;
+    let canvasH = 505 * rate;
     let userIcon = userInfo.userIconUrl;
-    function calcTextStartX(textLength,fontSize){
-      return ((292 - textLength * fontSize) / 2);
-    }
-    function calcCenterTextEndX(startX){
-      return 292 - startX
-    }
-    function calcTextEndX(startX,text){
-      return startX + text.length * fontSize;
-    }
-    function calcStartX(canvasW,itemW){
-      return (canvasW-itemW)/2;
-    }
+    // function calcTextStartX(textLength,fontSize){
+    //   return ((292 - textLength * fontSize) / 2);
+    // }
+    // function calcCenterTextEndX(startX){
+    //   return 292 - startX
+    // }
+    // function calcTextEndX(startX,text){
+    //   return startX + text.length * fontSize;
+    // }
+    // function calcStartX(canvasW,itemW){
+    //   return (canvasW-itemW)/2;
+    // }
+    //  背景
+    ctx.drawImage("../images/share_img.png", 0, 0, canvasW, canvasH)
+    ctx.draw(true);
+
     //  文字起始点
     let userName = userInfo.userName;
-    let nameTextStartX = calcTextStartX(userName.length,12);
-    let titleLineUp = "亲，送你1张喜腾山泉水票，凭此水票可";
-    let titleLineEnd = "免费兑换1桶喜腾山泉天然矿泉水";
-    let titleTextStartX = calcTextStartX(17,14);
+    // let nameTextStartX = calcTextStartX(userName.length,12);
+    // let titleLineUp = "亲，送你1张喜腾山泉水票，凭此水票可";
+    // let titleLineEnd = "免费兑换1桶喜腾山泉天然矿泉水";
+    // let titleTextStartX = calcTextStartX(17,14);
     //  绘制头像
-    ctx.drawImage(userIcon, 124, 22, 44, 44);
+    ctx.drawImage(userIcon, 34 * rate, 22 * rate, 44, 44);
     ctx.draw(true);
     
     //  设置字号
-    ctx.setFontSize(12);
-    //  绘制姓名
-    ctx.fillText(userName, nameTextStartX, 80);
-    ctx.draw(true);
-
     ctx.setFontSize(14);
-    ctx.fillText(titleLineUp, titleTextStartX, 124);
-    ctx.fillText(titleLineEnd, titleTextStartX, 144);
+    //  绘制姓名
+    ctx.fillText(userName, 92 * rate, 54 * rate);
     ctx.draw(true);
 
-    ctx.setLineDash([10, 5], 5);
-    ctx.beginPath();
-    ctx.moveTo(titleTextStartX, 160);
-    let lineEndX = calcCenterTextEndX(titleTextStartX);
-    ctx.lineTo(lineEndX, 160);
-    ctx.stroke();
-    ctx.draw(true);
-    let waterTicketStartX = calcStartX(292,225);
-    ctx.drawImage("../images/home_water_ticket.png", waterTicketStartX, 210, 225, 98)
-    ctx.draw(true);
+    // ctx.setFontSize(14);
+    // ctx.fillText(titleLineUp, titleTextStartX, 124);
+    // ctx.fillText(titleLineEnd, titleTextStartX, 144);
+    // ctx.draw(true);
+
+    // ctx.setLineDash([10, 5], 5);
+    // ctx.beginPath();
+    // ctx.moveTo(titleTextStartX, 160);
+    // let lineEndX = calcCenterTextEndX(titleTextStartX);
+    // ctx.lineTo(lineEndX, 160);
+    // ctx.stroke();
+    // ctx.draw(true);
+    // let waterTicketStartX = calcStartX(292,225);
+    // ctx.drawImage("../images/home_water_ticket.png", waterTicketStartX, 210, 225, 98)
+    // ctx.draw(true);
     
-    ctx.setFontSize(16);
-    ctx.fillText("长按识别喜腾订水小", titleTextStartX, 385);
-    ctx.fillText("程序立即领取水票", titleTextStartX, 405);
-    ctx.draw(true);
+    // ctx.setFontSize(16);
+    // ctx.fillText("长按识别喜腾订水小", titleTextStartX, 385);
+    // ctx.fillText("程序立即领取水票", titleTextStartX, 405);
+    // ctx.draw(true);
 
-    let self = this;
-    let qrCodeTextEndX = calcCenterTextEndX(titleTextStartX)-85;
+    // let self = this;
+    // let qrCodeTextEndX = calcCenterTextEndX(titleTextStartX)-85;
     new QRCode('giveCanvas', {
       text: 'https://huipay.com/huibeiwater/pages/index/index?type=receiveTicket&activityId=2&inviteId=' + userInfo.id,
-      width: 85,
-      height: 85,
-      y: 355,
-      x: qrCodeTextEndX,
+      width: 65*rate,
+      height: 65 * rate,
+      y: 416*rate,
+      x: 20 * rate,
       colorDark: "#4dc0ff",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H,
     });
 
 
-    let logoStartX = calcStartX(292, 70);
-    ctx.drawImage("../images/huibei@2x.png", logoStartX, 490, 70, 15)
-    ctx.draw(true);
+    // let logoStartX = calcStartX(292, 70);
+    // ctx.drawImage("../images/huibei@2x.png", logoStartX, 490, 70, 15)
+    // ctx.draw(true);
   },
 
   /**
